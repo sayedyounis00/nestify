@@ -12,7 +12,7 @@ class Nestify extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      onUnknownRoute:onGenerate ,
+      onGenerateRoute:onGenerate ,
       debugShowCheckedModeBanner: false,
         initialRoute: AddRouter.verificationRoute,
     );
