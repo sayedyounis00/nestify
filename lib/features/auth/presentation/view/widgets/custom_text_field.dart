@@ -49,7 +49,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               const TextStyle(fontSize: 18, color: Colors.black),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Colors.amber)),
+              borderSide: const BorderSide(color: Colors.black)),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
     );
   }

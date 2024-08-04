@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:nestify/core/error/auth_errors_handle.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
@@ -17,6 +19,7 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController emailCon = TextEditingController();
   final TextEditingController passwordCon = TextEditingController();
   bool isLoading = false;
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,7 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(
               height: 25,
             ),
+
             // password
             CustomTextField(
               label: 'Password',
@@ -54,9 +58,14 @@ class _LoginFormState extends State<LoginForm> {
 
             // login button
             isLoading
-                ? const SizedBox(height: 50, child: CircularProgressIndicator())
+                ? const SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: Center(child: CircularProgressIndicator()))
                 : CustomButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await loginHandle(context);
+                    },
                     text: 'login',
                     color: AppColor.primaryColor,
                   ),
@@ -67,29 +76,26 @@ class _LoginFormState extends State<LoginForm> {
           ],
         ));
   }
+
+  Future<void> loginHandle(BuildContext context) async {
+    if (formKey.currentState!.validate()) {
+      try {
+        isLoading = true;
+        setState(() {});
+        await signInMethod();
+      } on FirebaseAuthException catch (e) {
+        ErrorHandle().handleAuthErrors(e, context);
+      }
+      isLoading = false;
+      setState(() {});
+    } else {
+      autovalidateMode = AutovalidateMode.always;
+      setState(() {});
+    }
+  }
+
+  Future<UserCredential> signInMethod() async {
+    return await auth.signInWithEmailAndPassword(
+        email: emailCon.text, password: passwordCon.text);
+  }
 }
-
-//   Future<UserCredential> signInMethod() {
-//     return FirebaseAuth.instance.signInWithEmailAndPassword(
-//         email: emailCon.text, password: passwordCon.text);
-//   }
-// }
-
-// void handleShowErrors(FirebaseAuthException e, BuildContext context) {
-//   if (e.code == 'wrong-password') {
-//     showSnackBar(context, 'wrong password');
-//   } else if (e.code == 'invalid-email') {
-//     showSnackBar(context, 'invalid email');
-//   } else {
-//     showSnackBar(context, 'Your email or password is wrong.');
-//   }
-// }
-
-// ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
-//     BuildContext context, String message) {
-//   return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-//     content: Text(
-//       message,
-//     ),
-//   ));
-// }
