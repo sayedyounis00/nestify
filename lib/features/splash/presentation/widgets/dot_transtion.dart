@@ -19,7 +19,7 @@ class DotTranstion extends StatelessWidget {
       children: widget.imgList.asMap().entries.map((entry) {
         return GestureDetector(
           child: Container(
-            width: currentIndex == entry.key ? 8.0 : 8.0,
+            width: currentIndex == entry.key ? 10.0 : 10.0,
             height: 12.0,
             margin: const EdgeInsets.symmetric(
               vertical: 8.0,

@@ -16,5 +16,6 @@ TextButtonThemeData textButtonTheme() => const TextButtonThemeData(
 AppBarTheme appBarTheme() => const AppBarTheme(
       backgroundColor: AppColor.primaryColor,
     );
-TextTheme textTheme() =>
-    const TextTheme(titleMedium: TextStyle(color: AppColor.secColor4));
+TextTheme textTheme() => const TextTheme(
+      titleMedium: TextStyle(color: AppColor.secColor4),
+    );
