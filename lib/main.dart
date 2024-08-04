@@ -13,10 +13,8 @@ class Nestify extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MaterialApp(
-        onGenerateRoute: onGenerate,
-        initialRoute: AddRouter.landingListViewRoute,
-      ),
+      onGenerateRoute: onGenerate,
+      initialRoute: AddRouter.landingListViewRoute,
     );
   }
 }
