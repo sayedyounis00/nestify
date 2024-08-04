@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:nestify/presentation/screens/landing_page.dart';
-import 'package:nestify/presentation/screens/login_page.dart';
-import 'package:nestify/utilites/routes.dart';
+import 'package:nestify/core/utils/routes.dart';
+import 'package:nestify/features/splash/presentation/view/landing_page.dart';
+import 'package:nestify/features/splash/presentation/view/login_page.dart';
 
 Route<dynamic> onGenerate(RouteSettings settings) {
   switch (settings.name) {

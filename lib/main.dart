@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nestify/utilites/router.dart';
+import 'package:nestify/core/utils/router.dart';
 
 void main() {
   runApp(const Nestify());
