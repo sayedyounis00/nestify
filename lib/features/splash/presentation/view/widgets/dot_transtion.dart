@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:nestify/core/utils/theme/app_color.dart';
-import 'package:nestify/features/splash/presentation/view/landing_page.dart';
+import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/features/splash/data/landing_data.dart';
 
 class DotTranstion extends StatelessWidget {
   const DotTranstion({
     super.key,
-    required this.widget,
     required this.currentIndex,
   });
-
-  final LandingPage widget;
   final int currentIndex;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: widget.imgList.asMap().entries.map((entry) {
+      children: LandingData.landingList.asMap().entries.map((entry) {
         return GestureDetector(
           child: Container(
             width: currentIndex == entry.key ? 10.0 : 10.0,

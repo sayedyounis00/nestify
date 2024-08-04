@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nestify/core/utils/theme/app_color.dart';
+import 'package:nestify/core/theme/app_color.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
