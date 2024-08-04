@@ -20,7 +20,7 @@ class _SplashViewState extends State<SplashView> {
       () {
         Get.off(
           () => const LandingView(),
-          transition: Transition.rightToLeft,
+          transition: Transition.fade,
         );
       },
     );

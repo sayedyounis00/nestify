@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:nestify/features/auth/presentation/view/login_view.dart';
 import 'package:nestify/features/splash/data/landing_data.dart';
-import 'package:nestify/features/splash/presentation/view/widgets/custom_button.dart';
+import 'package:nestify/features/splash/presentation/view/widgets/custom_landing_button.dart';
 import 'package:nestify/features/splash/presentation/view/widgets/dot_transtion.dart';
 
 class ButtonAndDotsRow extends StatelessWidget {
@@ -24,14 +27,19 @@ class ButtonAndDotsRow extends StatelessWidget {
               DotTranstion(
                 currentIndex: LandingData.currentPage,
               ),
-              CustomButton(
+              CustomLandingButton(
                 width: LandingData.currentPage == 2 ? 120 : 100,
-                text: LandingData.currentPage == 2 ? 'Start Exploaring' : 'Next',
+                text:
+                    LandingData.currentPage == 2 ? 'Start Exploaring' : 'Next',
                 onTap: () {
-                  pageController.nextPage(
-                    duration: const Duration(microseconds: 400),
-                    curve: Curves.easeInOut,
-                  );
+                  if (LandingData.currentPage == 2) {
+                    Get.off(() => const LoginView(),transition: Transition.rightToLeft);
+                  } else {
+                    pageController.nextPage(
+                      duration: const Duration(microseconds: 400),
+                      curve: Curves.easeInOut,
+                    );
+                  }
                 },
               ),
             ],
