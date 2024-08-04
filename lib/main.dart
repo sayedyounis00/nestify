@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/core/utils/router.dart';
+import 'package:nestify/core/utils/routes.dart';
 
 void main() {
   runApp(const Nestify());
@@ -14,6 +15,7 @@ class Nestify extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MaterialApp(
         onGenerateRoute:onGenerate,
+        initialRoute:AddRouter.landingPageRoute,
         
       ),
     );
