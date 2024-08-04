@@ -17,7 +17,7 @@ class LandingViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      // fit: StackFit.expand,
+      fit: StackFit.expand,
       children: [
         CustomImage(landingModel: landingModel),
         Container(color: AppColor.primaryColor.withOpacity(0.7)),

@@ -14,20 +14,22 @@ class _LandingViewState extends State<LandingView> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      onPageChanged: (value) {
-        LandingData.currentPage = value;
-      },
-      controller: _pageController,
-      scrollDirection: Axis.horizontal,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: LandingData.landingList.length,
-      itemBuilder: (BuildContext context, int index) {
-        return LandingViewBody(
-          landingModel: LandingData.landingList[index],
-          pageController: _pageController,
-        );
-      },
+    return Scaffold(
+      body: PageView.builder(
+        onPageChanged: (value) {
+          LandingData.currentPage = value;
+        },
+        controller: _pageController,
+        scrollDirection: Axis.horizontal,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: LandingData.landingList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return LandingViewBody(
+            landingModel: LandingData.landingList[index],
+            pageController: _pageController,
+          );
+        },
+      ),
     );
   }
 }
