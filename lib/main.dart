@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nestify/utilites/router.dart';
 
 void main() {
   runApp(const Nestify());
@@ -11,7 +12,9 @@ class Nestify extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(),
+      home: MaterialApp(
+        onGenerateRoute:onGenerate,
+      ),
     );
   }
 }
