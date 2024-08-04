@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:nestify/core/utils/router.dart';
 import 'package:nestify/core/utils/routes.dart';
 
@@ -11,10 +12,11 @@ class Nestify extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const GetMaterialApp(
+      transitionDuration: Duration(milliseconds: 500),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerate,
-      initialRoute: AddRouter.landingListViewRoute,
+      initialRoute: AddRouter.splashViewRoute,
     );
   }
 }
