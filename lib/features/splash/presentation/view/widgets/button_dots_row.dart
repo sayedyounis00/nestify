@@ -33,7 +33,8 @@ class ButtonAndDotsRow extends StatelessWidget {
                     LandingData.currentPage == 2 ? 'Start Exploaring' : 'Next',
                 onTap: () {
                   if (LandingData.currentPage == 2) {
-                    Get.off(() => const LoginView(),transition: Transition.rightToLeft);
+                    Get.off(() => const LoginView(),
+                        transition: Transition.rightToLeft);
                   } else {
                     pageController.nextPage(
                       duration: const Duration(microseconds: 400),
