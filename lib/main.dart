@@ -22,7 +22,7 @@ class Nestify extends StatelessWidget {
       transitionDuration: Duration(milliseconds: 500),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerate,
-      initialRoute: AddRouter.loginViewRoute,
+      initialRoute: AddRouter.verifiedRoute,
     );
   }
 }
