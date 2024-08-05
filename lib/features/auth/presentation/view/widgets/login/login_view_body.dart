@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/signup_view.dart';
@@ -72,11 +74,39 @@ class AnotherLoginMethodsRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AnotherLoginMethodCard(
-            imgPath: 'assets/images/google.png', onTap: () {}),
+            imgPath: 'assets/images/google.png',
+            onTap: () async {
+              try {
+                await signInWithGoogle();
+              } catch (e) {
+                rethrow;
+              }
+            }),
         const SizedBox(width: 23),
         AnotherLoginMethodCard(imgPath: 'assets/images/apple.png', onTap: () {})
       ],
     );
+  }
+
+  Future<User?> signInWithGoogle() async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    if (googleAuth?.accessToken != null && googleAuth?.idToken != null) {
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      final UserCredential userCredential =
+          await auth.signInWithCredential(credential);
+      return userCredential.user;
+    }
+    return null;
   }
 }
 
