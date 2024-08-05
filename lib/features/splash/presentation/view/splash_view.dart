@@ -31,7 +31,7 @@ class _SplashViewState extends State<SplashView> {
             }
           },
         );
-        Get.off(view);
+        Get.off(() => view);
       },
     );
   }
