@@ -12,7 +12,7 @@ class VerificationView extends StatefulWidget {
 }
 
 class _VerificationViewState extends State<VerificationView> {
-      bool correct=true ;
+  bool correct = true;
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +68,7 @@ class _VerificationViewState extends State<VerificationView> {
               // width: double.infinity,
               onPressed: () {
                 correct = false;
-                setState(() {
-                  
-                });
-                
+                setState(() {});
               },
               text: 'Verify',
               color: AppColor.primaryColor,

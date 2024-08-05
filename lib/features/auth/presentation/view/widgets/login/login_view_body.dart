@@ -1,8 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/widgets/space.dart';
+import 'package:nestify/features/auth/presentation/view/signup_view.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/another_login_method_card.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/login_form.dart';
-import 'package:nestify/features/auth/presentation/view/widgets/sign_up_button.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
