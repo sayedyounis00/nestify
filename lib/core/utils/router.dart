@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nestify/core/utils/routes.dart';
-import 'package:nestify/features/auth/presentation/phone_login_view.dart';
+import 'package:nestify/features/auth/presentation/view/phone_login_view.dart';
 import 'package:nestify/features/auth/presentation/view/login_view.dart';
 import 'package:nestify/features/auth/presentation/view/verification_view.dart';
 import 'package:nestify/features/splash/presentation/view/landing_view.dart';
