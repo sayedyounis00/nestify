@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/features/auth/presentation/view/forget_pass_view.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/another_login_method_card.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/login_form.dart';
+import 'package:nestify/features/auth/presentation/view/widgets/sign_up_button.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -27,38 +29,7 @@ class LoginViewBody extends StatelessWidget {
   }
 }
 
-class SignupButton extends StatelessWidget {
-  const SignupButton({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text("Don't have a Nestify account?",
-            style: TextStyle(
-                fontSize: 14,
-                color: AppColor.secColor3,
-                fontWeight: FontWeight.w500)),
-        TextButton(
-          style: const ButtonStyle(
-              padding: WidgetStatePropertyAll(EdgeInsets.zero)),
-          onPressed: () {
-            Get.to(() => const ForgetPassView(),
-                transition: Transition.rightToLeft);
-          },
-          child: const Text('Sign up',
-              style: TextStyle(
-                  fontSize: 15,
-                  color: AppColor.primaryColor,
-                  fontWeight: FontWeight.w500)),
-        ),
-      ],
-    );
-  }
-}
 
 class AnotherLoginMethodsRow extends StatelessWidget {
   const AnotherLoginMethodsRow({
@@ -73,7 +44,15 @@ class AnotherLoginMethodsRow extends StatelessWidget {
         AnotherLoginMethodCard(
             imgPath: 'assets/images/google.png', onTap: () {}),
         const SizedBox(width: 23),
-        AnotherLoginMethodCard(imgPath: 'assets/images/apple.png', onTap: () {})
+        AnotherLoginMethodCard(
+            imgPath: 'assets/images/apple.png', onTap: () {}),
+        const SizedBox(width: 23),
+        AnotherLoginMethodCard(
+            imgPath: 'assets/images/smartphone.png',
+            cacheHeight: 35,
+            onTap: () {
+              Navigator.pushNamed(context,AddRouter.phoneLogin);
+            }),
       ],
     );
   }

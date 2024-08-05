@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextField extends StatefulWidget {
-  final String label;
+  final String? label;
+  final String? hintText;
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
+  final int? maxInputLength;
 
   const CustomTextField({
     super.key,
-    required this.label,
-    required this.controller,
+     this.label,
+    this.hintText,
+     this.controller, this.maxInputLength,
   });
 
   @override
@@ -20,6 +24,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.digitsOnly,
+          LengthLimitingTextInputFormatter(widget.maxInputLength),
+        ],
       controller: widget.controller,
       validator: (value) {
         if (value!.isEmpty && widget.label == 'Email') {
@@ -43,8 +51,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       ? const Icon(Icons.visibility)
                       : const Icon(Icons.visibility_off),
                 ),
-          contentPadding: const EdgeInsets.all(12),
+          contentPadding:  const EdgeInsets.all(12),
           labelText: widget.label,
+          hintText: widget.hintText,
+          
           floatingLabelStyle:
               const TextStyle(fontSize: 18, color: Colors.black),
           focusedBorder: OutlineInputBorder(
