@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:nestify/core/utils/router.dart';
 import 'package:nestify/core/utils/routes.dart';
+import 'package:nestify/features/home/presentation/views/home_view.dart';
 import 'package:nestify/firebase_options.dart';
 
 void main() async {
@@ -22,7 +23,8 @@ class Nestify extends StatelessWidget {
       transitionDuration: Duration(milliseconds: 500),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerate,
-      initialRoute: AddRouter.signupViewRoute,
+      initialRoute: AddRouter.splashViewRoute,
+
     );
   }
 }

@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:nestify/features/home/presentation/views/home_view.dart';
 import 'package:nestify/features/splash/presentation/view/landing_view.dart';
 import 'package:nestify/features/splash/presentation/view/widgets/splash_view_body.dart';
 
@@ -18,10 +21,17 @@ class _SplashViewState extends State<SplashView> {
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        Get.off(
-          () => const LandingView(),
-          transition: Transition.fade,
+        var view = StreamBuilder(
+          stream: FirebaseAuth.instance.userChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return const HomeView();
+            } else {
+              return const LandingView();
+            }
+          },
         );
+        Get.off(view);
       },
     );
   }
