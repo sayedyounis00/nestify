@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "897863157413",
+    "project_id": "nestify-8f4b4",
+    "storage_bucket": "nestify-8f4b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897863157413:android:23a4fc9688cf2c73432f4c",
+        "android_client_info": {
+          "package_name": "com.example.nestify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiYnNKFtMLs5WSDV6CtoqrisOltM5Yb5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

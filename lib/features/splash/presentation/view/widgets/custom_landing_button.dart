@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({
+class CustomLandingButton extends StatelessWidget {
+  const CustomLandingButton({
     super.key,
     required this.onTap,
     required this.text,
