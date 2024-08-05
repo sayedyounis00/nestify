@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/error/auth_errors_handle.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/forget_pass_text.dart';
@@ -29,19 +30,14 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(
-              height: 20,
-            ),
+            const SpaceV(20),
 
             // email
             CustomTextField(
               label: 'Email',
               controller: emailCon,
             ),
-
-            const SizedBox(
-              height: 25,
-            ),
+            const SpaceV(25),
 
             // password
             CustomTextField(
@@ -51,10 +47,7 @@ class _LoginFormState extends State<LoginForm> {
 
             // forget pass
             const ForgetPassText(),
-
-            const SizedBox(
-              height: 10,
-            ),
+            const SpaceV(10),
 
             // login button
             isLoading
@@ -70,9 +63,7 @@ class _LoginFormState extends State<LoginForm> {
                     color: AppColor.primaryColor,
                   ),
 
-            const SizedBox(
-              height: 20,
-            ),
+            const SpaceV(20),
           ],
         ));
   }

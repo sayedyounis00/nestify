@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/error/auth_errors_handle.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
 
@@ -21,6 +23,7 @@ class _SignupFormState extends State<SignupForm> {
   final TextEditingController lNameCon = TextEditingController();
   final TextEditingController phoneCon = TextEditingController(text: '+20');
   final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   bool valCheck = false;
 
   @override
@@ -47,9 +50,7 @@ class _SignupFormState extends State<SignupForm> {
               ],
             ),
 
-            const SizedBox(
-              height: 20,
-            ),
+            const SpaceV(20),
 
             // email
             CustomTextField(
@@ -57,9 +58,7 @@ class _SignupFormState extends State<SignupForm> {
               controller: emailCon,
             ),
 
-            const SizedBox(
-              height: 20,
-            ),
+            const SpaceV(20),
 
             // password
             CustomTextField(
@@ -67,9 +66,7 @@ class _SignupFormState extends State<SignupForm> {
               controller: passwordCon,
             ),
 
-            const SizedBox(
-              height: 20,
-            ),
+            const SpaceV(20),
 
             // phone
             CustomTextField(
@@ -77,6 +74,7 @@ class _SignupFormState extends State<SignupForm> {
               controller: phoneCon,
             ),
 
+            // Rules 
             Row(
               children: [
                 Checkbox(
@@ -92,9 +90,7 @@ class _SignupFormState extends State<SignupForm> {
               ],
             ),
 
-            const SizedBox(
-              height: 20,
-            ),
+            const SpaceV(20),
 
             CustomButton(
               onPressed: valCheck
@@ -116,6 +112,7 @@ class _SignupFormState extends State<SignupForm> {
       try {
         await registerMethod(emailCon, passwordCon);
         ErrorHandle.showSnackBar(context, 'Created done');
+        await createUser();
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);
       }
@@ -123,6 +120,16 @@ class _SignupFormState extends State<SignupForm> {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});
     }
+  }
+
+  Future<void> createUser() async {
+    await firestore.collection('users').doc().set({
+      'first name': fNameCon.text,
+      'last name': lNameCon.text,
+      'email': emailCon.text,
+      'createdAt': DateTime.now().toString(),
+      'phone number': phoneCon.text,
+    });
   }
 
   Future<void> registerMethod(emailCon, passwordCon) async {
