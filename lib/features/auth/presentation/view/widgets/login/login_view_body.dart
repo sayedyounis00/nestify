@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/another_login_method_card.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/login_form.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/sign_up_button.dart';
@@ -40,13 +39,6 @@ class AnotherLoginMethodsRow extends StatelessWidget {
         const SizedBox(width: 23),
         AnotherLoginMethodCard(
             imgPath: 'assets/images/apple.png', onTap: () {}),
-        const SizedBox(width: 23),
-        AnotherLoginMethodCard(
-            imgPath: 'assets/images/smartphone.png',
-            cacheHeight: 35,
-            onTap: () {
-              Navigator.pushNamed(context,AddRouter.phoneLogin);
-            }),
       ],
     );
   }
