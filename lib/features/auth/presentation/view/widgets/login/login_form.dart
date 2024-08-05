@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/error/auth_errors_handle.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/forget_pass_text.dart';
+import 'package:nestify/features/home/presentation/views/home_view.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -74,6 +77,7 @@ class _LoginFormState extends State<LoginForm> {
         isLoading = true;
         setState(() {});
         await signInMethod();
+        Get.off(() => const HomeView(), transition: Transition.fade);
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);
       }

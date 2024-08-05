@@ -23,6 +23,7 @@ class Nestify extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerate,
       initialRoute: AddRouter.splashViewRoute,
+
     );
   }
 }

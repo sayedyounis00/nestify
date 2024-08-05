@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/error/auth_errors_handle.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
+import 'package:nestify/features/home/presentation/views/home_view.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -74,7 +77,7 @@ class _SignupFormState extends State<SignupForm> {
               controller: phoneCon,
             ),
 
-            // Rules 
+            // Rules
             Row(
               children: [
                 Checkbox(
@@ -113,6 +116,7 @@ class _SignupFormState extends State<SignupForm> {
         await registerMethod(emailCon, passwordCon);
         ErrorHandle.showSnackBar(context, 'Created done');
         await createUser();
+        Get.off(()=>const HomeView(),transition: Transition.fade);
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);
       }

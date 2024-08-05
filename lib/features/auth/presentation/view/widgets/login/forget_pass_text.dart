@@ -13,7 +13,7 @@ class ForgetPassText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      style: const ButtonStyle(
+      style:  const ButtonStyle(
           alignment: Alignment.topRight,
           padding: WidgetStatePropertyAll(EdgeInsets.all(0))),
       onPressed: () {
