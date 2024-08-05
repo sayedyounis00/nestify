@@ -8,13 +8,13 @@ import 'package:nestify/features/splash/presentation/view/splash_view.dart';
 Route<dynamic> onGenerate(RouteSettings settings) {
   switch (settings.name) {
     case AddRouter.landingListViewRoute:
-      return CupertinoPageRoute(builder: (_) => const LandingView());
+    {  return CupertinoPageRoute(builder: (_) => const LandingView());}
     case AddRouter.splashViewRoute:
       return CupertinoPageRoute(builder: (_) => const SplashView());
     case AddRouter.loginViewRoute:
-      return CupertinoPageRoute(builder: (_) => const LoginView());
+    {  return CupertinoPageRoute(builder: (_) => const LoginView());}
     case AddRouter.verificationRoute:
-      return CupertinoPageRoute(builder: (_) => const VerificationPage());
+    {  return CupertinoPageRoute(builder: (_) => const VerificationPage());}
     default:
       return CupertinoPageRoute(builder: (_) => const LandingView());
   }

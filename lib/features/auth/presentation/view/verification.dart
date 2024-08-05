@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/features/auth/presentation/widgets/input_circule.dart';
-import 'package:nestify/features/splash/presentation/view/widgets/custom_button.dart';
+import 'package:nestify/features/auth/presentation/data/verification_data.dart';
+import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
+import 'package:nestify/features/auth/presentation/view/widgets/input_circule.dart';
 
-class VerificationPage extends StatelessWidget {
+class VerificationPage extends StatefulWidget {
   const VerificationPage({super.key});
+
+  @override
+  State<VerificationPage> createState() => _VerificationPageState();
+}
+
+class _VerificationPageState extends State<VerificationPage> {
+      bool correct=true ;
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +65,17 @@ class VerificationPage extends StatelessWidget {
               ],
             ),
             CustomButton(
-              width: double.infinity,
-              onTap: () {},
+              // width: double.infinity,
+              onPressed: () {
+                correct = false;
+                setState(() {
+                  
+                });
+                
+              },
               text: 'Verify',
               color: AppColor.primaryColor,
-              textColor: AppColor.secColor4,
+              // textColor: AppColor.secColor4,
             )
           ],
         ),
@@ -70,6 +84,13 @@ class VerificationPage extends StatelessWidget {
   }
 
   List<Widget> myWidget(int count) {
-    return List.generate(count, (i) => const InputCircule()).toList();
+    return List.generate(
+        count,
+        (i) => InputCircule(
+              correct: correct,
+              isFirst: VerificationData.isFirst[i],
+              isLast: VerificationData.isLast[i],
+              textControler: VerificationData.textControler[i],
+            )).toList();
   }
 }
