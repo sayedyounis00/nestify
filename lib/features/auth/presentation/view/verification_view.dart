@@ -4,14 +4,14 @@ import 'package:nestify/features/auth/presentation/data/verification_data.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/input_circule.dart';
 
-class VerificationPage extends StatefulWidget {
-  const VerificationPage({super.key});
+class VerificationView extends StatefulWidget {
+  const VerificationView({super.key});
 
   @override
-  State<VerificationPage> createState() => _VerificationPageState();
+  State<VerificationView> createState() => _VerificationViewState();
 }
 
-class _VerificationPageState extends State<VerificationPage> {
+class _VerificationViewState extends State<VerificationView> {
       bool correct=true ;
 
   @override
