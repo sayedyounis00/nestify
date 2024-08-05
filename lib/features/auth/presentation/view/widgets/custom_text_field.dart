@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextField extends StatefulWidget {
-  final String label;
-  final double width;
-  final TextEditingController controller;
+final String? label;
+  final String? hintText;
+   final double width;
+    
+
+  final TextEditingController? controller;
+  final int? maxInputLength;
 
   const CustomTextField({
     super.key,
-    required this.label,
-    required this.controller,
+     this.label,
+    this.hintText,
     this.width = double.infinity,
-  });
+     this.controller, 
+    this.maxInputLength,
+    this.label,
+ 
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -20,6 +28,23 @@ class _CustomTextFieldState extends State<CustomTextField> {
   bool isVisable = false;
   @override
   Widget build(BuildContext context) {
+return TextFormField(
+      inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.digitsOnly,
+          LengthLimitingTextInputFormatter(widget.maxInputLength),
+        ],
+      controller: widget.controller,
+      validator: (value) {
+        if (value!.isEmpty && widget.label == 'Email') {
+          return 'Please enter your email';
+        } else if (value.isEmpty && widget.label == 'Password') {
+          return 'Please enter your password';
+        } else {
+          return null;
+        }
+      },
+      obscureText: widget.label != "Password" ? false : !isVisable,
+      decoration: InputDecoration(
     return SizedBox(
       width: widget.width,
       child: TextFormField(
@@ -41,8 +66,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       ? const Icon(Icons.visibility)
                       : const Icon(Icons.visibility_off),
                 ),
-          contentPadding: const EdgeInsets.all(12),
+          contentPadding:  const EdgeInsets.all(12),
           labelText: widget.label,
+          hintText: widget.hintText,
           labelStyle: const TextStyle(fontSize: 15),
           floatingLabelStyle:
               const TextStyle(fontSize: 18, color: Colors.black),
