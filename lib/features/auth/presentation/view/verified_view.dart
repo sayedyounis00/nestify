@@ -51,10 +51,8 @@ class VerifiedView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: CustomButton(
-                      // width: double.infinity,
                       text: 'Next',
                       color: AppColor.primaryColor,
-                      // textColor: AppColor.secColor4,
                       onPressed: () {}),
                 ),
               ],
