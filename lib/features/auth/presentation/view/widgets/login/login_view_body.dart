@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/utils/routes.dart';
-import 'package:nestify/features/auth/presentation/view/forget_pass_view.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/another_login_method_card.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/login_form.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/sign_up_button.dart';
@@ -28,8 +24,6 @@ class LoginViewBody extends StatelessWidget {
     );
   }
 }
-
-
 
 class AnotherLoginMethodsRow extends StatelessWidget {
   const AnotherLoginMethodsRow({
