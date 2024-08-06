@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
-import 'package:nestify/features/home/model/home_data.dart';
+import 'package:nestify/features/home/data/model/home_data.dart';
 import 'package:nestify/features/home/presentation/views/widgets/drop_down_menu.dart';
 
 class SearchFilter extends StatelessWidget {

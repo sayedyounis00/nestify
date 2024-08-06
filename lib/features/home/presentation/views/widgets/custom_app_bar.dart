@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/features/home/presentation/views/widgets/location_card.dart';
@@ -18,11 +17,14 @@ class CustomAppBar extends StatelessWidget {
         ),
         Row(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 50.0, left: 20),
-              child: CircleAvatar(
-                backgroundColor: AppColor.secColor4,
-                child: Icon(Icons.person),
+            Padding(
+              padding: const EdgeInsets.only(top: 50.0, left: 20),
+              child: GestureDetector(
+                onTap: () => Scaffold.of(context).openDrawer(),
+                child: const CircleAvatar(
+                  backgroundColor: AppColor.secColor4,
+                  child: Icon(Icons.person),
+                ),
               ),
             ),
             Padding(
@@ -31,10 +33,9 @@ class CustomAppBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Hi John,',
-                      style:
-                          Theme.of(context).textTheme.titleSmall!.copyWith(
-                                color: AppColor.secColor3,
-                              )),
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            color: AppColor.secColor3,
+                          )),
                   Text('Welcome!,',
                       style: Theme.of(context)
                           .textTheme
@@ -45,8 +46,12 @@ class CustomAppBar extends StatelessWidget {
             ),
             const LocationCard(),
             const Padding(
-              padding: EdgeInsets.only(top: 50.0,left: 20),
-              child: Icon(Icons.notifications_none,size: 30,color: AppColor.secColor4,),
+              padding: EdgeInsets.only(top: 50.0, left: 20),
+              child: Icon(
+                Icons.notifications_none,
+                size: 30,
+                color: AppColor.secColor4,
+              ),
             )
           ],
         ),
