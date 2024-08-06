@@ -7,4 +7,5 @@ class AddRouter {
   static const String loginViewRoute = '/loginPage';
   static const String signupViewRoute = '/signupPage';
   static const String messageViewRoute = '/MessageView';
+  static const String chatView = '/ChatView';
 }
