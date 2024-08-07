@@ -5,7 +5,8 @@ import 'package:nestify/core/widgets/space.dart';
 class ChatCard extends StatefulWidget {
   const ChatCard({
     super.key,
-    required this.fullName, required this.userId,
+    required this.fullName,
+    required this.userId,
   });
   final String fullName;
   final String userId;
@@ -15,7 +16,6 @@ class ChatCard extends StatefulWidget {
 }
 
 class _ChatCardState extends State<ChatCard> {
-
   @override
   void initState() {
     super.initState();
@@ -25,9 +25,7 @@ class _ChatCardState extends State<ChatCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, AddRouter.chatView, arguments: widget.userId
-
-        );
+        Navigator.pushNamed(context, AddRouter.chatView);
       },
       child: Container(
         padding: const EdgeInsets.all(10),

@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_utils/get_utils.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/features/home/data/model/user.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/home/presentation/views/widgets/messages/chat_app_bar.dart';
+import 'package:nestify/features/home/presentation/views/widgets/messages/custom_message_card.dart';
 import 'package:nestify/features/home/presentation/views/widgets/messages/send_message_feild.dart';
 
 class ChatView extends StatefulWidget {
@@ -69,7 +68,7 @@ class _ChatViewState extends State<ChatView> {
                               snapshot.data!.docs[index].data()
                                   as Map<String, dynamic>;
                           return CustomMessageCard(
-                              messageText: messages['message_text']);
+                              messageText: messages['message_text'], isUserOne:   BlocProvider.of<HomeCubit>(context).user.userId==userid?true:false,);
                         },
                       ),
                     ),
@@ -83,37 +82,6 @@ class _ChatViewState extends State<ChatView> {
                   BlocProvider.of<HomeCubit>(context).user.userId,
               ),
         ],
-      ),
-    );
-  }
-}
-
-class CustomMessageCard extends StatelessWidget {
-  const CustomMessageCard({
-    super.key,
-    required this.messageText,
-  });
-  final String messageText;
-
-  @override
-  Widget build(BuildContext context) {
-    return UnconstrainedBox(
-      alignment: Alignment.centerLeft,
-      child: Container(
-        width: MediaQuery.of(context).size.width / 2.5,
-        padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: AppColor.primaryColor,
-        ),
-        child: Text(
-          messageText,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(color: AppColor.secColor4),
-        ),
       ),
     );
   }
