@@ -52,12 +52,12 @@ class _SendMessageFeildState extends State<SendMessageFeild> {
       ),
     );
   }
-  
+
   Future<void> addMessageDetail(String messageText) {
     return message.add({
       'message_text': messageText,
       'user_id': widget.senderid,
-      'message_time':DateFormat('h:mm a').format(DateTime.now()),
+      'message_time': DateFormat('h:mm:ss a').format(DateTime.now()),
     });
   }
 }

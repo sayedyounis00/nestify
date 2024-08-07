@@ -1,11 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/features/home/data/model/user.dart';
+import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/home/presentation/views/widgets/messages/chat_app_bar.dart';
 import 'package:nestify/features/home/presentation/views/widgets/messages/send_message_feild.dart';
 
 class ChatView extends StatefulWidget {
-  const ChatView({super.key});
+  const ChatView({
+    super.key,
+  });
 
   @override
   State<ChatView> createState() => _ChatViewState();
@@ -24,23 +30,17 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   Widget build(BuildContext context) {
-    // var arguments = ModalRoute.of(context)?.settings.arguments;
-    // arguments is Map<String, dynamic>
-    //     ? arguments
-    //     : {
-    //         'fullName': 'anyName',
-    //         'userId': 'any id ',
-    //       };
-    String fullName='anyName';
-    String userId ='any id ';
+    String userid = 'id';
+    String fullName = 'any name ';
     return Scaffold(
       backgroundColor: AppColor.secColor4,
       appBar: AppBar(
         elevation: 5,
         automaticallyImplyLeading: false,
         title: ChatAppBar(
-          fullName: fullName,
-          id: userId,
+          fullName:
+              fullName,
+          id: userid,
         ),
       ),
       body: Column(
@@ -79,8 +79,9 @@ class _ChatViewState extends State<ChatView> {
                 }
               }),
           SendMessageFeild(
-            senderid: fullName,
-          ),
+              senderid:
+                  BlocProvider.of<HomeCubit>(context).user.userId,
+              ),
         ],
       ),
     );
