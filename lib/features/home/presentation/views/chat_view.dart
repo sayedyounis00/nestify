@@ -68,7 +68,7 @@ class _ChatViewState extends State<ChatView> {
                               snapshot.data!.docs[index].data()
                                   as Map<String, dynamic>;
                           return CustomMessageCard(
-                              messageText: messages['message_text'], isUserOne:   BlocProvider.of<HomeCubit>(context).user.userId==userId?false:true,);
+                              messageText: messages['message_text'],isUserOne:BlocProvider.of<HomeCubit>(context).user.userId==messages['user_id']?false:true,);
                         },
                       ),
                     ),
