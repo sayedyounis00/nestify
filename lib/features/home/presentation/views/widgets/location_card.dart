@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
 
@@ -10,7 +9,7 @@ class LocationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 50,left: 100),
+      margin: const EdgeInsets.only(top: 50),
       padding: const EdgeInsets.symmetric(horizontal: 5),
       height: 30,
       width: 120,

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
@@ -57,12 +55,13 @@ class _ChatViewState extends State<ChatView> {
           ],
         ),
       ),
+      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
-            height:MediaQuery.of(context).size.width / 6 ,
-            padding: const EdgeInsets.only(bottom: 10,left: 10,top: 10),
+            height: MediaQuery.of(context).size.width / 6,
+            padding: const EdgeInsets.only(bottom: 10, left: 10, top: 10),
             color: AppColor.secColor4,
             child: Row(
               children: [
@@ -72,9 +71,9 @@ class _ChatViewState extends State<ChatView> {
                   color: AppColor.primaryColor,
                 ),
                 const SpaceH(5),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.3,
-                  child: const CustomTextField(
+                const Expanded(
+                  child: CustomTextField(
+                    width: 200,
                     hinttEXT: 'Type message...',
                   ),
                 ),

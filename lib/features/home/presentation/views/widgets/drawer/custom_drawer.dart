@@ -11,7 +11,7 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Drawer(
+    return const Drawer(
       backgroundColor: Colors.white,
       child: Column(
         children: [
@@ -20,6 +20,7 @@ class CustomDrawer extends StatelessWidget {
           Divider(height: 0, color: Color.fromARGB(90, 52, 50, 50)),
           SpaceV(10),
           DrawerListView(),
+          Divider(height: 0, color: Color.fromARGB(90, 52, 50, 50)),
           SpaceV(120),
           LogoutText(),
         ],

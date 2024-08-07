@@ -116,7 +116,7 @@ class _SignupFormState extends State<SignupForm> {
         await registerMethod(emailCon, passwordCon);
         ErrorHandle.showSnackBar(context, 'Created done');
         await createUser();
-        Get.off(()=>const HomeView(),transition: Transition.fade);
+        Get.off(() => const HomeView(), transition: Transition.fade);
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);
       }

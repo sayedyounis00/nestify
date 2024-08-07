@@ -10,14 +10,15 @@ class DrawerListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 2,
+      height: MediaQuery.of(context).size.height *.4 ,
       child: ListView.separated(
+        padding: EdgeInsets.zero,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: DrawerData.cardData.length,
         itemBuilder: (context, index) {
-          return  DrawerOptionCard(cardModel:DrawerData.cardData[index] ,);
+          return DrawerOptionCard(cardModel: DrawerData.cardData[index]);
         },
-        separatorBuilder: (context, index)=>const Divider(indent: 40,),
+        separatorBuilder: (context, index) =>   Divider(indent: 40,color: Colors.grey[300],),
       ),
     );
   }

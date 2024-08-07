@@ -8,9 +8,10 @@ class CustomTextField extends StatefulWidget {
 
   const CustomTextField({
     super.key,
-     this.label,
-     this.controller,
-    this.width = double.infinity, this.hinttEXT,
+    this.label,
+    this.controller,
+    this.width = double.infinity,
+    this.hinttEXT,
   });
 
   @override
