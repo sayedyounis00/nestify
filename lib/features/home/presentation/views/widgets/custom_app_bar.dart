@@ -45,7 +45,7 @@ class CustomAppBar extends StatelessWidget {
           const Spacer(),
           const LocationCard(),
           const Padding(
-            padding: EdgeInsets.only(top: 50.0, left: 10,right: 10),
+            padding: EdgeInsets.only(top: 50.0, left: 10, right: 10),
             child: Icon(
               Icons.notifications_none,
               size: 30,

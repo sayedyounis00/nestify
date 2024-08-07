@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/utils/constant.dart';
 import 'package:nestify/features/home/presentation/views/widgets/messages/chat_card.dart';
 
 class MessangerViewBody extends StatelessWidget {
@@ -8,7 +9,7 @@ class MessangerViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    CollectionReference users = FirebaseFirestore.instance.collection(kUserCol);
 
     return Scaffold(
       appBar: AppBar(

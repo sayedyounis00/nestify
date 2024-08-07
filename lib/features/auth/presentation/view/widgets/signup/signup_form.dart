@@ -3,13 +3,16 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_navigation/get_navigation.dart' as getnav;
 import 'package:nestify/core/error/auth_errors_handle.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/utils/constant.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
+import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/home/presentation/views/home_view.dart';
 
 class SignupForm extends StatefulWidget {
@@ -118,7 +121,8 @@ class _SignupFormState extends State<SignupForm> {
         await registerMethod(emailCon, passwordCon);
         ErrorHandle.showSnackBar(context, 'Created done');
         await createUser();
-        Get.off(()=>const HomeView(),transition: Transition.fade);
+        BlocProvider.of<HomeCubit>(context).setUserInfo();
+        Get.off(() => const HomeView(), transition: getnav.Transition.fade);
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);
       }
@@ -129,8 +133,8 @@ class _SignupFormState extends State<SignupForm> {
   }
 
   Future<void> createUser() async {
-    await firestore.collection('users').doc().set({
-      'user_id':generateId(),
+    await firestore.collection(kUserCol).doc(auth.currentUser!.uid).set({
+      'user_id': generateId(),
       'first_name': fNameCon.text,
       'last_name': lNameCon.text,
       'email': emailCon.text,
@@ -143,11 +147,12 @@ class _SignupFormState extends State<SignupForm> {
     await auth.createUserWithEmailAndPassword(
         email: emailCon.text, password: passwordCon.text);
   }
-    String generateId() {
+
+  String generateId() {
     const int length = 12;
     const String numbers = '0123456789';
     String chars = '';
-    chars+=numbers;
+    chars += numbers;
     return List.generate(length, (index) {
       final indexRandom = Random.secure().nextInt(chars.length);
       return chars[indexRandom];
