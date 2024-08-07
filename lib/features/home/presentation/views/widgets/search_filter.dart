@@ -12,11 +12,12 @@ class SearchFilter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 120, horizontal: 40),  
+      margin: const EdgeInsets.symmetric(vertical: 120, horizontal: 40),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height*.2,
+            height: MediaQuery.of(context).size.height * .2,
             child: GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(vertical: 5),

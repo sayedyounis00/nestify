@@ -1,15 +1,12 @@
 class AddRouter {
-  static const String landingListViewRoute = '/';
-    static const String verificationRoute = '/verifactionView';
+  static const String splashViewRoute = '/';
+  static const String landingListViewRoute = '/landing';
+  static const String verificationRoute = '/verifactionView';
   static const String verifiedRoute = '/verifiedView';
   static const String homeView = '/homeView';
-    static const String splashViewRoute = '/splash';
   static const String loginViewRoute = '/loginPage';
   static const String signupViewRoute = '/signupPage';
-
   static const String forgetPassViewRoute = '/forgetPassPage';
-
   static const String messageViewRoute = '/MessageView';
   static const String chatView = '/ChatView';
-
 }

@@ -122,7 +122,9 @@ class _SignupFormState extends State<SignupForm> {
         ErrorHandle.showSnackBar(context, 'Created done');
         await createUser();
         BlocProvider.of<HomeCubit>(context).setUserInfo();
-        Get.off(() => const HomeView(), transition: getnav.Transition.fade);
+        Future.delayed(const Duration(seconds: 1), () {
+          Get.off(() => const HomeView(), transition: getnav.Transition.fade);
+        });
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);
       }

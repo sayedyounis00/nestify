@@ -17,7 +17,7 @@ class CustomDrawer extends StatelessWidget {
       backgroundColor: Colors.white,
       child: Column(
         children: [
-          InfoRow(user: BlocProvider.of<HomeCubit>(context).user!),
+          InfoRow(user: BlocProvider.of<HomeCubit>(context).user),
           const SpaceV(15),
           const Divider(height: 0, color: Color.fromARGB(90, 52, 50, 50)),
           const SpaceV(10),

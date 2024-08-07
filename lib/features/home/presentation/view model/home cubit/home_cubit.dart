@@ -6,7 +6,13 @@ import 'package:nestify/features/home/presentation/view%20model/home%20cubit/hom
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeRepo) : super(HomeInitial());
   HomeRepo homeRepo;
-  UserModel? user;
+  UserModel user = UserModel(
+      firstName: 'firstName',
+      lastName: 'lastName',
+      phone: 'phone',
+      email: 'email',
+      userId: 'userId',
+      createdAt: 'createdAt');
 
   void setUserInfo() async {
     Map<String, dynamic> userInfo = await homeRepo.getUserInfo();

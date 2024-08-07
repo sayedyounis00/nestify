@@ -10,14 +10,10 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       drawer: CustomDrawer(),
-      body: Column(
+      body: Stack(
         children: [
-          Stack(
-            children: [
-              CustomAppBar(),
-              SearchFilter(),
-            ],
-          ),
+          CustomAppBar(),
+          SearchFilter(),
         ],
       ),
     );
