@@ -36,9 +36,7 @@ class _ChatViewState extends State<ChatView> {
         elevation: 5,
         automaticallyImplyLeading: false,
         title: ChatAppBar(
-          fullName:
-              fullName,
-          id: BlocProvider.of<HomeCubit>(context).user.userId,
+          fullName: fullName,
         ),
       ),
       body: Column(
@@ -67,7 +65,14 @@ class _ChatViewState extends State<ChatView> {
                               snapshot.data!.docs[index].data()
                                   as Map<String, dynamic>;
                           return CustomMessageCard(
-                              messageText: messages['message_text'],isUserOne:BlocProvider.of<HomeCubit>(context).user.userId==messages['user_id']?false:true,);
+                            messageText: messages['message_text'],
+                            isUserOne: BlocProvider.of<HomeCubit>(context)
+                                        .user
+                                        .userId ==
+                                    messages['user_id']
+                                ? false
+                                : true,
+                          );
                         },
                       ),
                     ),
@@ -77,9 +82,8 @@ class _ChatViewState extends State<ChatView> {
                 }
               }),
           SendMessageFeild(
-              senderid:
-                  BlocProvider.of<HomeCubit>(context).user.userId,
-              ),
+            senderid: BlocProvider.of<HomeCubit>(context).user.userId,
+          ),
         ],
       ),
     );
