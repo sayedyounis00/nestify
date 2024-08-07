@@ -47,32 +47,40 @@ class MessangerViewBody extends StatelessWidget {
             child: StreamBuilder<QuerySnapshot>(
               stream: users.snapshots(),
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
-                } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                  return const Center(child: Text('No data found'));
-                } else {
-                  var docs = snapshot.data!.docs;
-                  return ListView.separated(
-                    itemCount: docs.length,
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const Divider(indent: 80, height: 0);
-                    },
-                    itemBuilder: (BuildContext context, int index) {
-                      var data = docs[index].data() as Map<String, dynamic>;
-                      return ChatCard(
-                        fullName: data['first_name'] +' '+ data['last_name'] ?? 'No name', userId: '0', 
-                      );
-                    },
-                  );
-                }
+                return chatCardHandler(snapshot);
               },
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget chatCardHandler(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (snapshot.hasError) {
+      return Center(child: Text('Error: ${snapshot.error}'));
+    } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+      return const Center(child: Text('No data found'));
+    } else {
+      return returnedChatCard(snapshot);
+    }
+  }
+
+  ListView returnedChatCard(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+      var docs = snapshot.data!.docs;
+    return ListView.separated(
+      itemCount: docs.length,
+      separatorBuilder: (BuildContext context, int index) {
+        return const Divider(indent: 80, height: 0);
+      },
+      itemBuilder: (BuildContext context, int index) {
+        var data = docs[index].data() as Map<String, dynamic>;
+        return ChatCard(
+          fullName: data['first_name'] +' '+ data['last_name'] ?? 'No name', userId: '0', 
+        );
+      },
     );
   }
 }
