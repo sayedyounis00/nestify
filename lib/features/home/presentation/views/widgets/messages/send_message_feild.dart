@@ -35,8 +35,7 @@ class _SendMessageFeildState extends State<SendMessageFeild> {
             color: AppColor.primaryColor,
           ),
           const SpaceH(5),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 1.3,
+          Expanded(
             child: CustomTextField(
               controller: _formControler,
               hintText: 'Type message...',

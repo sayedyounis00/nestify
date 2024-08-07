@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/core/widgets/space.dart';
-import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
-import 'package:nestify/features/home/presentation/views/widgets/chat_app_bar.dart';
+import 'package:nestify/features/home/presentation/views/widgets/messages/chat_app_bar.dart';
+import 'package:nestify/features/home/presentation/views/widgets/messages/send_message_feild.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
@@ -13,7 +12,7 @@ class ChatView extends StatefulWidget {
 }
 
 class _ChatViewState extends State<ChatView> {
-  final Stream<QuerySnapshot> messageStream = FirebaseFirestore.instance
+  final Stream<QuerySnapshot> _messageStream = FirebaseFirestore.instance
       .collection('messages')
       .orderBy('message_time', descending: true)
       .snapshots();
@@ -25,13 +24,13 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   Widget build(BuildContext context) {
-    var arguments = ModalRoute.of(context)?.settings.arguments;
-    arguments is Map<String, dynamic>
-        ? arguments
-        : {
-            'fullName': 'anyName',
-            'userId': 'any id ',
-          };
+    // var arguments = ModalRoute.of(context)?.settings.arguments;
+    // arguments is Map<String, dynamic>
+    //     ? arguments
+    //     : {
+    //         'fullName': 'anyName',
+    //         'userId': 'any id ',
+    //       };
     String fullName='anyName';
     String userId ='any id ';
     return Scaffold(
@@ -44,34 +43,43 @@ class _ChatViewState extends State<ChatView> {
           id: userId,
         ),
       ),
-      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Container(
-            height:MediaQuery.of(context).size.width / 6 ,
-            padding: const EdgeInsets.only(bottom: 10,left: 10,top: 10),
-            color: AppColor.secColor4,
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.attach_file_rounded,
-                  size: 30,
-                  color: AppColor.primaryColor,
-                ),
-                const SpaceH(5),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.3,
-                  child: const CustomTextField(
-                    hintText: 'Type message...',
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: () {},
-                ),
-              ],
-            ),
+          StreamBuilder<QuerySnapshot>(
+              stream: _messageStream,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return const Center(
+                      child: Text('An error occurred while loading messages.'));
+                } else if (snapshot.connectionState ==
+                    ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasData) {
+                  return Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: ListView.builder(
+                        reverse: true,
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          Map<String, dynamic> messages =
+                              snapshot.data!.docs[index].data()
+                                  as Map<String, dynamic>;
+                          return CustomMessageCard(
+                              messageText: messages['message_text']);
+                        },
+                      ),
+                    ),
+                  );
+                } else {
+                  return const Center(child: Text('No messages found.'));
+                }
+              }),
+          SendMessageFeild(
+            senderid: fullName,
           ),
         ],
       ),

@@ -7,7 +7,7 @@ import 'package:nestify/features/auth/presentation/view/verification_view.dart';
 import 'package:nestify/features/auth/presentation/view/verified_view.dart';
 import 'package:nestify/features/home/presentation/views/chat_view.dart';
 import 'package:nestify/features/home/presentation/views/home_view.dart';
-import 'package:nestify/features/home/presentation/views/widgets/messanger_view_body.dart';
+import 'package:nestify/features/home/presentation/views/messanger_view.dart';
 import 'package:nestify/features/splash/presentation/view/landing_view.dart';
 import 'package:nestify/features/splash/presentation/view/splash_view.dart';
 
