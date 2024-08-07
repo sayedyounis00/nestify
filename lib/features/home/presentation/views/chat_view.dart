@@ -29,8 +29,8 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   Widget build(BuildContext context) {
-    String userid = 'id';
     String fullName = 'any name ';
+    String userId =  BlocProvider.of<HomeCubit>(context).user.userId;
     return Scaffold(
       backgroundColor: AppColor.secColor4,
       appBar: AppBar(
@@ -39,7 +39,7 @@ class _ChatViewState extends State<ChatView> {
         title: ChatAppBar(
           fullName:
               fullName,
-          id: userid,
+          id: BlocProvider.of<HomeCubit>(context).user.userId,
         ),
       ),
       body: Column(
@@ -68,7 +68,7 @@ class _ChatViewState extends State<ChatView> {
                               snapshot.data!.docs[index].data()
                                   as Map<String, dynamic>;
                           return CustomMessageCard(
-                              messageText: messages['message_text'], isUserOne:   BlocProvider.of<HomeCubit>(context).user.userId==userid?true:false,);
+                              messageText: messages['message_text'], isUserOne:   BlocProvider.of<HomeCubit>(context).user.userId==userId?false:true,);
                         },
                       ),
                     ),
