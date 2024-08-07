@@ -20,6 +20,7 @@ class CustomDrawer extends StatelessWidget {
           Divider(height: 0, color: Color.fromARGB(90, 52, 50, 50)),
           SpaceV(10),
           DrawerListView(),
+          Divider(height: 0, color: Color.fromARGB(90, 52, 50, 50)),
           SpaceV(120),
           LogoutText(),
         ],

@@ -11,18 +11,17 @@ class SearchFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Card(
       margin: const EdgeInsets.symmetric(vertical: 120, horizontal: 40),
-      height: MediaQuery.of(context).size.height / 3.5,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(20)),
+      // height: MediaQuery.of(context).size.height / 3.5,
+      color: Colors.white,
       child: Column(
         children: [
           SizedBox(
-            height: 200,
+            height: MediaQuery.of(context).size.height*.2,
             child: GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.symmetric(vertical: 5),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, mainAxisExtent: 82),
               itemBuilder: (context, index) => DropDownMenu(
@@ -33,7 +32,7 @@ class SearchFilter extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.all(10),
             child: CustomButton(
               text: 'Search',
               color: AppColor.primaryColor,

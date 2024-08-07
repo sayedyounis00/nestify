@@ -77,7 +77,7 @@ class _LoginFormState extends State<LoginForm> {
         isLoading = true;
         setState(() {});
         await signInMethod();
-        Get.off(() => const HomeView(), transition: Transition.fade);
+        Get.off(() =>  HomeView(), transition: Transition.fade);
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);
       }
