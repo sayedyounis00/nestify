@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/features/home/presentation/views/widgets/messages/messages_view_body.dart';
+import 'package:nestify/features/messages/presentation/view/widgets/messages_view_body.dart';
 
 
 class MessangerView extends StatelessWidget {

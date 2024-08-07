@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/utils/constant.dart';
-import 'package:nestify/features/home/presentation/views/widgets/messages/chat_card.dart';
+import 'package:nestify/features/messages/presentation/view/widgets/chat_card.dart';
 
 class MessangerViewBody extends StatelessWidget {
   const MessangerViewBody({super.key});

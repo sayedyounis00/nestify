@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
-import 'package:nestify/features/home/presentation/views/widgets/messages/chat_app_bar.dart';
-import 'package:nestify/features/home/presentation/views/widgets/messages/custom_message_card.dart';
-import 'package:nestify/features/home/presentation/views/widgets/messages/send_message_feild.dart';
+import 'package:nestify/features/messages/presentation/view/widgets/chat_app_bar.dart';
+import 'package:nestify/features/messages/presentation/view/widgets/custom_message_card.dart';
+import 'package:nestify/features/messages/presentation/view/widgets/send_message_feild.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({
