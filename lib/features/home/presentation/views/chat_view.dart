@@ -30,7 +30,6 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     String fullName = 'any name ';
-    String userId =  BlocProvider.of<HomeCubit>(context).user.userId;
     return Scaffold(
       backgroundColor: AppColor.secColor4,
       appBar: AppBar(

@@ -10,8 +10,9 @@ class DrawerListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 2,
+      height: MediaQuery.of(context).size.height * .41,
       child: ListView.separated(
+        padding: EdgeInsets.zero,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: DrawerData.cardData.length,
         itemBuilder: (context, index) {
