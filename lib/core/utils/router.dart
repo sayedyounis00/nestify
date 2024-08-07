@@ -26,7 +26,7 @@ Route<dynamic> onGenerate(RouteSettings settings) {
       return CupertinoPageRoute(builder: (_) => const VerifiedView());
 
     case AddRouter.homeView:
-      return CupertinoPageRoute(builder: (_) =>  HomeView());
+      return CupertinoPageRoute(builder: (_) =>  const HomeView());
     case AddRouter.messageViewRoute:
       return CupertinoPageRoute(builder: (_) => const MessangerViewBody());
 

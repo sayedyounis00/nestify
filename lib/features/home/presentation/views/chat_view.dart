@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/widgets/space.dart';
+import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
 import 'package:nestify/features/home/presentation/views/widgets/chat_app_bar.dart';
-import 'package:nestify/features/home/presentation/views/widgets/send_message_feild.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
@@ -12,7 +13,7 @@ class ChatView extends StatefulWidget {
 }
 
 class _ChatViewState extends State<ChatView> {
-  final Stream<QuerySnapshot> _messageStream = FirebaseFirestore.instance
+  final Stream<QuerySnapshot> messageStream = FirebaseFirestore.instance
       .collection('messages')
       .orderBy('message_time', descending: true)
       .snapshots();
@@ -62,7 +63,7 @@ class _ChatViewState extends State<ChatView> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.3,
                   child: const CustomTextField(
-                    hinttEXT: 'Type message...',
+                    hintText: 'Type message...',
                   ),
                 ),
                 IconButton(

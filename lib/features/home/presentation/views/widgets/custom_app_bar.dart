@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/home/presentation/views/widgets/location_card.dart';
 
 class CustomAppBar extends StatelessWidget {

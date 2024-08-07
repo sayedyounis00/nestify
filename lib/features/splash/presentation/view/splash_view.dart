@@ -25,7 +25,7 @@ class _SplashViewState extends State<SplashView> {
           stream: FirebaseAuth.instance.userChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return  HomeView();
+              return  const HomeView();
             } else {
               return const LandingView();
             }

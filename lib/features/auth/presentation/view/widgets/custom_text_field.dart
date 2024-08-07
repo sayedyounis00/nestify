@@ -12,11 +12,8 @@ class CustomTextField extends StatefulWidget {
     this.label,
     this.controller,
     this.width = double.infinity,
-<<, required String hinttEXT<<<<< HEAD
-    this.hinttEXT,
-=======
-    this.hintText, this.onChanged,
->>>>>>> 1753826dcf6a679224b64f14c86d36954db56a9e
+    this.hintText,
+    this.onChanged,
   });
 
   @override

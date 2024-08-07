@@ -19,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _pageContorller,
-        children: HomeViewModel.viewsBody
+        children: Views.viewsBody
             .map(
               (Widget w) => Scaffold(
                 body: w,
