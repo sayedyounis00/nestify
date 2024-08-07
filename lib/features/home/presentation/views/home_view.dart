@@ -20,9 +20,7 @@ class _HomeViewState extends State<HomeView> {
         controller: _pageContorller,
         children: HomeViewModel.viewsBody
             .map(
-              (Widget w) => Scaffold(
-                body: w,
-              ),
+              (Widget w) => w,
             )
             .toList(),
       ),
