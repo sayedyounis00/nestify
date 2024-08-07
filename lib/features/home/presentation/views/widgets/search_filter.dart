@@ -11,9 +11,11 @@ class SearchFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
+    return Container(
       margin: const EdgeInsets.symmetric(vertical: 120, horizontal: 40),
+      height: MediaQuery.of(context).size.height / 3.5,
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: Column(
         children: [
           SizedBox(

@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/core/widgets/space.dart';
-import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
+import 'package:nestify/features/home/presentation/views/widgets/chat_app_bar.dart';
+import 'package:nestify/features/home/presentation/views/widgets/send_message_feild.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
@@ -11,48 +12,35 @@ class ChatView extends StatefulWidget {
 }
 
 class _ChatViewState extends State<ChatView> {
+  final Stream<QuerySnapshot> _messageStream = FirebaseFirestore.instance
+      .collection('messages')
+      .orderBy('message_time', descending: true)
+      .snapshots();
+
   @override
-  void initState() {
-    super.initState();
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final arguments = ModalRoute.of(context)?.settings.arguments;
-    String fullName = arguments is String ? arguments : 'Default Name';
+    var arguments = ModalRoute.of(context)?.settings.arguments;
+    arguments is Map<String, dynamic>
+        ? arguments
+        : {
+            'fullName': 'anyName',
+            'userId': 'any id ',
+          };
+    String fullName='anyName';
+    String userId ='any id ';
     return Scaffold(
+      backgroundColor: AppColor.secColor4,
       appBar: AppBar(
         elevation: 5,
         automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.0),
-                  child: CircleAvatar(
-                    maxRadius: 18,
-                    backgroundImage: NetworkImage(
-                      'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-                    ),
-                  ),
-                ),
-                Text(fullName),
-              ],
-            ),
-            const Icon(
-              Icons.call,
-              size: 30,
-              color: AppColor.primaryColor,
-            ),
-          ],
+        title: ChatAppBar(
+          fullName: fullName,
+          id: userId,
         ),
       ),
       
@@ -60,8 +48,8 @@ class _ChatViewState extends State<ChatView> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
-            height: MediaQuery.of(context).size.width / 6,
-            padding: const EdgeInsets.only(bottom: 10, left: 10, top: 10),
+            height:MediaQuery.of(context).size.width / 6 ,
+            padding: const EdgeInsets.only(bottom: 10,left: 10,top: 10),
             color: AppColor.secColor4,
             child: Row(
               children: [
@@ -71,9 +59,9 @@ class _ChatViewState extends State<ChatView> {
                   color: AppColor.primaryColor,
                 ),
                 const SpaceH(5),
-                const Expanded(
-                  child: CustomTextField(
-                    width: 200,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 1.3,
+                  child: const CustomTextField(
                     hinttEXT: 'Type message...',
                   ),
                 ),
@@ -85,6 +73,37 @@ class _ChatViewState extends State<ChatView> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomMessageCard extends StatelessWidget {
+  const CustomMessageCard({
+    super.key,
+    required this.messageText,
+  });
+  final String messageText;
+
+  @override
+  Widget build(BuildContext context) {
+    return UnconstrainedBox(
+      alignment: Alignment.centerLeft,
+      child: Container(
+        width: MediaQuery.of(context).size.width / 2.5,
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: AppColor.primaryColor,
+        ),
+        child: Text(
+          messageText,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(color: AppColor.secColor4),
+        ),
       ),
     );
   }

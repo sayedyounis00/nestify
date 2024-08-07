@@ -2,16 +2,21 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
   final String? label;
-  final String? hinttEXT;
+  final String? hintText;
   final double width;
   final TextEditingController? controller;
+  final Function(String)? onChanged;
 
   const CustomTextField({
     super.key,
     this.label,
     this.controller,
     this.width = double.infinity,
+<<, required String hinttEXT<<<<< HEAD
     this.hinttEXT,
+=======
+    this.hintText, this.onChanged,
+>>>>>>> 1753826dcf6a679224b64f14c86d36954db56a9e
   });
 
   @override
@@ -25,6 +30,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return SizedBox(
       width: widget.width,
       child: TextFormField(
+        onChanged: widget.onChanged,
         controller: widget.controller,
         validator: validateMessage,
         obscureText: widget.label != "Password" ? false : !isVisable,
@@ -45,7 +51,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ),
           contentPadding: const EdgeInsets.all(12),
           labelText: widget.label,
-          hintText: widget.hinttEXT,
+          hintText: widget.hintText,
           labelStyle: const TextStyle(fontSize: 15),
           floatingLabelStyle:
               const TextStyle(fontSize: 18, color: Colors.black),

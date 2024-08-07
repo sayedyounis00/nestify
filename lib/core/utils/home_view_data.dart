@@ -4,7 +4,7 @@ import 'package:nestify/features/home/presentation/views/widgets/fav_view_body.d
 import 'package:nestify/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:nestify/features/home/presentation/views/widgets/messanger_view_body.dart';
 
-class HomeViewModel{
+class Views{
     static final List<Widget> viewsBody = [
     const HomeViewBody(),
     const DiscoverViewBody(),

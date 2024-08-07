@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -116,7 +118,7 @@ class _SignupFormState extends State<SignupForm> {
         await registerMethod(emailCon, passwordCon);
         ErrorHandle.showSnackBar(context, 'Created done');
         await createUser();
-        Get.off(() => const HomeView(), transition: Transition.fade);
+        Get.off(()=>const HomeView(),transition: Transition.fade);
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);
       }
@@ -128,16 +130,27 @@ class _SignupFormState extends State<SignupForm> {
 
   Future<void> createUser() async {
     await firestore.collection('users').doc().set({
-      'first name': fNameCon.text,
-      'last name': lNameCon.text,
+      'user_id':generateId(),
+      'first_name': fNameCon.text,
+      'last_name': lNameCon.text,
       'email': emailCon.text,
       'createdAt': DateTime.now().toString(),
-      'phone number': phoneCon.text,
+      'phone_number': phoneCon.text,
     });
   }
 
   Future<void> registerMethod(emailCon, passwordCon) async {
     await auth.createUserWithEmailAndPassword(
         email: emailCon.text, password: passwordCon.text);
+  }
+    String generateId() {
+    const int length = 12;
+    const String numbers = '0123456789';
+    String chars = '';
+    chars+=numbers;
+    return List.generate(length, (index) {
+      final indexRandom = Random.secure().nextInt(chars.length);
+      return chars[indexRandom];
+    }).join('');
   }
 }
