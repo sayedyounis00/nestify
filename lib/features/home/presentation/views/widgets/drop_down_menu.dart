@@ -68,7 +68,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
-                      color: Colors.black26,
+                      color: Colors.grey.withOpacity(.3),
                     ),
                     color: Colors.white,
                   ),

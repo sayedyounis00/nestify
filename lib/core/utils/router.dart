@@ -5,6 +5,7 @@ import 'package:nestify/features/auth/presentation/view/login_view.dart';
 import 'package:nestify/features/auth/presentation/view/signup_view.dart';
 import 'package:nestify/features/auth/presentation/view/verification_view.dart';
 import 'package:nestify/features/auth/presentation/view/verified_view.dart';
+import 'package:nestify/features/discover/presentation/view/discover_view.dart';
 import 'package:nestify/features/messages/presentation/view/chat_view.dart';
 import 'package:nestify/features/faviorite/presentation/view/fav_view.dart';
 import 'package:nestify/features/home/presentation/views/home_view.dart';
@@ -27,14 +28,18 @@ Route<dynamic> onGenerate(RouteSettings settings) {
     case AddRouter.verifiedRoute:
       return CupertinoPageRoute(builder: (_) => const VerifiedView());
 
-    case AddRouter.allViews:
+    case AddRouter.mainView:
       return CupertinoPageRoute(builder: (_) => const MainView());
 
     case AddRouter.homeView:
       return CupertinoPageRoute(builder: (_) => const HomeView());
       
-    case AddRouter.messageViewRoute:
+    case AddRouter.messageView:
       return CupertinoPageRoute(builder: (_) => const MessangerView());
+
+
+    case AddRouter.discView:
+      return CupertinoPageRoute(builder: (_) => const DiscoverView());
 
     case AddRouter.favView:
       return CupertinoPageRoute(builder: (_) => const FavView());

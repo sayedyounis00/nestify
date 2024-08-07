@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/features/main/presentation/views/widget/bottom_nav_bar.dart';
 import 'package:nestify/features/discover/presentation/view/discover_view.dart';
 import 'package:nestify/features/faviorite/presentation/view/fav_view.dart';
@@ -12,6 +13,7 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     final PageController pageContorller = PageController();
     return Scaffold(
+      backgroundColor: AppColor.backGColor,
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageContorller,
