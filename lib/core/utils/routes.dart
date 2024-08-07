@@ -6,5 +6,10 @@ class AddRouter {
     static const String splashViewRoute = '/splash';
   static const String loginViewRoute = '/loginPage';
   static const String signupViewRoute = '/signupPage';
+
   static const String forgetPassViewRoute = '/forgetPassPage';
+
+  static const String messageViewRoute = '/MessageView';
+  static const String chatView = '/ChatView';
+
 }

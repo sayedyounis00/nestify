@@ -1,18 +1,19 @@
-
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:nestify/features/home/presentation/views/data/model/drawer_model.dart';
+import 'package:nestify/features/home/presentation/views/widgets/drawer_card_content.dart';
 
 class DrawerOptionCard extends StatelessWidget {
   const DrawerOptionCard({
-    super.key,
+    super.key, required this.cardModel,
   });
+  final DrawerCardMoldel cardModel;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12),
-      margin: const EdgeInsets.only(bottom: 2),
-      height: MediaQuery.of(context).size.height / 2 / 6 - 2,
-      color: const Color.fromARGB(52, 233, 30, 98),
+      height: MediaQuery.of(context).size.height / 3 /6-5,
+      color: const Color.fromARGB(255, 255, 255, 255),
+      child: DrawerCardContent(cardModel: cardModel),
     );
   }
 }
