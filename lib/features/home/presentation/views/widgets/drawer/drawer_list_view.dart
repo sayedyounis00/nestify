@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nestify/features/home/presentation/data/drawer_card_data.dart';
+import 'package:nestify/features/home/data/drawer_card_data.dart';
 import 'package:nestify/features/home/presentation/views/widgets/drawer/drawer_option_card.dart';
 
 class DrawerListView extends StatelessWidget {
