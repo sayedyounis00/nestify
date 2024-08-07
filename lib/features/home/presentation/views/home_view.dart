@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:nestify/features/home/presentation/views/data/model/home_view_model.dart';
+import 'package:nestify/core/utils/home_view_data.dart';
 import 'package:nestify/features/home/presentation/views/widgets/nav_bar.dart/bottom_nav_bar.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
 
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
+class HomeView extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final PageController _pageContorller = PageController();
+  HomeView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _pageContorller,
-        children: HomeViewModel.viewsBody
+        children: Views.viewsBody
             .map(
               (Widget w) => w,
             )
