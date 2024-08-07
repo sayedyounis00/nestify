@@ -6,8 +6,21 @@ class ForgetPassView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ForgetPassBody(),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.logout))
+          ],
+        ),
+        body: const SafeArea(
+            child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: SingleChildScrollView(child: ForgetPassBody()),
+        )));
   }
 }
