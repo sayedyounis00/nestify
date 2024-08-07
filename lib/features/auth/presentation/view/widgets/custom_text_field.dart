@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
-  final String label;
+  final String? label;
+  final String? hinttEXT;
   final double width;
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   const CustomTextField({
     super.key,
-    required this.label,
-    required this.controller,
-    this.width = double.infinity,
+     this.label,
+     this.controller,
+    this.width = double.infinity, this.hinttEXT,
   });
 
   @override
@@ -43,6 +44,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ),
           contentPadding: const EdgeInsets.all(12),
           labelText: widget.label,
+          hintText: widget.hinttEXT,
           labelStyle: const TextStyle(fontSize: 15),
           floatingLabelStyle:
               const TextStyle(fontSize: 18, color: Colors.black),

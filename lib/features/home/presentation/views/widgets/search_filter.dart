@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
@@ -22,16 +21,19 @@ class SearchFilter extends StatelessWidget {
           SizedBox(
             height: 200,
             child: GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(vertical: 20),
-              gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, mainAxisExtent: 82),
-              itemBuilder: (context, index) =>  DropDownMenu(upText: HomeData.upText[index], allList: HomeData.wholeList[index],),
-              itemCount: 4,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, mainAxisExtent: 82),
+              itemBuilder: (context, index) => DropDownMenu(
+                upText: HomeData.upText[index],
+                allList: HomeData.wholeList[index],
+              ),
+              itemCount: HomeData.upText.length,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal:10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: CustomButton(
               text: 'Search',
               color: AppColor.primaryColor,
