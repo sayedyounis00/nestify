@@ -1,7 +1,7 @@
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/features/home/presentation/views/data/model/bottom_nav_model.dart';
+import 'package:nestify/core/utils/home_view_data.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key, required this.pageController});
@@ -16,7 +16,7 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomBarDefault(
-      items: BottomNavModel.tabs,
+      items: BottomNavData.tabs,
       backgroundColor: Colors.white,
       color: AppColor.secColor3,
       colorSelected: AppColor.primaryColor,

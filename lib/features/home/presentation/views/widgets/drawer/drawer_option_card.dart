@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nestify/features/home/presentation/views/data/model/drawer_model.dart';
-import 'package:nestify/features/home/presentation/views/widgets/drawer_card_content.dart';
+import 'package:nestify/features/home/data/model/drawer_model.dart';
+import 'package:nestify/features/home/presentation/views/widgets/drawer/drawer_card_content.dart';
 
 class DrawerOptionCard extends StatelessWidget {
   const DrawerOptionCard({

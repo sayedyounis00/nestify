@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/core/utils/home_view_data.dart';
-import 'package:nestify/features/home/presentation/views/widgets/nav_bar.dart/bottom_nav_bar.dart';
+import 'package:nestify/core/widgets/bottom_nav_bar.dart';
 
 
 class HomeView extends StatelessWidget {

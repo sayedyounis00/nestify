@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:nestify/features/home/presentation/views/data/model/drawer_model.dart';
+import 'package:nestify/features/home/data/model/drawer_model.dart';
 
 class DrawerData {
   static List<DrawerCardMoldel> cardData = [

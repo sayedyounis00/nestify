@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/features/home/presentation/views/widgets/chat_app_bar.dart';
-import 'package:nestify/features/home/presentation/views/widgets/send_message_feild.dart';
+import 'package:nestify/features/home/presentation/views/widgets/messages/chat_app_bar.dart';
+import 'package:nestify/features/home/presentation/views/widgets/messages/send_message_feild.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key});
