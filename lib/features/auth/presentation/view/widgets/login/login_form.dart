@@ -5,12 +5,12 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart' as getnav;
 import 'package:nestify/core/error/auth_errors_handle.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/widgets/all_views.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/forget_pass_text.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
-import 'package:nestify/features/home/presentation/views/home_view.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -81,7 +81,7 @@ class _LoginFormState extends State<LoginForm> {
         await signInMethod();
         BlocProvider.of<HomeCubit>(context).setUserInfo();
         Future.delayed(const Duration(seconds: 1), () {
-          Get.off(() => const HomeView(), transition: getnav.Transition.fade);
+          Get.off(() => const AllViews(), transition: getnav.Transition.fade);
         });
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);

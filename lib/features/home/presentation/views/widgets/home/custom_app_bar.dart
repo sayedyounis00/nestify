@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
-import 'package:nestify/features/home/presentation/views/widgets/location_card.dart';
+import 'package:nestify/features/home/presentation/views/widgets/home/location_card.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({

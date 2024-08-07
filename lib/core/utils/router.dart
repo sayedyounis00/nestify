@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nestify/core/utils/routes.dart';
+import 'package:nestify/core/widgets/all_views.dart';
 import 'package:nestify/features/auth/presentation/view/forget_pass_view.dart';
 import 'package:nestify/features/auth/presentation/view/login_view.dart';
 import 'package:nestify/features/auth/presentation/view/signup_view.dart';
 import 'package:nestify/features/auth/presentation/view/verification_view.dart';
 import 'package:nestify/features/auth/presentation/view/verified_view.dart';
 import 'package:nestify/features/home/presentation/views/chat_view.dart';
+import 'package:nestify/features/home/presentation/views/fav_view.dart';
 import 'package:nestify/features/home/presentation/views/home_view.dart';
-import 'package:nestify/features/home/presentation/views/widgets/messages/messanger_view.dart';
+import 'package:nestify/features/home/presentation/views/messanger_view.dart';
 import 'package:nestify/features/splash/presentation/view/landing_view.dart';
 import 'package:nestify/features/splash/presentation/view/splash_view.dart';
 
@@ -25,10 +27,17 @@ Route<dynamic> onGenerate(RouteSettings settings) {
     case AddRouter.verifiedRoute:
       return CupertinoPageRoute(builder: (_) => const VerifiedView());
 
+    case AddRouter.allViews:
+      return CupertinoPageRoute(builder: (_) => const AllViews());
+
     case AddRouter.homeView:
       return CupertinoPageRoute(builder: (_) => const HomeView());
+      
     case AddRouter.messageViewRoute:
-      return CupertinoPageRoute(builder: (_) => const MessangerViewBody());
+      return CupertinoPageRoute(builder: (_) => const MessangerView());
+
+    case AddRouter.favView:
+      return CupertinoPageRoute(builder: (_) => const FavView());
 
     case AddRouter.loginViewRoute:
       return CupertinoPageRoute(builder: (_) => const LoginView());

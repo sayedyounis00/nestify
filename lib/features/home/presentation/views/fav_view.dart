@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:nestify/features/home/presentation/views/widgets/faviorite/fav_view_body.dart';
 
-class FavViewBody extends StatelessWidget {
-  const FavViewBody({super.key});
+class FavView extends StatelessWidget {
+  const FavView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('Fav View',style: TextStyle(fontSize: 40),),
-      ),
+      body: FavViewBody(),
     );
   }
 }
+

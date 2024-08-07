@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:nestify/core/widgets/all_views.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
-import 'package:nestify/features/home/presentation/views/home_view.dart';
 import 'package:nestify/features/splash/presentation/view/landing_view.dart';
 import 'package:nestify/features/splash/presentation/view/widgets/splash_view_body.dart';
 
@@ -31,7 +31,7 @@ class _SplashViewState extends State<SplashView> {
           stream: FirebaseAuth.instance.userChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return const HomeView();
+              return const AllViews();
             } else {
               return const LandingView();
             }
