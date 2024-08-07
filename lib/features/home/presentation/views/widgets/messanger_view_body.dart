@@ -63,7 +63,7 @@ class MessangerViewBody extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       var data = docs[index].data() as Map<String, dynamic>;
                       return ChatCard(
-                        fullName: data['first name'] +' '+ data['last name'] ?? 'No name', userId: '0', 
+                        fullName: data['first_name'] +' '+ data['last_name'] ?? 'No name', userId: '0', 
                       );
                     },
                   );
