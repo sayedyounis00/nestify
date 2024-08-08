@@ -14,6 +14,7 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 150,
+      padding: const EdgeInsets.only(top: 8),
       decoration: const BoxDecoration(color: AppColor.primaryColor),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

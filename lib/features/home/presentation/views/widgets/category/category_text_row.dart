@@ -10,11 +10,11 @@ class CategoryTextRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Categories', style: Styles.style19),
+          Text('Categories', style: Styles.style18),
           TextButton(
             style: const ButtonStyle(
                 padding: WidgetStatePropertyAll(EdgeInsets.zero)),
