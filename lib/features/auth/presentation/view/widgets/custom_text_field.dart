@@ -81,7 +81,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       return 'Please enter your email';
     } else if (value.isEmpty && widget.label == 'Last name') {
       return 'Required';
-    } else {
+    }
+    //!sending message validation 
+    // else if (value.isEmpty && widget.hintText == 'Type message...') { return '';}
+     else {
       return null;
     }
   }

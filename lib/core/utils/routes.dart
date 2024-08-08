@@ -12,5 +12,6 @@ class AddRouter {
   static const String chatView = '/ChatView';
   static const String favView = '/favView';
   static const String discView = '/discView';
+  static const String contactOwner = '/contactOwner';
 
 }

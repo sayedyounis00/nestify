@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 
@@ -19,7 +20,9 @@ class ButtonsBook extends StatelessWidget {
           Expanded(
             child: CustomButton(
                 text: 'contact owner',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, AddRouter.contactOwner);
+                },
                 color: Colors.white,
                 foreCol: AppColor.primaryColor),
           ),
