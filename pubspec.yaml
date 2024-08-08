@@ -21,6 +21,7 @@ dependencies:
   get: ^4.6.6
   google_sign_in: ^6.2.1
   intl: ^0.19.0
+  flutter_pannable_rating_bar: ^2.7.2+1
 
 dev_dependencies:
   flutter_lints: ^3.0.0

@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
-import 'package:nestify/features/home/presentation/views/widgets/res_search_card.dart';
+import 'package:nestify/features/home/data/houses_data.dart';
+import 'package:nestify/features/home/presentation/views/widgets/search/res_search_card.dart';
 
 class ResSearchListView extends StatelessWidget {
   const ResSearchListView({
@@ -14,9 +14,11 @@ class ResSearchListView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
       scrollDirection: Axis.vertical,
-      itemCount: 3,
+      itemCount: HousesData.houses.length,
       itemBuilder: (context, index) {
-        return const ResSearchCard();
+        return ResSearchCard(
+          house: HousesData.houses[index],
+        );
       },
     );
   }
