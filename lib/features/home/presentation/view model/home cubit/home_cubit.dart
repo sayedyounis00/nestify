@@ -7,12 +7,13 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeRepo) : super(HomeInitial());
   HomeRepo homeRepo;
   UserModel user = UserModel(
-      firstName: 'firstName',
-      lastName: 'lastName',
-      phone: 'phone',
-      email: 'email',
-      userId: 'userId',
-      createdAt: 'createdAt');
+    firstName: 'firstName',
+    lastName: 'lastName',
+    phone: 'phone',
+    email: 'email',
+    userId: 'userId',
+    createdAt: 'createdAt', fullName: 'FullName',
+  );
 
   void setUserInfo() async {
     Map<String, dynamic> userInfo = await homeRepo.getUserInfo();
@@ -23,6 +24,7 @@ class HomeCubit extends Cubit<HomeState> {
       email: userInfo['email'],
       userId: userInfo['user_id'],
       createdAt: userInfo['createdAt'],
+       fullName:  userInfo['first_name']+userInfo['last_name'],
     );
   }
 }

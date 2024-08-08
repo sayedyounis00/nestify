@@ -7,7 +7,7 @@ import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/presentation/views/home_details_view.dart';
 import 'package:nestify/features/home/presentation/views/widgets/title_and_price_row.dart';
 
-class ResSearchCard extends StatelessWidget {
+class ResSearchCard extends StatefulWidget {
   const ResSearchCard({
     super.key,
     required this.house,
@@ -15,11 +15,17 @@ class ResSearchCard extends StatelessWidget {
   final HouseModel house;
 
   @override
+  State<ResSearchCard> createState() => _ResSearchCardState();
+}
+
+class _ResSearchCardState extends State<ResSearchCard> {
+  // bool isFav = false;
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Get.to(
-          () => HomeDetailsView(house: house),
+          () => HomeDetailsView(house: widget.house),
         );
       },
       child: Container(
@@ -30,10 +36,38 @@ class ResSearchCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Hero(tag: house.img, child: Image.asset(house.img, height: 220)),
+            Hero(
+                tag: widget.house.img,
+                child: Stack(children: [
+                  Image.asset(
+                    widget.house.img,
+                    height: 220,
+                    width: double.infinity,
+                  ),
+                  Positioned(
+                      top: 20,
+                      right: 20,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: IconButton(
+                          onPressed: () {
+                            widget.house.isFav = !widget.house.isFav;
+                            setState(() {});
+                          },
+                          icon: widget.house.isFav
+                              ? const Icon(
+                                  Icons.favorite,
+                                  color: Colors.red,
+                                )
+                              : const Icon(
+                                  Icons.favorite_border,
+                                ),
+                        ),
+                      ))
+                ])),
             const SpaceV(18),
-            TitleAndPriceRow(house: house),
-            Text(house.place, style: Styles.styleDesc),
+            TitleAndPriceRow(house: widget.house),
+            Text(widget.house.place, style: Styles.styleDesc),
             Row(
               children: [
                 Expanded(
@@ -43,7 +77,8 @@ class ResSearchCard extends StatelessWidget {
                       color: Colors.grey,
                       size: 20,
                     ),
-                    title: Text('${house.bd}bd', style: Styles.styleDesc),
+                    title:
+                        Text('${widget.house.bd}bd', style: Styles.styleDesc),
                     contentPadding: const EdgeInsets.all(0),
                     horizontalTitleGap: 1,
                   ),
@@ -54,7 +89,8 @@ class ResSearchCard extends StatelessWidget {
                     horizontalTitleGap: 1,
                     leading: const Icon(Icons.bathtub_outlined,
                         size: 20, color: Colors.grey),
-                    title: Text('${house.ba}ba', style: Styles.styleDesc),
+                    title:
+                        Text('${widget.house.ba}ba', style: Styles.styleDesc),
                   ),
                 ),
                 const Expanded(flex: 2, child: SizedBox())
