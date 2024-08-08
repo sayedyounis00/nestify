@@ -21,7 +21,7 @@ class _SearchFilterState extends State<SearchFilter> {
       padding: const EdgeInsets.only(top: 120, right: 25, left: 25),
       child: AnimatedCrossFade(
         crossFadeState: animation,
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 400),
         firstChild: Card(
           shape: const CircleBorder(),
           color: Colors.white,
@@ -38,28 +38,24 @@ class _SearchFilterState extends State<SearchFilter> {
             ),
           ),
         ),
-        secondChild: const CustomSearchCard(),
-      ),
-    );
-  }
-}
-
-class CustomSearchCard extends StatelessWidget {
-  const CustomSearchCard({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Card(
-      color: Colors.white,
-      shadowColor: Color.fromARGB(255, 255, 255, 255),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FilterGridView(),
-          SearchButt(),
-        ],
+        secondChild: Card(
+          color: Colors.white,
+          shadowColor: const Color.fromARGB(255, 255, 255, 255),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                  color: AppColor.primaryColor,
+                  onPressed: () {
+                    animation = CrossFadeState.showFirst;
+                    setState(() {});
+                  },
+                  icon: const Icon(Icons.close_rounded)),
+              const FilterGridView(),
+              const SearchButt(),
+            ],
+          ),
+        ),
       ),
     );
   }
