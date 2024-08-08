@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
-import 'package:nestify/features/home/data/model/home_data.dart';
-import 'package:nestify/features/home/presentation/views/widgets/drop_down_menu.dart';
+import 'package:nestify/features/home/data/home_data.dart';
+import 'package:nestify/features/home/presentation/views/widgets/search/drop_down_menu.dart';
 
 class SearchFilter extends StatefulWidget {
   const SearchFilter({
@@ -41,9 +41,9 @@ class _SearchFilterState extends State<SearchFilter> {
             ),
           ),
         ),
-        secondChild:isClosed
+        secondChild: isClosed
             ? const SpaceH(0)
-            :  Card(
+            : Card(
                 color: Colors.white,
                 shadowColor: const Color.fromARGB(255, 255, 255, 255),
                 child: Column(

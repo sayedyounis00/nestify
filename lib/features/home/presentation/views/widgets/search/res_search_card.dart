@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/utils/styles.dart';
 import 'package:nestify/core/widgets/space.dart';
+import 'package:nestify/features/home/data/model/house_model.dart';
+import 'package:nestify/features/home/presentation/views/home_details_view.dart';
+import 'package:nestify/features/home/presentation/views/widgets/title_and_price_row.dart';
 
 class ResSearchCard extends StatelessWidget {
   const ResSearchCard({
     super.key,
+    required this.house,
   });
+  final HouseModel house;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        Get.to(
+          () => HomeDetailsView(house: house),
+        );
+      },
       child: Container(
         padding: const EdgeInsets.all(15),
         margin: const EdgeInsets.all(20),
@@ -18,22 +30,10 @@ class ResSearchCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.asset('assets/images/villa1.jpg', height: 220),
+            Hero(tag: house.img, child: Image.asset(house.img, height: 220)),
             const SpaceV(18),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Punta Cana Villa', style: Styles.style18),
-                Row(
-                  children: [
-                    Text('\$5,450', style: Styles.style18),
-                    Text('/month', style: Styles.styleDesc),
-                  ],
-                ),
-              ],
-            ),
-            Text('South Pointer Park, Miami, Florida.',
-                style: Styles.styleDesc),
+            TitleAndPriceRow(house: house),
+            Text(house.place, style: Styles.styleDesc),
             Row(
               children: [
                 Expanded(
@@ -43,7 +43,7 @@ class ResSearchCard extends StatelessWidget {
                       color: Colors.grey,
                       size: 20,
                     ),
-                    title: Text('16bd', style: Styles.styleDesc),
+                    title: Text('${house.bd}bd', style: Styles.styleDesc),
                     contentPadding: const EdgeInsets.all(0),
                     horizontalTitleGap: 1,
                   ),
@@ -54,7 +54,7 @@ class ResSearchCard extends StatelessWidget {
                     horizontalTitleGap: 1,
                     leading: const Icon(Icons.bathtub_outlined,
                         size: 20, color: Colors.grey),
-                    title: Text('9ba', style: Styles.styleDesc),
+                    title: Text('${house.ba}ba', style: Styles.styleDesc),
                   ),
                 ),
                 const Expanded(flex: 2, child: SizedBox())
