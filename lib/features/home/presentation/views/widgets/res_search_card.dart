@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nestify/core/utils/styles.dart';
 import 'package:nestify/core/widgets/space.dart';
 
-
 class ResSearchCard extends StatelessWidget {
   const ResSearchCard({
     super.key,
