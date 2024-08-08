@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:nestify/features/home/presentation/views/widgets/category/category_list_view.dart';
+import 'package:nestify/features/home/presentation/views/widgets/category/category_text_row.dart';
 import 'package:nestify/features/home/presentation/views/widgets/custom_app_bar.dart';
-import 'package:nestify/features/home/presentation/views/widgets/drawer/custom_drawer.dart';
 import 'package:nestify/features/home/presentation/views/widgets/search_filter.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -8,14 +10,20 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      drawer: CustomDrawer(),
-      body: Stack(
-        children: [
-          CustomAppBar(),
-          SearchFilter(),
-        ],
-      ),
+    return const Column(
+      children: [
+        Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            CustomAppBar(),
+            SearchFilter(),
+          ],
+        ),
+        CategoryTextRow(),
+        CategoryListView(),
+
+        
+      ],
     );
   }
 }

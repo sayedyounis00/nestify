@@ -13,7 +13,7 @@ import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
-import 'package:nestify/features/home/presentation/views/home_view.dart';
+import 'package:nestify/features/main/presentation/views/main_view.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -123,7 +123,7 @@ class _SignupFormState extends State<SignupForm> {
         await createUser();
         BlocProvider.of<HomeCubit>(context).setUserInfo();
         Future.delayed(const Duration(seconds: 1), () {
-          Get.off(() => const HomeView(), transition: getnav.Transition.fade);
+          Get.off(() => const MainView(), transition: getnav.Transition.fade);
         });
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);

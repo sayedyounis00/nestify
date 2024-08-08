@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/core/widgets/space.dart';
 
@@ -26,7 +28,7 @@ class _ChatCardState extends State<ChatCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, AddRouter.chatView);
+        Get.toNamed(AddRouter.chatView);
       },
       child: Container(
         padding: const EdgeInsets.all(10),

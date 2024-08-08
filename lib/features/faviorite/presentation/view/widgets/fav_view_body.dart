@@ -5,9 +5,10 @@ class FavViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Fav View',style: TextStyle(fontSize: 40),),
+    return const Center(
+      child: Text(
+        'Fav View',
+        style: TextStyle(fontSize: 40),
       ),
     );
   }

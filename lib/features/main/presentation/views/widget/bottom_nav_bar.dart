@@ -1,7 +1,7 @@
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/core/utils/home_view_data.dart';
+import 'package:nestify/features/main/data/main_view_data.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key, required this.pageController});
