@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_pannable_rating_bar/flutter_pannable_rating_bar.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/utils/styles.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
+import 'package:nestify/features/home/presentation/views/widgets/details/custom_rating_dialog.dart';
 import 'package:nestify/features/home/presentation/views/widgets/details/num_bed_card.dart';
 
 class RatingRow extends StatelessWidget {
@@ -22,8 +23,7 @@ class RatingRow extends StatelessWidget {
         children: [
           NumBedsCard(numers: '${house.bd}bd', icon: Icons.bed_outlined),
           const SpaceH(15),
-          NumBedsCard(
-              numers: '${house.ba}ba', icon: Icons.bathtub_outlined),
+          NumBedsCard(numers: '${house.ba}ba', icon: Icons.bathtub_outlined),
           const SpaceH(25),
           const SizedBox(
             height: 70,
@@ -34,14 +34,28 @@ class RatingRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Ratings', style: Styles.style16),
-              const Row(
-                children: [
-                  Icon(Icons.star_sharp, color: Colors.yellow),
-                  Icon(Icons.star_sharp, color: Colors.yellow),
-                  Icon(Icons.star_sharp, color: Colors.yellow),
-                  Icon(Icons.star_sharp, color: Colors.yellow),
-                  Icon(Icons.star_sharp, color: Colors.yellow),
-                ],
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const CustomRatingDialog();
+                    },
+                  );
+                },
+                child: PannableRatingBar(
+                  rate: 4,
+                  items: List.generate(
+                      5,
+                      (index) => const RatingWidget(
+                            selectedColor: Colors.yellow,
+                            unSelectedColor: Colors.grey,
+                            child: Icon(
+                              Icons.star,
+                              size: 22,
+                            ),
+                          )),
+                ),
               ),
               const Text('6 reviews',
                   style: TextStyle(
