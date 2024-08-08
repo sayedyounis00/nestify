@@ -16,6 +16,7 @@ class ChatCard extends StatefulWidget {
 }
 
 class _ChatCardState extends State<ChatCard> {
+
   @override
   void initState() {
     super.initState();

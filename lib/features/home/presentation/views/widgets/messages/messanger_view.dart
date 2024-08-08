@@ -10,7 +10,6 @@ class MessangerViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CollectionReference users = FirebaseFirestore.instance.collection(kUserCol);
-
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0.0,
