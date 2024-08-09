@@ -5,7 +5,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
-import 'package:nestify/features/auth/presentation/view/signup_view.dart';
+import 'package:nestify/features/auth/presentation/view/login_view.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/another_login_method_card.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/login_form.dart';
 
@@ -24,7 +24,10 @@ class LoginViewBody extends StatelessWidget {
         const SpaceV(22),
         const AnotherLoginMethodsRow(),
         const SpaceV(22),
-        const SignupButton(text: 'Don\'t have a Nestify account?',buttontext: 'Sign up',),
+        const SignupButton(
+          text: 'Don\'t have a Nestify account?',
+          buttontext: 'Sign up',
+        ),
       ],
     );
   }
@@ -32,7 +35,9 @@ class LoginViewBody extends StatelessWidget {
 
 class SignupButton extends StatelessWidget {
   const SignupButton({
-    super.key, required this.text, required this.buttontext,
+    super.key,
+    required this.text,
+    required this.buttontext,
   });
   final String text;
   final String buttontext;
@@ -42,7 +47,7 @@ class SignupButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-         Text(text,
+        Text(text,
             style: const TextStyle(
                 fontSize: 14,
                 color: AppColor.secColor3,
@@ -51,10 +56,10 @@ class SignupButton extends StatelessWidget {
           style: const ButtonStyle(
               padding: WidgetStatePropertyAll(EdgeInsets.zero)),
           onPressed: () {
-            Get.to(() => const SignupView(),
-                transition: Transition.rightToLeft);
+            Get.to(() => const LoginView(),
+                transition: Transition.downToUp);
           },
-          child:  Text(buttontext,
+          child: Text(buttontext,
               style: const TextStyle(
                   fontSize: 15,
                   color: AppColor.primaryColor,

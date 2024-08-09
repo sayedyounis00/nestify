@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/features/auth/presentation/view/signup_view.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/login_view_body.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/select_user_type.dart';
@@ -51,8 +54,10 @@ class _UserOrOwnerViewBodyState extends State<UserOrOwnerViewBody> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0),
             child: CustomButton(
-              text: 'Creat Account',
-              onPressed: () {},
+              text: 'Create Account',
+              onPressed: () {
+                Get.to(() => const SignupView(),transition: Transition.rightToLeft);
+              },
               color: buttonColor,
               width: double.infinity,
             ),
