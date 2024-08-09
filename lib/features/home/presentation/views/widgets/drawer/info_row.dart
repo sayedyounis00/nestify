@@ -27,7 +27,7 @@ class InfoRow extends StatelessWidget {
             children: [
               Text('${user.firstName} ${user.lastName}'.capitalize ?? '',
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-              Text(user.email,
+              Text(user.userStatus,
                   style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       color: AppColor.secColor3,
