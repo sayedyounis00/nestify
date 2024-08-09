@@ -5,7 +5,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
-import 'package:nestify/features/auth/presentation/view/login_view.dart';
+import 'package:nestify/features/auth/presentation/view/signup_view.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/another_login_method_card.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/login_form.dart';
 
@@ -56,7 +56,9 @@ class SignupButton extends StatelessWidget {
           style: const ButtonStyle(
               padding: WidgetStatePropertyAll(EdgeInsets.zero)),
           onPressed: () {
-            Get.to(() => const LoginView(), transition: Transition.downToUp);
+
+            Get.to(() => const SignupView(),
+                transition: Transition.downToUp);
           },
           child: Text(buttontext,
               style: const TextStyle(

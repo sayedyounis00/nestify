@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/features/auth/presentation/view/forget_pass_view.dart';
+import 'package:nestify/features/auth/presentation/view/get_owner_info_view.dart';
 import 'package:nestify/features/auth/presentation/view/login_view.dart';
 import 'package:nestify/features/auth/presentation/view/signup_view.dart';
 import 'package:nestify/features/auth/presentation/view/user_or_owner_view.dart';
@@ -25,8 +26,12 @@ Route<dynamic> onGenerate(RouteSettings settings) {
 
     case AddRouter.landingListViewRoute:
       return CupertinoPageRoute(builder: (_) => const LandingView());
+      
     case AddRouter.userOrOwnerView:
       return CupertinoPageRoute(builder: (_) => const UserOrOwnerView());
+
+    case AddRouter.getOwnerInfoView:
+      return CupertinoPageRoute(builder: (_) => const GetAboutOwnerView());
 
     case AddRouter.verificationRoute:
       return CupertinoPageRoute(builder: (_) => const VerificationView());
@@ -53,7 +58,7 @@ Route<dynamic> onGenerate(RouteSettings settings) {
       return CupertinoPageRoute(builder: (_) => const LoginView());
 
     case AddRouter.signupViewRoute:
-      return CupertinoPageRoute(builder: (_) => const SignupView());
+      return CupertinoPageRoute(builder: (_) =>  const SignupView());
     case AddRouter.chatView:
       {
         return CupertinoPageRoute(

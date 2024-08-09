@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/widgets/space.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
+import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/presentation/views/widgets/contact%20owner/about_owner.dart';
 import 'package:nestify/features/home/presentation/views/widgets/contact%20owner/owner_contact.dart';
 import 'package:nestify/features/home/presentation/views/widgets/contact%20owner/owner_houses.dart';
 
 class OwnerInfo extends StatelessWidget {
   const OwnerInfo({
-    super.key,
+    super.key, required this.house,
   });
-
+  final HouseModel house;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,7 +22,7 @@ class OwnerInfo extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0),
           child: Text(
-            BlocProvider.of<HomeCubit>(context).user.fullName,
+            house.ownerName,
             style: Theme.of(context)
                 .textTheme
                 .titleLarge!
@@ -42,10 +41,7 @@ class OwnerInfo extends StatelessWidget {
               Text('Listings'),
             ]),
         const Expanded(
-          child: TabBarView(children: [
-            AboutOwner(),
-            OwnerHouses()
-          ]),
+          child: TabBarView(children: [AboutOwner(), OwnerHouses()]),
         )
       ],
     );

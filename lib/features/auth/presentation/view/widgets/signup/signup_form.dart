@@ -18,6 +18,7 @@ import 'package:nestify/features/main/presentation/views/main_view.dart';
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
 
+
   @override
   State<SignupForm> createState() => _SignupFormState();
 }
@@ -143,6 +144,7 @@ class _SignupFormState extends State<SignupForm> {
       'email': emailCon.text,
       'createdAt': DateTime.now().toString(),
       'phone_number': phoneCon.text,
+      'user_status':BlocProvider.of<HomeCubit>(context).userStatus,
     });
   }
 

@@ -2,6 +2,7 @@ class AddRouter {
   static const String splashViewRoute = '/';
   static const String landingListViewRoute = '/landing';
   static const String userOrOwnerView = '/UserOrOwnerView';
+  static const String getOwnerInfoView = '/GetOwnerInfoView';
   static const String signupViewRoute = '/signupPage';
   static const String loginViewRoute = '/loginPage';
   static const String forgetPassViewRoute = '/forgetPassPage';

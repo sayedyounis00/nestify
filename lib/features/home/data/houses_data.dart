@@ -8,7 +8,7 @@ class HousesData {
       place: 'South Pointer Park, Miami, Florida.',
       bd: '16',
       ba: '9',
-      price: '5,450', isFav: false,
+      price: '5,450', isFav: false, ownerName: 'owner1',
     ),
     HouseModel(
       img: 'assets/images/villa2.jpg',
@@ -16,7 +16,7 @@ class HousesData {
       place: 'Tanta, Egypt',
       bd: '11',
       ba: '4',
-      price: '20,000', isFav: false,
+      price: '20,000', isFav: false, ownerName: 'owner2',
     ),
   ];
 }

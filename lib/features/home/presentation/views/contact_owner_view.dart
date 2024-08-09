@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/presentation/views/widgets/contact%20owner/owner_info.dart';
 
 class ContactOwnerView extends StatelessWidget {
-  const ContactOwnerView({super.key});
+  const ContactOwnerView({super.key,  this.house});
+  final HouseModel? house;
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +30,13 @@ class ContactOwnerView extends StatelessWidget {
                 .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-        body: const Padding(
-          padding: EdgeInsets.all(16.0),
+        body:  Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Center(
-            child: OwnerInfo(),
+            child: OwnerInfo(house:house! ,),
           ),
         ),
       ),
     );
   }
 }
-
-
-
-
