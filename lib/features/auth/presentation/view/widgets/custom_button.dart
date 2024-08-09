@@ -7,20 +7,23 @@ class CustomButton extends StatelessWidget {
   final void Function()? onPressed;
   final Color color;
   final Color foreCol;
+  final double? width;
+  final double ?height;
   const CustomButton({
     super.key,
     required this.text,
     required this.onPressed,
     required this.color,
-    this.foreCol = Colors.white,
+    this.foreCol = Colors.white,  this.width,  this.height,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ButtonStyle(
-          alignment: Alignment.center,
-          fixedSize: const WidgetStatePropertyAll(Size(120,50)),
+            alignment: Alignment.center,
+            fixedSize:
+                 WidgetStatePropertyAll(Size(width ?? 120, height ?? 50)),
             foregroundColor: WidgetStatePropertyAll(foreCol),
             backgroundColor: WidgetStatePropertyAll(color),
             shape: const WidgetStatePropertyAll(RoundedRectangleBorder(

@@ -4,6 +4,7 @@ import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/features/auth/presentation/view/forget_pass_view.dart';
 import 'package:nestify/features/auth/presentation/view/login_view.dart';
 import 'package:nestify/features/auth/presentation/view/signup_view.dart';
+import 'package:nestify/features/auth/presentation/view/user_or_owner_view.dart';
 import 'package:nestify/features/auth/presentation/view/verification_view.dart';
 import 'package:nestify/features/auth/presentation/view/verified_view.dart';
 import 'package:nestify/features/discover/presentation/view/discover_view.dart';
@@ -24,6 +25,8 @@ Route<dynamic> onGenerate(RouteSettings settings) {
 
     case AddRouter.landingListViewRoute:
       return CupertinoPageRoute(builder: (_) => const LandingView());
+    case AddRouter.userOrOwnerView:
+      return CupertinoPageRoute(builder: (_) => const UserOrOwnerView());
 
     case AddRouter.verificationRoute:
       return CupertinoPageRoute(builder: (_) => const VerificationView());
