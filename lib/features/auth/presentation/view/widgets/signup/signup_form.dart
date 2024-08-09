@@ -101,6 +101,7 @@ class _SignupFormState extends State<SignupForm> {
             const SpaceV(20),
 
             CustomButton(
+              width: double.infinity,
               onPressed: valCheck
                   ? () async {
                       await signupHandle(context);
