@@ -23,11 +23,6 @@ class _NavBarState extends State<NavBar> {
       indexSelected: selected,
       onTap: (int index) {
         selected = index;
-        // widget.pageController.animateToPage(
-        //   selected,
-        //   duration: const Duration(milliseconds: 100),
-        //   curve: Curves.easeInOut,
-        // );
         widget.pageController.jumpToPage(selected);
         setState(() {});
       },

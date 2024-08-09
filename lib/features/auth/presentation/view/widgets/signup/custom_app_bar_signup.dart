@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/features/auth/presentation/view/login_view.dart';
 
 class CustomAppBarSignup extends StatelessWidget {
   const CustomAppBarSignup({
@@ -19,7 +19,8 @@ class CustomAppBarSignup extends StatelessWidget {
           style: const ButtonStyle(
               padding: WidgetStatePropertyAll(EdgeInsets.zero)),
           onPressed: () {
-            Get.back();
+            Get.off(() => const LoginView(),
+                transition: Transition.downToUp);
           },
           child: const Text('login',
               style: TextStyle(

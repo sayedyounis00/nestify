@@ -6,6 +6,16 @@ class UserOrOwnerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const UserOrOwnerViewBody();
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: Text(
+          'Nestify',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+      ),
+      body: const UserOrOwnerViewBody(),
+    );
   }
 }
