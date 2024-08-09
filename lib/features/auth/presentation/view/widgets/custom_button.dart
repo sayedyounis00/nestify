@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
         style: ButtonStyle(
             alignment: Alignment.center,
-            fixedSize: WidgetStatePropertyAll(Size(width ?? 120, height ??50)),
+            fixedSize: WidgetStatePropertyAll(Size(width ?? 120, height ?? 50)),
             foregroundColor: WidgetStatePropertyAll(foreCol),
             backgroundColor: WidgetStatePropertyAll(color),
             shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
