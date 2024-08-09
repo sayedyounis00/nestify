@@ -24,24 +24,26 @@ class LoginViewBody extends StatelessWidget {
         const SpaceV(22),
         const AnotherLoginMethodsRow(),
         const SpaceV(22),
-        const SignupButton(),
+        const SignupButton(text: 'Don\'t have a Nestify account?',buttontext: 'Sign up',),
       ],
     );
   }
 }
 
-  class SignupButton extends StatelessWidget {
+class SignupButton extends StatelessWidget {
   const SignupButton({
-    super.key,
+    super.key, required this.text, required this.buttontext,
   });
+  final String text;
+  final String buttontext;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Don't have a Nestify account?",
-            style: TextStyle(
+         Text(text,
+            style: const TextStyle(
                 fontSize: 14,
                 color: AppColor.secColor3,
                 fontWeight: FontWeight.w500)),
@@ -52,8 +54,8 @@ class LoginViewBody extends StatelessWidget {
             Get.to(() => const SignupView(),
                 transition: Transition.rightToLeft);
           },
-          child: const Text('Sign up',
-              style: TextStyle(
+          child:  Text(buttontext,
+              style: const TextStyle(
                   fontSize: 15,
                   color: AppColor.primaryColor,
                   fontWeight: FontWeight.w500)),
@@ -62,7 +64,7 @@ class LoginViewBody extends StatelessWidget {
     );
   }
 }
-  
+
 class AnotherLoginMethodsRow extends StatelessWidget {
   const AnotherLoginMethodsRow({
     super.key,
