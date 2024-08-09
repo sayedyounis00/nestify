@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/features/home/data/model/user.dart';
 import 'package:nestify/features/home/data/repo/home_repo.dart';
@@ -9,6 +7,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeRepo) : super(HomeInitial());
   HomeRepo homeRepo;
   String userStatus = 'user status';
+
   UserModel user = UserModel(
     firstName: 'firstName',
     lastName: 'lastName',
@@ -36,6 +35,11 @@ class HomeCubit extends Cubit<HomeState> {
 
   void setUserStatus({required String status}) {
     userStatus = status;
-    log(userStatus);
+  }
+
+  Future<List<Map<String, dynamic>>> getHousesData() async {
+    // as json
+    var housesData = await homeRepo.getAllHouses();
+    return housesData;
   }
 }
