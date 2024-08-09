@@ -56,6 +56,7 @@ class SignupButton extends StatelessWidget {
           style: const ButtonStyle(
               padding: WidgetStatePropertyAll(EdgeInsets.zero)),
           onPressed: () {
+
             Get.to(() => const SignupView(),
                 transition: Transition.downToUp);
           },
