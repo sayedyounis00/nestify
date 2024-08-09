@@ -44,7 +44,7 @@ class _CustomImageState extends State<CustomImage> {
           ),
         ),
         Positioned(
-          top: MediaQuery.of(context).size.height * .1,
+            top: MediaQuery.of(context).size.height * .1,
             right: 20,
             child: CircleAvatar(
               backgroundColor: Colors.white,
