@@ -22,7 +22,7 @@ class _CustomImageState extends State<CustomImage> {
       children: [
         Hero(
           tag: widget.house.img,
-          child: Image.asset(
+          child: Image.network(
             widget.house.img,
             fit: BoxFit.fill,
             height: MediaQuery.of(context).size.height / 2,

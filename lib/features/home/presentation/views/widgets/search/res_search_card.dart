@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/utils/styles.dart';
+import 'package:nestify/core/widgets/shimmer/shimmer_card.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/presentation/views/home_details_view.dart';
@@ -39,8 +41,12 @@ class _ResSearchCardState extends State<ResSearchCard> {
             Hero(
                 tag: widget.house.img,
                 child: Stack(children: [
-                  Image.asset(
-                    widget.house.img,
+                  CachedNetworkImage(
+                    placeholder: (context, url) {
+                      return const ShimmerCard(
+                          width: double.infinity, height: 220);
+                    },
+                    imageUrl: widget.house.img,
                     height: 220,
                     width: double.infinity,
                   ),

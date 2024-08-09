@@ -64,11 +64,10 @@ class _UserOrOwnerViewBodyState extends State<UserOrOwnerViewBody> {
               onPressed: () {
                 BlocProvider.of<HomeCubit>(context)
                     .setUserStatus(status: userStatus);
-                if (BlocProvider.of<HomeCubit>(context).user.userStatus ==
-                    'Owner') {
+                if (BlocProvider.of<HomeCubit>(context).userStatus == 'Owner') {
                   Get.to(() => const GetAboutOwnerView(),
                       transition: nav.Transition.rightToLeft);
-                } else if (BlocProvider.of<HomeCubit>(context).user.userStatus ==
+                } else if (BlocProvider.of<HomeCubit>(context).userStatus ==
                     'renter') {
                   Get.to(() => const SignupView(),
                       transition: nav.Transition.rightToLeft);
