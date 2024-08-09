@@ -13,13 +13,13 @@ class MessangerViewBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 16.0),
+          padding: const EdgeInsets.only(left: 20.0),
           child: Text(
             'Messages',
             style: Theme.of(context)
                 .textTheme
                 .displaySmall!
-                .copyWith(fontWeight: FontWeight.bold),
+                .copyWith(fontWeight: FontWeight.w600),
           ),
         ),
         const Divider(),

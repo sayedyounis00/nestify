@@ -12,7 +12,8 @@ class HomeCubit extends Cubit<HomeState> {
     phone: 'phone',
     email: 'email',
     userId: 'userId',
-    createdAt: 'createdAt', fullName: 'FullName',
+    createdAt: 'createdAt',
+    fullName: 'FullName',
   );
 
   void setUserInfo() async {
@@ -24,7 +25,7 @@ class HomeCubit extends Cubit<HomeState> {
       email: userInfo['email'],
       userId: userInfo['user_id'],
       createdAt: userInfo['createdAt'],
-       fullName:  userInfo['first_name']+userInfo['last_name'],
+      fullName: userInfo['first_name'] + userInfo['last_name'],
     );
   }
 }
