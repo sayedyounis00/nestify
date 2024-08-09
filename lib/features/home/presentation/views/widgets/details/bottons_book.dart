@@ -1,14 +1,17 @@
-
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
+import 'package:nestify/features/home/data/model/house_model.dart';
+import 'package:nestify/features/home/presentation/views/contact_owner_view.dart';
 
 class ButtonsBook extends StatelessWidget {
   const ButtonsBook({
-    super.key,
+    super.key, required this.house,
   });
+  final HouseModel house;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,8 @@ class ButtonsBook extends StatelessWidget {
             child: CustomButton(
                 text: 'contact owner',
                 onPressed: () {
-                  Navigator.pushNamed(context, AddRouter.contactOwner);
+                  // Navigator.pushNamed(context, AddRouter.contactOwner);
+                  Get.to(() =>  ContactOwnerView(house: house));
                 },
                 color: Colors.white,
                 foreCol: AppColor.primaryColor),

@@ -1,1 +1,1 @@
-const kUserCol = 'users';
+const kUserCol = 'usersInfo';

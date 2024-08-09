@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/get_core.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_navigation/get_navigation.dart' as nav;
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/features/auth/presentation/view/get_owner_info_view.dart';
 import 'package:nestify/features/auth/presentation/view/signup_view.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/login_view_body.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/select_user_type.dart';
+import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 
 class UserOrOwnerViewBody extends StatefulWidget {
   const UserOrOwnerViewBody({super.key});
@@ -17,6 +20,7 @@ class UserOrOwnerViewBody extends StatefulWidget {
 class _UserOrOwnerViewBodyState extends State<UserOrOwnerViewBody> {
   int _selectedIndex = -1;
   Color buttonColor = AppColor.primaryColor.withOpacity(0.4);
+  String userStatus = 'No status Yet';
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +41,7 @@ class _UserOrOwnerViewBodyState extends State<UserOrOwnerViewBody> {
             text: 'As a Renter',
             value: _selectedIndex == 0,
             onChanged: (bool? value) {
+              userStatus = 'renter';
               _onCheckBoxChanged(0, value);
               buttonColor = AppColor.primaryColor;
               setState(() {});
@@ -46,6 +51,7 @@ class _UserOrOwnerViewBodyState extends State<UserOrOwnerViewBody> {
             text: 'As a Properity Owner',
             value: _selectedIndex == 1,
             onChanged: (bool? value) {
+              userStatus = 'Owner';
               buttonColor = AppColor.primaryColor;
               _onCheckBoxChanged(1, value);
               setState(() {});
@@ -56,7 +62,17 @@ class _UserOrOwnerViewBodyState extends State<UserOrOwnerViewBody> {
             child: CustomButton(
               text: 'Create Account',
               onPressed: () {
-                Get.to(() => const SignupView(),transition: Transition.rightToLeft);
+                BlocProvider.of<HomeCubit>(context)
+                    .setUserStatus(status: userStatus);
+                if (BlocProvider.of<HomeCubit>(context).user.userStatus ==
+                    'Owner') {
+                  Get.to(() => const GetAboutOwnerView(),
+                      transition: nav.Transition.rightToLeft);
+                } else if (BlocProvider.of<HomeCubit>(context).user.userStatus ==
+                    'renter') {
+                  Get.to(() => const SignupView(),
+                      transition: nav.Transition.rightToLeft);
+                }
               },
               color: buttonColor,
               width: double.infinity,

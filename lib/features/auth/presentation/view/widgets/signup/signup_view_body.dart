@@ -5,11 +5,10 @@ import 'package:nestify/features/auth/presentation/view/widgets/signup/custom_ap
 import 'package:nestify/features/auth/presentation/view/widgets/signup/signup_form.dart';
 
 class SignupViewBody extends StatelessWidget {
-  const SignupViewBody({super.key});
-
+  const SignupViewBody({super.key,});
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  const Column(
       children: [
         CustomAppBarSignup(),
         Text('Sign up and find your\nnew apartment',

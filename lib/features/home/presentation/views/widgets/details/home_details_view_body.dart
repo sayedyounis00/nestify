@@ -30,7 +30,7 @@ class HomeDetailsViewBody extends StatelessWidget {
         const CustomDescription(),
         const SpaceV(13),
         const Divider(),
-        const ButtonsBook()
+         ButtonsBook(house: house,)
       ],
     );
   }
