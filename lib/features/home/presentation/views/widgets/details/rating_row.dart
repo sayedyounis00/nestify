@@ -62,7 +62,7 @@ class RatingRow extends StatelessWidget {
                       color: AppColor.primaryColor,
                       decoration: TextDecoration.underline))
             ],
-          )
+          ),
         ],
       ),
     );
