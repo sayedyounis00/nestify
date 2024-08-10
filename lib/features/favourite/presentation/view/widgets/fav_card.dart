@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_navigation/get_navigation.dart' as nav;
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/utils/styles.dart';
 import 'package:nestify/core/widgets/space.dart';
@@ -20,7 +20,7 @@ class FavCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height*0.14,
+      height: MediaQuery.of(context).size.height * 0.14,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
       margin: const EdgeInsets.only(bottom: 7, left: 20, right: 20),
       decoration: BoxDecoration(
@@ -55,10 +55,11 @@ class FavCard extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              TextButton(
-                onPressed: () {
+              InkWell(
+                onTap: () {
                   Get.to(
                     () => HomeDetailsView(house: house),
+                    transition: nav.Transition.zoom,
                   );
                 },
                 child: const Text(

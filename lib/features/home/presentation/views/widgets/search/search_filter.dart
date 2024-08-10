@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/home/data/home_data.dart';
+import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/home/presentation/views/widgets/search/drop_down_menu.dart';
 
 class SearchFilter extends StatefulWidget {
@@ -51,7 +53,10 @@ class _SearchFilterState extends State<SearchFilter> {
                   children: [
                     IconButton(
                         color: AppColor.primaryColor,
-                        onPressed: () {
+                        onPressed: (){
+                          BlocProvider.of<HomeCubit>(context)
+                              .filterdHousesList = [];
+                          BlocProvider.of<HomeCubit>(context).getHousesData();
                           animation = CrossFadeState.showFirst;
                           isClosed = true;
                           setState(() {});
@@ -77,10 +82,12 @@ class SearchButt extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: CustomButton(
+        width: double.infinity,
         text: 'Search',
         color: AppColor.primaryColor,
         onPressed: () {
-          //To do search filter
+          BlocProvider.of<HomeCubit>(context)
+              .setFilterdHouses(loca: 'tanta', bed: 'd');
         },
       ),
     );

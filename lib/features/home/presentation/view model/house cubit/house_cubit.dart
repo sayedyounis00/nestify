@@ -2,10 +2,10 @@ import 'package:bloc/bloc.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-part 'add_house_state.dart';
+part 'house_state.dart';
 
-class AddHouseCubit extends Cubit<AddHouseState> {
-  AddHouseCubit() : super(AddHouseInitial());
+class HouseCubit extends Cubit<HouseState> {
+  HouseCubit() : super(HouseInitial());
 
   CollectionReference properties =
       FirebaseFirestore.instance.collection('properties');
@@ -14,7 +14,7 @@ class AddHouseCubit extends Cubit<AddHouseState> {
     required String houseTitle,
     required String location,
     required String bd,
-    required String  ba,
+    required String ba,
     required String price,
     required String imageUrl,
   }) {

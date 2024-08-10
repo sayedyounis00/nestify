@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nestify/core/utils/constant.dart';
+import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/data/repo/home_repo.dart';
 
 class HomeRepoImp implements HomeRepo {
@@ -19,15 +20,15 @@ class HomeRepoImp implements HomeRepo {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getAllHouses() async {
-    List<Map<String, dynamic>> allHousesList = [];
+  Future<List<HouseModel>> getAllHouses() async {
+    List<HouseModel> allHousesList = [];
 
     try {
       QuerySnapshot<Map<String, dynamic>> data =
           await firestore.collection(kPropertiesCol).get();
 
       for (var doc in data.docs) {
-        allHousesList.add(doc.data());
+        allHousesList.add(HouseModel.fromJson(doc.data()));
       }
 
       return allHousesList;
@@ -54,5 +55,51 @@ class HomeRepoImp implements HomeRepo {
     } on Exception {
       rethrow;
     }
+  }
+
+  @override
+  Future<List<HouseModel>> getFilterdHouses(
+      {String? loca, String? price, String? owner, String? bed}) async {
+    List<HouseModel> filterdHousesList = [];
+
+    QuerySnapshot<Map<String, dynamic>> data = await firestore
+        .collection(kPropertiesCol)
+        .where(
+          'location',
+          isEqualTo: loca,
+        )
+        .where(
+          'bd',
+          isEqualTo: bed,
+        )
+        .where(
+          'owner_name',
+          isEqualTo: owner,
+        )
+        .where(
+          'price',
+          isEqualTo: price,
+        )
+        .get();
+
+    for (var doc in data.docs) {
+      filterdHousesList.add(HouseModel.fromJson(doc.data()));
+    }
+    if (filterdHousesList.isEmpty) {
+      filterdHousesList = [
+        HouseModel(
+          img:
+              'https://www.shutterstock.com/image-vector/oops-404-error-web-site-260nw-1889722093.jpg',
+          title: 'Not Found',
+          place: '',
+          bd: '',
+          ba: '',
+          price: '',
+          ownerName: '',
+        )
+      ];
+    }
+
+    return filterdHousesList;
   }
 }

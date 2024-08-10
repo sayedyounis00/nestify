@@ -7,7 +7,7 @@ import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
 import 'package:nestify/features/home/data/add_property_data.dart';
-import 'package:nestify/features/home/presentation/view%20model/house%20cubit/add_house_cubit.dart';
+import 'package:nestify/features/home/presentation/view%20model/house%20cubit/house_cubit.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 
 class AddPropertyViewBody extends StatefulWidget {
@@ -22,7 +22,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
   String? bd, ba;
   @override
   void initState() {
-    BlocProvider.of<AddHouseCubit>(context);
+    BlocProvider.of<HouseCubit>(context);
     super.initState();
   }
 
@@ -109,7 +109,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                   onPressed: () {
                     String fullName =
                         BlocProvider.of<HomeCubit>(context).user.fullName;
-                    BlocProvider.of<AddHouseCubit>(context).addHouse(
+                    BlocProvider.of<HouseCubit>(context).addHouse(
                       ownerName: fullName,
                       houseTitle: houseTitle ?? 'title',
                       location: location ?? 'place',
