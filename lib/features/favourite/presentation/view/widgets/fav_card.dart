@@ -1,11 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/utils/styles.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
+import 'package:nestify/features/home/presentation/views/home_details_view.dart';
 
 class FavCard extends StatelessWidget {
   const FavCard({
@@ -17,7 +20,7 @@ class FavCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 117,
+      height: MediaQuery.of(context).size.height*0.14,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 13),
       margin: const EdgeInsets.only(bottom: 7, left: 20, right: 20),
       decoration: BoxDecoration(
@@ -52,18 +55,26 @@ class FavCard extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const Text(
-                'View Details',
-                style: TextStyle(
-                    color: AppColor.primaryColor,
-                    decoration: TextDecoration.underline),
+              TextButton(
+                onPressed: () {
+                  Get.to(
+                    () => HomeDetailsView(house: house),
+                  );
+                },
+                child: const Text(
+                  'View Details',
+                  style: TextStyle(
+                      color: AppColor.primaryColor,
+                      decoration: TextDecoration.underline),
+                ),
               ),
             ],
           ),
           const Spacer(),
           IconButton.filled(
             onPressed: () {
-              BlocProvider.of<HomeCubit>(context).removeFromFavourite();
+              BlocProvider.of<HomeCubit>(context)
+                  .removeFromFavourite(house.title);
             },
             icon: const Icon(
               Icons.delete_outlined,

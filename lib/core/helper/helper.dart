@@ -6,9 +6,9 @@ class Helper {
   static void updateFavouriteMethod(HouseModel house, context) {
     house.isFav = !house.isFav;
     if (house.isFav) {
-      BlocProvider.of<HomeCubit>(context).setToFavourite();
+      BlocProvider.of<HomeCubit>(context).setToFavourite(house.title);
     } else {
-      BlocProvider.of<HomeCubit>(context).removeFromFavourite();
+      BlocProvider.of<HomeCubit>(context).removeFromFavourite(house.title);
     }
   }
 }

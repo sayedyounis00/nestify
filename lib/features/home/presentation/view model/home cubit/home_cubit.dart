@@ -5,6 +5,7 @@ import 'package:nestify/features/home/data/model/user.dart';
 import 'package:nestify/features/home/data/repo/home_repo.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_state.dart';
 
+
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeRepo) : super(HomeInitial());
   HomeRepo homeRepo;
@@ -49,19 +50,19 @@ class HomeCubit extends Cubit<HomeState> {
     var housesData = await homeRepo.getFavHouses();
     return housesData;
   }
+  void setToFavourite(String houseTitle) {
 
-  void setToFavourite() {
     FirebaseFirestore.instance
         .collection(kPropertiesCol)
-        .doc('6eHGbHE6hfNfstX1uTXQ')
+        .doc(houseTitle)
         .update({'isFav': true});
     emit(FavouriteDoneState());
   }
 
-  void removeFromFavourite() {
+  void removeFromFavourite(String houseTitle) {
     FirebaseFirestore.instance
         .collection(kPropertiesCol)
-        .doc('6eHGbHE6hfNfstX1uTXQ')
+        .doc(houseTitle)
         .update({'isFav': false});
     emit(FavouriteDoneState());
   }

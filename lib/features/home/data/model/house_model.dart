@@ -21,7 +21,7 @@ class HouseModel {
       bd: json['bd'],
       ba: json['ba'],
       price: json['price'],
-      isFav: json['isFav'],
+      isFav: json['isFav']??false,
       ownerName: json['owner_name'],
     );
   }

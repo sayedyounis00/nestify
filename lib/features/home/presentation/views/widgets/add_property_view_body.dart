@@ -39,7 +39,6 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                 onTap: () {
                   PickImageFromGallary().pickImage();
                   UploadImageToFirebase().uploadImage();
-                  setState(() {});
                 },
                 child: Container(
                   height: MediaQuery.of(context).size.height * .2,
@@ -117,8 +116,10 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                       bd: bd ?? 'bd',
                       ba: ba ?? 'ba',
                       price: price ?? 'price',
-                      imageUrl: Variables.imageUrl ?? 'noUrl ',
+                      imageUrl: Variables.imageUrl ??
+                          'https://static.realting.com/uploads/images/3f1/445e22c2280ba1273ef81a36f446a.webp ',
                     );
+                    setState(() {});
                     log('added to fire base');
                   },
                   color: AppColor.primaryColor,
@@ -130,5 +131,9 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
         ),
       ),
     );
+  }
+
+  addFilteredList() {
+    
   }
 }

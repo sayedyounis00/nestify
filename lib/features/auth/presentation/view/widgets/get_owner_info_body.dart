@@ -9,24 +9,31 @@ class GetOwnerInfoBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColor.primaryColor,
+        title: const Text('Add some informtion about you'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text('Provide us some info about you '),
             Center(
               child: TextFormField(
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20))
+                    ),
                     contentPadding: EdgeInsets.all(100),
-                    hintText: 'About'),
+                    ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CustomButton(
-                text: 'Add about me ',
-                onPressed: () {
+                text: 'Next',
+                onPressed: () {  
                   Navigator.pushNamed(context, AddRouter.signupViewRoute);
                 },
                 color: AppColor.primaryColor,
