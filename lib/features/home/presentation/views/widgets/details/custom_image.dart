@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:nestify/core/widgets/shimmer/shimmer_card.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
 
 class CustomImage extends StatefulWidget {
@@ -22,10 +24,15 @@ class _CustomImageState extends State<CustomImage> {
       children: [
         Hero(
           tag: widget.house.img,
-          child: Image.network(
-            widget.house.img,
-            fit: BoxFit.fill,
+          child: CachedNetworkImage(
+            placeholder: (context, url) {
+              return ShimmerCard(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height / 2);
+            },
+            imageUrl: widget.house.img,
             height: MediaQuery.of(context).size.height / 2,
+            fit: BoxFit.fill,
           ),
         ),
         Positioned(
