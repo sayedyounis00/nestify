@@ -38,7 +38,10 @@ class FavViewBody extends StatelessWidget {
                       itemCount: snapshot.data?.length ?? 0,
                       itemBuilder: (context, index) {
                         return FavCard(
-                            house: HouseModel.fromJson(snapshot.data![index]));
+                          house: HouseModel.fromJson(
+                            snapshot.data![index],
+                          ),
+                        );
                       },
                     );
                   } else {

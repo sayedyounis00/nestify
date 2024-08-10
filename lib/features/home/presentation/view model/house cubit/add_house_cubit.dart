@@ -20,7 +20,7 @@ class AddHouseCubit extends Cubit<AddHouseState> {
   }) {
     try {
       emit(AddHouseLoading());
-      properties.add({
+      properties.doc(houseTitle).set({
         'owner_name': ownerName,
         'title': houseTitle,
         'img': imageUrl,

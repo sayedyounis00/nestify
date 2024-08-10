@@ -28,6 +28,18 @@ class _ResSearchCardState extends State<ResSearchCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onDoubleTap: () {
+        Helper.updateFavouriteMethod(widget.house, context);
+        setState(() {});
+        widget.house.isFav
+            ? const Icon(
+                Icons.favorite,
+                color: Colors.red,
+              )
+            : const Icon(
+                Icons.favorite_border,
+              );
+      },
       onTap: () {
         Get.to(
           () => HomeDetailsView(house: widget.house),

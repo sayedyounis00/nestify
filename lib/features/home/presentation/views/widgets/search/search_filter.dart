@@ -79,7 +79,9 @@ class SearchButt extends StatelessWidget {
       child: CustomButton(
         text: 'Search',
         color: AppColor.primaryColor,
-        onPressed: () {},
+        onPressed: () {
+          //To do search filter
+        },
       ),
     );
   }
@@ -98,7 +100,9 @@ class FilterGridView extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.symmetric(vertical: 5),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, mainAxisExtent: 82),
+          crossAxisCount: 2,
+          mainAxisExtent: 82,
+        ),
         itemBuilder: (context, index) => DropDownMenu(
           upText: HomeData.upText[index],
           allList: HomeData.wholeList[index],
