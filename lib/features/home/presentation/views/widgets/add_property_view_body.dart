@@ -18,7 +18,7 @@ class AddPropertyViewBody extends StatefulWidget {
 }
 
 class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
-  String? houseTitle, location, price;
+  String? houseTitle, location, price,category;
   String? bd, ba;
   @override
   void initState() {
@@ -83,6 +83,14 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                   onChanged: (prc) => price = prc,
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: CustomTextField(
+                  prefix: const Icon(Icons.monetization_on),
+                  label: ' Category',
+                  onChanged: (cate) => category = cate,
+                ),
+              ),
               Row(
                 children: [
                   Expanded(
@@ -111,6 +119,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                         BlocProvider.of<HomeCubit>(context).user.fullName;
                     BlocProvider.of<HouseCubit>(context).addHouse(
                       ownerName: fullName,
+                      category: category??'category',
                       houseTitle: houseTitle ?? 'title',
                       location: location ?? 'place',
                       bd: bd ?? 'bd',

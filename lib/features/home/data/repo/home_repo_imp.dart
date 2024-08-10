@@ -95,7 +95,7 @@ class HomeRepoImp implements HomeRepo {
           bd: '',
           ba: '',
           price: '',
-          ownerName: '',
+          ownerName: '', category: '',
         )
       ];
     }

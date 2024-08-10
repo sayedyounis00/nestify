@@ -17,11 +17,13 @@ class HouseCubit extends Cubit<HouseState> {
     required String ba,
     required String price,
     required String imageUrl,
+    required String category,
   }) {
     try {
       emit(AddHouseLoading());
       properties.doc(houseTitle).set({
         'owner_name': ownerName,
+        'category': category,
         'title': houseTitle,
         'img': imageUrl,
         'location': location,
