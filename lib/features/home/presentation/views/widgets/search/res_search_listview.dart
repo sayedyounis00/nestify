@@ -28,7 +28,7 @@ class ResSearchListView extends StatelessWidget {
                 house: HouseModel(
                   img: house![index]['img'],
                   title: house[index]['title'],
-                  place: house[index]['place'],
+                  place: house[index]['location'],
                   bd: house[index]['bd'],
                   ba: house[index]['ba'],
                   price: house[index]['price'],

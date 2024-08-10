@@ -35,10 +35,5 @@ class HomeRepoImp implements HomeRepo {
       rethrow;
     }
   }
-  
-  @override
-  addHouse() {
-    // TODO: implement addHouse
-    throw UnimplementedError();
-  }
+
 }
