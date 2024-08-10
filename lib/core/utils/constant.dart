@@ -1,3 +1,3 @@
 const kUserCol = 'usersInfo';
-const kHousesCol = 'properties';
+const kPropertiesCol = 'properties';
 const kFavCol = 'favourites';

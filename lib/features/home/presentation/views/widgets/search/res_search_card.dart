@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:nestify/core/helper/helper.dart';
 import 'package:nestify/core/utils/styles.dart';
 import 'package:nestify/core/widgets/shimmer/shimmer_card.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
+import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_state.dart';
 import 'package:nestify/features/home/presentation/views/home_details_view.dart';
 import 'package:nestify/features/home/presentation/views/widgets/title_and_price_row.dart';
 
@@ -39,26 +41,30 @@ class _ResSearchCardState extends State<ResSearchCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Hero(
+            Stack(children: [
+              Hero(
                 tag: widget.house.img,
-                child: Stack(children: [
-                  CachedNetworkImage(
-                    placeholder: (context, url) {
-                      return const ShimmerCard(
-                          width: double.infinity, height: 220);
-                    },
-                    imageUrl: widget.house.img,
-                    height: 220,
-                    width: double.infinity,
-                  ),
-                  Positioned(
-                      top: 20,
-                      right: 20,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: IconButton(
+                child: CachedNetworkImage(
+                  placeholder: (context, url) {
+                    return const ShimmerCard(
+                        width: double.infinity, height: 220);
+                  },
+                  imageUrl: widget.house.img,
+                  height: 220,
+                  width: double.infinity,
+                ),
+              ),
+              Positioned(
+                  top: 20,
+                  right: 20,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: BlocBuilder<HomeCubit, HomeState>(
+                      builder: (context, state) {
+                        return IconButton(
                           onPressed: () {
-                            updateFavouriteMethod();
+                            Helper.updateFavouriteMethod(widget.house, context);
+                            setState(() {});
                           },
                           icon: widget.house.isFav
                               ? const Icon(
@@ -68,9 +74,11 @@ class _ResSearchCardState extends State<ResSearchCard> {
                               : const Icon(
                                   Icons.favorite_border,
                                 ),
-                        ),
-                      ))
-                ])),
+                        );
+                      },
+                    ),
+                  ))
+            ]),
             const SpaceV(18),
             TitleAndPriceRow(house: widget.house),
             Text(widget.house.place, style: Styles.styleDesc),
@@ -106,15 +114,5 @@ class _ResSearchCardState extends State<ResSearchCard> {
         ),
       ),
     );
-  }
-
-  void updateFavouriteMethod() {
-    widget.house.isFav = !widget.house.isFav;
-    if (widget.house.isFav) {
-      BlocProvider.of<HomeCubit>(context).setToFavourite();
-    } else {
-      BlocProvider.of<HomeCubit>(context).removeFromFavourite();
-    }
-    setState(() {});
   }
 }

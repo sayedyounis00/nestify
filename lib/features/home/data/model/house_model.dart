@@ -9,7 +9,7 @@ class HouseModel {
     required this.bd,
     required this.ba,
     required this.price,
-    required this.isFav,
+    this.isFav = false,
     required this.ownerName,
   });
 

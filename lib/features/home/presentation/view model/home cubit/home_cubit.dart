@@ -52,15 +52,17 @@ class HomeCubit extends Cubit<HomeState> {
 
   void setToFavourite() {
     FirebaseFirestore.instance
-        .collection(kHousesCol)
-        .doc('42f2kxaaXThHGYYZ6u1f')
+        .collection(kPropertiesCol)
+        .doc('6eHGbHE6hfNfstX1uTXQ')
         .update({'isFav': true});
+    emit(FavouriteDoneState());
   }
 
   void removeFromFavourite() {
     FirebaseFirestore.instance
-        .collection(kHousesCol)
-        .doc('42f2kxaaXThHGYYZ6u1f')
+        .collection(kPropertiesCol)
+        .doc('6eHGbHE6hfNfstX1uTXQ')
         .update({'isFav': false});
+    emit(FavouriteDoneState());
   }
 }

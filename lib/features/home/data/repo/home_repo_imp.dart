@@ -24,7 +24,7 @@ class HomeRepoImp implements HomeRepo {
 
     try {
       QuerySnapshot<Map<String, dynamic>> data =
-          await firestore.collection(kHousesCol).get();
+          await firestore.collection(kPropertiesCol).get();
 
       for (var doc in data.docs) {
         allHousesList.add(doc.data());
@@ -41,8 +41,10 @@ class HomeRepoImp implements HomeRepo {
     List<Map<String, dynamic>> favHousesList = [];
 
     try {
-      QuerySnapshot<Map<String, dynamic>> data =
-          await firestore.collection(kHousesCol).where({'isFav', true}).get();
+      QuerySnapshot<Map<String, dynamic>> data = await firestore
+          .collection(kPropertiesCol)
+          .where('isFav', isEqualTo: true)
+          .get();
 
       for (var doc in data.docs) {
         favHousesList.add(doc.data());
@@ -53,6 +55,4 @@ class HomeRepoImp implements HomeRepo {
       rethrow;
     }
   }
-
-
 }

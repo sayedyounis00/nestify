@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:nestify/core/helper/helper.dart';
 import 'package:nestify/core/widgets/shimmer/shimmer_card.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
 
@@ -57,7 +58,7 @@ class _CustomImageState extends State<CustomImage> {
               backgroundColor: Colors.white,
               child: IconButton(
                 onPressed: () {
-                  widget.house.isFav = !widget.house.isFav;
+                  Helper.updateFavouriteMethod(widget.house, context);
                   setState(() {});
                 },
                 icon: widget.house.isFav
