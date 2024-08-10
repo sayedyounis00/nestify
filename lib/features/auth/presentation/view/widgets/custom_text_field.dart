@@ -5,7 +5,8 @@ class CustomTextField extends StatefulWidget {
   final String? hintText;
   final double width;
   final TextEditingController? controller;
-  final Function(String)? onChanged;
+  final Function(String)? onChanged; 
+  final Widget?  prefix; 
 
   const CustomTextField({
     super.key,
@@ -13,7 +14,7 @@ class CustomTextField extends StatefulWidget {
     this.controller,
     this.width = double.infinity,
     this.hintText,
-    this.onChanged,
+    this.onChanged, this.prefix,
   });
 
   @override
@@ -32,6 +33,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         validator: validateMessage,
         obscureText: widget.label != "Password" ? false : !isVisable,
         decoration: InputDecoration(
+          prefix: widget.prefix,
           prefixIcon: widget.label == 'Phone number'
               ? Image.asset('assets/images/egypt.png', scale: 12)
               : null,
