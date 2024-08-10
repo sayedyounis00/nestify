@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nestify/core/utils/constant.dart';
 import 'package:nestify/features/home/data/model/user.dart';
 import 'package:nestify/features/home/data/repo/home_repo.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_state.dart';
@@ -41,5 +43,24 @@ class HomeCubit extends Cubit<HomeState> {
     // as json
     var housesData = await homeRepo.getAllHouses();
     return housesData;
+  }
+
+  Future<List<Map<String, dynamic>>> getFavHouses() async {
+    var housesData = await homeRepo.getFavHouses();
+    return housesData;
+  }
+
+  void setToFavourite() {
+    FirebaseFirestore.instance
+        .collection(kHousesCol)
+        .doc('42f2kxaaXThHGYYZ6u1f')
+        .update({'isFav': true});
+  }
+
+  void removeFromFavourite() {
+    FirebaseFirestore.instance
+        .collection(kHousesCol)
+        .doc('42f2kxaaXThHGYYZ6u1f')
+        .update({'isFav': false});
   }
 }

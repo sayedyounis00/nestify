@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/features/faviorite/presentation/view/widgets/fav_view_body.dart';
+import 'package:nestify/features/favourite/presentation/view/widgets/fav_view_body.dart';
 
 class FavView extends StatelessWidget {
   const FavView({super.key});

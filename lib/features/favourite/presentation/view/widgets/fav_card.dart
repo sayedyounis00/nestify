@@ -1,12 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/utils/styles.dart';
 import 'package:nestify/core/widgets/space.dart';
+import 'package:nestify/features/home/data/model/house_model.dart';
 
 class FavCard extends StatelessWidget {
   const FavCard({
     super.key,
+    required this.house,
   });
+  final HouseModel house;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +27,8 @@ class FavCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/images/villa1.jpg',
+            child: CachedNetworkImage(
+              imageUrl: house.img,
               height: 100,
               width: 110,
               fit: BoxFit.fill,
@@ -34,10 +38,10 @@ class FavCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('house.title', style: Styles.style19),
+              Text(house.title, style: Styles.style19),
               RichText(
                 text: TextSpan(
-                  text: '\$20,000',
+                  text: '\$${house.price}',
                   style: Theme.of(context).textTheme.titleMedium,
                   children: const <TextSpan>[
                     TextSpan(

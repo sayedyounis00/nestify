@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/features/main/presentation/views/widget/bottom_nav_bar.dart';
 import 'package:nestify/features/discover/presentation/view/discover_view.dart';
-import 'package:nestify/features/faviorite/presentation/view/fav_view.dart';
+import 'package:nestify/features/favourite/presentation/view/fav_view.dart';
 import 'package:nestify/features/home/presentation/views/home_view.dart';
 import 'package:nestify/features/messages/presentation/view/messanger_view.dart';
 

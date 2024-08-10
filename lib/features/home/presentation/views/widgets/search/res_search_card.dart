@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/utils/styles.dart';
 import 'package:nestify/core/widgets/shimmer/shimmer_card.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
+import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/home/presentation/views/home_details_view.dart';
 import 'package:nestify/features/home/presentation/views/widgets/title_and_price_row.dart';
 
@@ -21,7 +23,6 @@ class ResSearchCard extends StatefulWidget {
 }
 
 class _ResSearchCardState extends State<ResSearchCard> {
-  // bool isFav = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -57,8 +58,7 @@ class _ResSearchCardState extends State<ResSearchCard> {
                         backgroundColor: Colors.white,
                         child: IconButton(
                           onPressed: () {
-                            widget.house.isFav = !widget.house.isFav;
-                            setState(() {});
+                            updateFavouriteMethod();
                           },
                           icon: widget.house.isFav
                               ? const Icon(
@@ -106,5 +106,15 @@ class _ResSearchCardState extends State<ResSearchCard> {
         ),
       ),
     );
+  }
+
+  void updateFavouriteMethod() {
+    widget.house.isFav = !widget.house.isFav;
+    if (widget.house.isFav) {
+      BlocProvider.of<HomeCubit>(context).setToFavourite();
+    } else {
+      BlocProvider.of<HomeCubit>(context).removeFromFavourite();
+    }
+    setState(() {});
   }
 }

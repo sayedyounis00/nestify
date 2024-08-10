@@ -12,7 +12,7 @@ import 'package:nestify/features/discover/presentation/view/discover_view.dart';
 import 'package:nestify/features/home/presentation/views/contact_owner_view.dart';
 import 'package:nestify/features/messages/presentation/view%20model/get_messages%20cubit/get_messages_cubit.dart';
 import 'package:nestify/features/messages/presentation/view/widgets/chat_view_body.dart';
-import 'package:nestify/features/faviorite/presentation/view/fav_view.dart';
+import 'package:nestify/features/favourite/presentation/view/fav_view.dart';
 import 'package:nestify/features/home/presentation/views/home_view.dart';
 import 'package:nestify/features/messages/presentation/view/messanger_view.dart';
 import 'package:nestify/features/main/presentation/views/main_view.dart';
