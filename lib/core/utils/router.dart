@@ -9,6 +9,7 @@ import 'package:nestify/features/auth/presentation/view/user_or_owner_view.dart'
 import 'package:nestify/features/auth/presentation/view/verification_view.dart';
 import 'package:nestify/features/auth/presentation/view/verified_view.dart';
 import 'package:nestify/features/discover/presentation/view/discover_view.dart';
+import 'package:nestify/features/home/presentation/views/add_property_view.dart';
 import 'package:nestify/features/home/presentation/views/contact_owner_view.dart';
 import 'package:nestify/features/messages/presentation/view%20model/get_messages%20cubit/get_messages_cubit.dart';
 import 'package:nestify/features/messages/presentation/view/widgets/chat_view_body.dart';
@@ -26,12 +27,15 @@ Route<dynamic> onGenerate(RouteSettings settings) {
 
     case AddRouter.landingListViewRoute:
       return CupertinoPageRoute(builder: (_) => const LandingView());
-      
+
     case AddRouter.userOrOwnerView:
       return CupertinoPageRoute(builder: (_) => const UserOrOwnerView());
 
     case AddRouter.getOwnerInfoView:
       return CupertinoPageRoute(builder: (_) => const GetAboutOwnerView());
+    case AddRouter.addPropertyView:
+      return CupertinoPageRoute(
+          builder: (_) => const AddPropertyView());
 
     case AddRouter.verificationRoute:
       return CupertinoPageRoute(builder: (_) => const VerificationView());
@@ -58,7 +62,7 @@ Route<dynamic> onGenerate(RouteSettings settings) {
       return CupertinoPageRoute(builder: (_) => const LoginView());
 
     case AddRouter.signupViewRoute:
-      return CupertinoPageRoute(builder: (_) =>  const SignupView());
+      return CupertinoPageRoute(builder: (_) => const SignupView());
     case AddRouter.chatView:
       {
         return CupertinoPageRoute(

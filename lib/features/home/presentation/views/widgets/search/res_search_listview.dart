@@ -25,7 +25,16 @@ class ResSearchListView extends StatelessWidget {
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               return ResSearchCard(
-                house: HouseModel.fromJson(house![index]),
+                house: HouseModel(
+                  img: house![index]['img'],
+                  title: house[index]['title'],
+                  place: house[index]['place'],
+                  bd: house[index]['bd'],
+                  ba: house[index]['ba'],
+                  price: house[index]['price'],
+                  isFav: true,
+                  ownerName: house[index]['owner_name'],
+                ),
               );
             },
           );

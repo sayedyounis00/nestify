@@ -13,11 +13,11 @@ import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
+import 'package:nestify/features/home/presentation/views/add_property_view.dart';
 import 'package:nestify/features/main/presentation/views/main_view.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
-
 
   @override
   State<SignupForm> createState() => _SignupFormState();
@@ -103,7 +103,8 @@ class _SignupFormState extends State<SignupForm> {
 
             CustomButton(
               width: double.infinity,
-              onPressed: valCheck
+              onPressed: 
+              valCheck
                   ? () async {
                       await signupHandle(context);
                     }
@@ -125,7 +126,14 @@ class _SignupFormState extends State<SignupForm> {
         await createUser();
         BlocProvider.of<HomeCubit>(context).setUserInfo();
         Future.delayed(const Duration(seconds: 1), () {
-          Get.off(() => const MainView(), transition: getnav.Transition.fade);
+        if (BlocProvider.of<HomeCubit>(context).userStatus == 'Owner') {
+                  Get.to(() => const AddPropertyView(),
+                      transition: getnav.Transition.rightToLeft);
+                } else if (BlocProvider.of<HomeCubit>(context).userStatus ==
+                    'renter') {
+                  Get.to(() => const MainView(),
+                      transition: getnav.Transition.rightToLeft);
+                }
         });
       } on FirebaseAuthException catch (e) {
         ErrorHandle().handleAuthErrors(e, context);
@@ -144,7 +152,7 @@ class _SignupFormState extends State<SignupForm> {
       'email': emailCon.text,
       'createdAt': DateTime.now().toString(),
       'phone_number': phoneCon.text,
-      'user_status':BlocProvider.of<HomeCubit>(context).userStatus,
+      'user_status': BlocProvider.of<HomeCubit>(context).userStatus,
     });
   }
 
