@@ -35,10 +35,24 @@ class HomeRepoImp implements HomeRepo {
       rethrow;
     }
   }
-  
+
   @override
-  addHouse() {
-    // TODO: implement addHouse
-    throw UnimplementedError();
+  Future<List<Map<String, dynamic>>> getFavHouses() async {
+    List<Map<String, dynamic>> favHousesList = [];
+
+    try {
+      QuerySnapshot<Map<String, dynamic>> data =
+          await firestore.collection(kHousesCol).where({'isFav', true}).get();
+
+      for (var doc in data.docs) {
+        favHousesList.add(doc.data());
+      }
+
+      return favHousesList;
+    } on Exception {
+      rethrow;
+    }
   }
+
+
 }
