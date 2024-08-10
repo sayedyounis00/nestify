@@ -4,9 +4,10 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart' as nav;
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/features/auth/presentation/view/get_owner_info_view.dart';
+import 'package:nestify/features/auth/presentation/view/login_view.dart';
 import 'package:nestify/features/auth/presentation/view/signup_view.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
-import 'package:nestify/features/auth/presentation/view/widgets/login/login_view_body.dart';
+import 'package:nestify/features/auth/presentation/view/widgets/login/already_hav_acc_text.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/select_user_type.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 
@@ -62,28 +63,33 @@ class _UserOrOwnerViewBodyState extends State<UserOrOwnerViewBody> {
             child: CustomButton(
               text: 'Create Account',
               onPressed: () {
-                BlocProvider.of<HomeCubit>(context)
-                    .setUserStatus(status: userStatus);
-                if (BlocProvider.of<HomeCubit>(context).userStatus == 'Owner') {
-                  Get.to(() => const GetAboutOwnerView(),
-                      transition: nav.Transition.rightToLeft);
-                } else if (BlocProvider.of<HomeCubit>(context).userStatus ==
-                    'renter') {
-                  Get.to(() => const SignupView(),
-                      transition: nav.Transition.rightToLeft);
-                }
+                goToMethod(context);
               },
               color: buttonColor,
               width: double.infinity,
             ),
           ),
-          const SignupButton(
+          SignupButton(
             text: 'Already have a Nestify account ?',
             buttontext: 'Sign in',
+            onPressed: () {
+              Get.to(() => const LoginView(),
+                  transition: nav.Transition.rightToLeft);
+            },
           ),
         ],
       ),
     );
+  }
+
+  void goToMethod(BuildContext context) {
+    BlocProvider.of<HomeCubit>(context).setUserStatus(status: userStatus);
+    if (BlocProvider.of<HomeCubit>(context).userStatus == 'Owner') {
+      Get.to(() => const GetAboutOwnerView(),
+          transition: nav.Transition.rightToLeft);
+    } else if (BlocProvider.of<HomeCubit>(context).userStatus == 'renter') {
+      Get.to(() => const SignupView(), transition: nav.Transition.rightToLeft);
+    }
   }
 
   void _onCheckBoxChanged(int index, bool? value) {

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_navigation/get_navigation.dart' as nav;
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/main/presentation/views/main_view.dart';
 import 'package:nestify/features/splash/presentation/view/landing_view.dart';
@@ -19,7 +19,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-  
+
     if (FirebaseAuth.instance.currentUser != null) {
       BlocProvider.of<HomeCubit>(context).setUserInfo();
     }
@@ -37,7 +37,7 @@ class _SplashViewState extends State<SplashView> {
             }
           },
         );
-        Get.off(() => view);
+        Get.offAll(() => view, transition: nav.Transition.fade);
       },
     );
   }

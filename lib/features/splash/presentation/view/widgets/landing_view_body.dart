@@ -19,8 +19,8 @@ class LandingViewBody extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        CustomImage(landingModel: landingModel),
-        Container(color: AppColor.primaryColor.withOpacity(0.7)),
+        CustomImageLand(landingModel: landingModel),
+        Container(color: AppColor.primaryColor.withOpacity(0.85)),
         TitleLanding(landingModel: landingModel),
         ButtonAndDotsRow(pageController: pageController),
       ],

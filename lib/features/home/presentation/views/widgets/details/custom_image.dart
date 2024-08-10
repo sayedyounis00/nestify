@@ -33,7 +33,7 @@ class _CustomImageState extends State<CustomImage> {
             },
             imageUrl: widget.house.img,
             height: MediaQuery.of(context).size.height / 2,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
         Positioned(

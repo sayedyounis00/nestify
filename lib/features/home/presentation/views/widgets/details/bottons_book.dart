@@ -24,8 +24,7 @@ class ButtonsBook extends StatelessWidget {
             child: CustomButton(
                 text: 'contact owner',
                 onPressed: () {
-                  // Navigator.pushNamed(context, AddRouter.contactOwner);
-                  Get.to(() =>  ContactOwnerView(house: house));
+                  Get.to(() =>  ContactOwnerView(house: house),transition: Transition.fade);
                 },
                 color: Colors.white,
                 foreCol: AppColor.primaryColor),

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
-import 'package:nestify/features/auth/presentation/view/signup_view.dart';
+import 'package:nestify/features/auth/presentation/view/user_or_owner_view.dart';
+import 'package:nestify/features/auth/presentation/view/widgets/login/already_hav_acc_text.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/another_login_method_card.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/login_form.dart';
 
@@ -24,47 +24,13 @@ class LoginViewBody extends StatelessWidget {
         const SpaceV(22),
         const AnotherLoginMethodsRow(),
         const SpaceV(22),
-        const SignupButton(
+        SignupButton(
           text: 'Don\'t have a Nestify account?',
           buttontext: 'Sign up',
-        ),
-      ],
-    );
-  }
-}
-
-class SignupButton extends StatelessWidget {
-  const SignupButton({
-    super.key,
-    required this.text,
-    required this.buttontext,
-  });
-  final String text;
-  final String buttontext;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(text,
-            style: const TextStyle(
-                fontSize: 14,
-                color: AppColor.secColor3,
-                fontWeight: FontWeight.w500)),
-        TextButton(
-          style: const ButtonStyle(
-              padding: WidgetStatePropertyAll(EdgeInsets.zero)),
           onPressed: () {
-
-            Get.to(() => const SignupView(),
+            Get.offAll(() => const UserOrOwnerView(),
                 transition: Transition.downToUp);
           },
-          child: Text(buttontext,
-              style: const TextStyle(
-                  fontSize: 15,
-                  color: AppColor.primaryColor,
-                  fontWeight: FontWeight.w500)),
         ),
       ],
     );

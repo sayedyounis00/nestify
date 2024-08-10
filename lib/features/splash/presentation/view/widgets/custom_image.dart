@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/features/splash/data/models/landing_model.dart';
 
-class CustomImage extends StatelessWidget {
-  const CustomImage({
+class CustomImageLand extends StatelessWidget {
+  const CustomImageLand({
     super.key,
     required this.landingModel,
   });
@@ -13,7 +13,8 @@ class CustomImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image(
       image: AssetImage(landingModel.assetIamge),
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
+      filterQuality: FilterQuality.low,
     );
   }
 }
