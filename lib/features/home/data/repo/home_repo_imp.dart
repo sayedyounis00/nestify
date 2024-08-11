@@ -59,7 +59,7 @@ class HomeRepoImp implements HomeRepo {
 
   @override
   Future<List<HouseModel>> getFilterdHouses(
-      {String? loca, String? price, String? owner, String? bed}) async {
+      {String? loca, String? price, String? type, String? bed ,String? category}) async {
     List<HouseModel> filterdHousesList = [];
 
     QuerySnapshot<Map<String, dynamic>> data = await firestore
@@ -74,11 +74,15 @@ class HomeRepoImp implements HomeRepo {
         )
         .where(
           'owner_name',
-          isEqualTo: owner,
+          isEqualTo: type,
         )
         .where(
           'price',
           isEqualTo: price,
+        )
+        .where(
+          'category',
+          isEqualTo: category,
         )
         .get();
 

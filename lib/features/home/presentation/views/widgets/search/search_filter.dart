@@ -3,10 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
-import 'package:nestify/features/home/data/home_data.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/home/presentation/views/widgets/search/drop_down_menu.dart';
-import 'package:nestify/features/home/presentation/views/widgets/search/search_data.dart';
 
 class SearchFilter extends StatefulWidget {
   const SearchFilter({
@@ -18,6 +16,50 @@ class SearchFilter extends StatefulWidget {
 }
 
 class _SearchFilterState extends State<SearchFilter> {
+  List<String> upText = const [
+    'Locations',
+    'Price Range',
+    'Type',
+    'Bed',
+  ];
+  List wholeList = const [
+    [
+      'Egypt',
+      'Usa',
+      'tanta',
+    ],
+    [
+      '1000',
+      '2000',
+      '3000',
+      '4000',
+    ],
+    [
+      'Junior suites',
+      'Presidential suite',
+      'Studio',
+      'Penthouse',
+      'Florida, Usa',
+      'Twin room',
+      'Bridal suites',
+    ],
+    [
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+    ],
+  ];
+  static String? selectedLoc;
+  static String? selectedPrice;
+  static String? selectedType;
+  static String? selectedBedNum;
+
   CrossFadeState animation = CrossFadeState.showFirst;
   bool isClosed = false;
   @override
@@ -57,7 +99,10 @@ class _SearchFilterState extends State<SearchFilter> {
                         onPressed: () {
                           BlocProvider.of<HomeCubit>(context)
                               .filterdHousesList = [];
-                          BlocProvider.of<HomeCubit>(context).getHousesData();
+                          selectedLoc = null;
+                          selectedPrice = null;
+                          selectedType = null;
+                          selectedBedNum = null;
                           animation = CrossFadeState.showFirst;
                           isClosed = true;
                           setState(() {});
@@ -69,24 +114,24 @@ class _SearchFilterState extends State<SearchFilter> {
                           children: [
                             Expanded(
                               child: DropDownMenu(
-                                upText: HomeData.upText[0],
-                                allList: HomeData.wholeList[0],
+                                selectedValue: selectedLoc,
+                                upText: upText[0],
+                                allList: wholeList[0],
                                 onChanged: (String? value) {
-                                  setState(() {
-                                    SearchData.selectedLoc = value!;
-                                  });
+                                  selectedLoc = value!;
+                                  setState(() {});
                                 },
                               ),
                             ),
                             Expanded(
                               child: DropDownMenu(
+                                selectedValue: selectedPrice,
                                 onChanged: (String? value) {
-                                  setState(() {
-                                    SearchData.selectedPrice = value!;
-                                  });
+                                  selectedPrice = value!;
+                                  setState(() {});
                                 },
-                                upText: HomeData.upText[1],
-                                allList: HomeData.wholeList[1],
+                                upText: upText[1],
+                                allList: wholeList[1],
                               ),
                             ),
                           ],
@@ -95,31 +140,46 @@ class _SearchFilterState extends State<SearchFilter> {
                           children: [
                             Expanded(
                               child: DropDownMenu(
+                                selectedValue: selectedType,
                                 onChanged: (String? value) {
-                                  setState(() {
-                                    SearchData.selectedType = value!;
-                                  });
+                                  selectedType = value!;
+                                  setState(() {});
                                 },
-                                upText: HomeData.upText[2],
-                                allList: HomeData.wholeList[2],
+                                upText: upText[2],
+                                allList: wholeList[2],
                               ),
                             ),
                             Expanded(
                               child: DropDownMenu(
+                                selectedValue: selectedBedNum,
                                 onChanged: (String? value) {
-                                  setState(() {
-                                    SearchData.selectedBedNum = value!;
-                                  });
+                                  selectedBedNum = value!;
+                                  setState(() {});
                                 },
-                                upText: HomeData.upText[3],
-                                allList: HomeData.wholeList[3],
+                                upText: upText[3],
+                                allList: wholeList[3],
                               ),
                             ),
                           ],
                         ),
                       ],
                     ),
-                    const SearchButt(),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: CustomButton(
+                        width: double.infinity,
+                        text: 'Search',
+                        color: AppColor.primaryColor,
+                        onPressed: () {
+                          BlocProvider.of<HomeCubit>(context).setFilterdHouses(
+                            loca: selectedLoc,
+                            bed: selectedBedNum,
+                            price: selectedPrice,
+                            type: selectedType,
+                          );
+                        },
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -128,57 +188,41 @@ class _SearchFilterState extends State<SearchFilter> {
   }
 }
 
-class SearchButt extends StatelessWidget {
-  const SearchButt({
-    super.key,
-  });
+// ! this is gid view as a comment don't remove
+// class FilterGridView extends StatelessWidget {
+//   const FilterGridView({
+//     super.key,
+//     required this.upText,
+//     required this.wholeList,
+//   });
+//   final List upText;
+//   final List wholeList;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: CustomButton(
-        width: double.infinity,
-        text: 'Search',
-        color: AppColor.primaryColor,
-        onPressed: () {
-          BlocProvider.of<HomeCubit>(context).setFilterdHouses(
-            loca: SearchData.selectedLoc,
-            bed: SearchData.selectedBedNum,
-            // price: SearchData.selectedPrice,
-          );
-        },
-      ),
-    );
-  }
-}
-//! this is gid view as a comment don't remove
-// // class FilterGridView extends StatelessWidget {
-// //   const FilterGridView({
-// //     super.key,
-// //   });
-
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Column(
-// //       children: [
-// //         SizedBox(
-// //           height: MediaQuery.of(context).size.height * .2,
-// //           child: GridView.builder(
-// //             physics: const NeverScrollableScrollPhysics(),
-// //             padding: const EdgeInsets.symmetric(vertical: 5),
-// //             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-// //               crossAxisCount: 2,
-// //               mainAxisExtent: 82,
-// //             ),
-// //             itemBuilder: (context, index) => DropDownMenu(
-// //               upText: HomeData.upText[index],
-// //               allList: HomeData.wholeList[index],
-// //             ),
-// //             itemCount: HomeData.upText.length,
-// //           ),
-// //         ),
-// //       ],
-// //     );
-////   }
-//// }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         SizedBox(
+//           height: MediaQuery.of(context).size.height * .2,
+//           child: GridView.builder(
+//             physics: const NeverScrollableScrollPhysics(),
+//             padding: const EdgeInsets.symmetric(vertical: 5),
+//             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//               crossAxisCount: 2,
+//               mainAxisExtent: 82,
+//             ),
+//             itemBuilder: (context, index) => DropDownMenu(
+//               upText: upText[index],
+//               allList: wholeList[index],
+//               selectedValue: selectedBedNum,
+//               onChanged: (String? value) {
+//                 selectedBedNum = value!;
+//               },
+//             ),
+//             itemCount: upText.length,
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }

@@ -55,10 +55,14 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void setFilterdHouses(
-      {String? loca, String? price, String? owner, String? bed}) async {
+      {String? loca,
+      String? price,
+      String? type,
+      String? bed,
+      String? category}) async {
     filterdHousesList = await homeRepo.getFilterdHouses(
-        bed: bed, price: price, loca: loca, owner: owner);
-    emit(FilterdDone());
+        bed: bed, price: price, loca: loca, type: type, category: category);
+    emit(FilterdLoading());
   }
 
   Future<List<Map<String, dynamic>>> getFavHouses() async {

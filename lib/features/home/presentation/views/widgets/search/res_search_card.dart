@@ -55,7 +55,7 @@ class _ResSearchCardState extends State<ResSearchCard> {
           children: [
             Stack(children: [
               Hero(
-                tag: widget.house.img,
+                tag: widget.house.title,
                 child: CachedNetworkImage(
                   placeholder: (context, url) {
                     return const ShimmerCard(

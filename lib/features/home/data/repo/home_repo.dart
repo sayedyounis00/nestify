@@ -4,5 +4,5 @@ abstract class HomeRepo {
   Future<Map<String, dynamic>> getUserInfo();
   Future<List<HouseModel>> getAllHouses();
   Future<List<Map<String, dynamic>>> getFavHouses();
-  Future<List<HouseModel>> getFilterdHouses({String? loca, String? price, String? owner, String? bed});
+  Future<List<HouseModel>> getFilterdHouses({String? loca, String? price, String? type, String? bed,String? category});
 }

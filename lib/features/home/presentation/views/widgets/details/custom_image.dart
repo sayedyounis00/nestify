@@ -24,7 +24,7 @@ class _CustomImageState extends State<CustomImage> {
     return Stack(
       children: [
         Hero(
-          tag: widget.house.img,
+          tag: widget.house.title,
           child: CachedNetworkImage(
             placeholder: (context, url) {
               return ShimmerCard(

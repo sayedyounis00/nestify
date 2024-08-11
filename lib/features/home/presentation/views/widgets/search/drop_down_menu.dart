@@ -2,22 +2,18 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
 
-class DropDownMenu extends StatefulWidget {
+class DropDownMenu extends StatelessWidget {
   final String upText;
   final List<String> allList;
   final Function(String?) onChanged;
-  const DropDownMenu(
-      {super.key,
-      required this.upText,
-      required this.allList,
-      required this.onChanged, });
-
-  @override
-  State<DropDownMenu> createState() => _DropDownMenuState();
-}
-
-class _DropDownMenuState extends State<DropDownMenu> {
-  String? selectedValue;
+  final String? selectedValue;
+  const DropDownMenu({
+    super.key,
+    required this.upText,
+    required this.allList,
+    required this.onChanged,
+    this.selectedValue,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +24,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.upText,
+              upText,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color:
                       const Color.fromARGB(255, 117, 113, 113).withOpacity(1)),
@@ -40,7 +36,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
                   children: [
                     Expanded(
                       child: Text(
-                        widget.upText.toLowerCase(),
+                        upText.toLowerCase(),
                         style: const TextStyle(
                           fontSize: 14,
                           color: Colors.black,
@@ -50,7 +46,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
                     ),
                   ],
                 ),
-                items: widget.allList
+                items: allList
                     .map((String item) => DropdownMenuItem<String>(
                           value: item,
                           child: Text(
@@ -64,8 +60,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
                         ))
                     .toList(),
                 value: selectedValue,
-                // selectedValue,
-                onChanged: widget.onChanged,
+                onChanged: onChanged,
                 buttonStyleData: ButtonStyleData(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),

@@ -5,7 +5,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:nestify/core/utils/router.dart';
 import 'package:nestify/features/home/data/repo/home_repo_imp.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
-import 'package:nestify/features/home/presentation/views/add_property_view.dart';
 import 'package:nestify/firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +26,6 @@ class Nestify extends StatelessWidget {
         transitionDuration: Duration(milliseconds: 500),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerate,
-        // home: AddPropertyView(),
       ),
     );
   }
