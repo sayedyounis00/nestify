@@ -5,7 +5,12 @@ import 'package:nestify/core/theme/app_color.dart';
 class DropDownMenu extends StatefulWidget {
   final String upText;
   final List<String> allList;
-  const DropDownMenu({super.key, required this.upText, required this.allList});
+  final Function(String?) onChanged;
+  const DropDownMenu(
+      {super.key,
+      required this.upText,
+      required this.allList,
+      required this.onChanged, });
 
   @override
   State<DropDownMenu> createState() => _DropDownMenuState();
@@ -31,7 +36,7 @@ class _DropDownMenuState extends State<DropDownMenu> {
             DropdownButtonHideUnderline(
               child: DropdownButton2<String>(
                 isExpanded: true,
-                hint:  Row(
+                hint: Row(
                   children: [
                     Expanded(
                       child: Text(
@@ -59,11 +64,8 @@ class _DropDownMenuState extends State<DropDownMenu> {
                         ))
                     .toList(),
                 value: selectedValue,
-                onChanged: (String? value) {
-                  setState(() {
-                    selectedValue = value;
-                  });
-                },
+                // selectedValue,
+                onChanged: widget.onChanged,
                 buttonStyleData: ButtonStyleData(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -83,8 +85,6 @@ class _DropDownMenuState extends State<DropDownMenu> {
                   iconDisabledColor: AppColor.secColor3,
                 ),
                 dropdownStyleData: DropdownStyleData(
-                  // maxHeight: 200,
-                  // width: 200,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14),
                     color: Colors.white,
@@ -92,7 +92,6 @@ class _DropDownMenuState extends State<DropDownMenu> {
                   offset: const Offset(0, 0),
                   scrollbarTheme: ScrollbarThemeData(
                     radius: const Radius.circular(40),
-                    // thickness: WidgetStateProperty.all<double>(6),
                     thumbVisibility: WidgetStateProperty.all<bool>(true),
                   ),
                 ),

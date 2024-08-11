@@ -6,6 +6,7 @@ import 'package:nestify/features/auth/presentation/view/widgets/custom_button.da
 import 'package:nestify/features/home/data/home_data.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/home/presentation/views/widgets/search/drop_down_menu.dart';
+import 'package:nestify/features/home/presentation/views/widgets/search/search_data.dart';
 
 class SearchFilter extends StatefulWidget {
   const SearchFilter({
@@ -53,7 +54,7 @@ class _SearchFilterState extends State<SearchFilter> {
                   children: [
                     IconButton(
                         color: AppColor.primaryColor,
-                        onPressed: (){
+                        onPressed: () {
                           BlocProvider.of<HomeCubit>(context)
                               .filterdHousesList = [];
                           BlocProvider.of<HomeCubit>(context).getHousesData();
@@ -62,7 +63,62 @@ class _SearchFilterState extends State<SearchFilter> {
                           setState(() {});
                         },
                         icon: const Icon(Icons.close_rounded)),
-                    const FilterGridView(),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: DropDownMenu(
+                                upText: HomeData.upText[0],
+                                allList: HomeData.wholeList[0],
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    SearchData.selectedLoc = value!;
+                                  });
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: DropDownMenu(
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    SearchData.selectedPrice = value!;
+                                  });
+                                },
+                                upText: HomeData.upText[1],
+                                allList: HomeData.wholeList[1],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: DropDownMenu(
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    SearchData.selectedType = value!;
+                                  });
+                                },
+                                upText: HomeData.upText[2],
+                                allList: HomeData.wholeList[2],
+                              ),
+                            ),
+                            Expanded(
+                              child: DropDownMenu(
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    SearchData.selectedBedNum = value!;
+                                  });
+                                },
+                                upText: HomeData.upText[3],
+                                allList: HomeData.wholeList[3],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                     const SearchButt(),
                   ],
                 ),
@@ -86,36 +142,43 @@ class SearchButt extends StatelessWidget {
         text: 'Search',
         color: AppColor.primaryColor,
         onPressed: () {
-          BlocProvider.of<HomeCubit>(context)
-              .setFilterdHouses(loca: 'tanta', bed: 'd');
+          BlocProvider.of<HomeCubit>(context).setFilterdHouses(
+            loca: SearchData.selectedLoc,
+            bed: SearchData.selectedBedNum,
+            // price: SearchData.selectedPrice,
+          );
         },
       ),
     );
   }
 }
+//! this is gid view as a comment don't remove
+// // class FilterGridView extends StatelessWidget {
+// //   const FilterGridView({
+// //     super.key,
+// //   });
 
-class FilterGridView extends StatelessWidget {
-  const FilterGridView({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * .2,
-      child: GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        padding: const EdgeInsets.symmetric(vertical: 5),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisExtent: 82,
-        ),
-        itemBuilder: (context, index) => DropDownMenu(
-          upText: HomeData.upText[index],
-          allList: HomeData.wholeList[index],
-        ),
-        itemCount: HomeData.upText.length,
-      ),
-    );
-  }
-}
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return Column(
+// //       children: [
+// //         SizedBox(
+// //           height: MediaQuery.of(context).size.height * .2,
+// //           child: GridView.builder(
+// //             physics: const NeverScrollableScrollPhysics(),
+// //             padding: const EdgeInsets.symmetric(vertical: 5),
+// //             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+// //               crossAxisCount: 2,
+// //               mainAxisExtent: 82,
+// //             ),
+// //             itemBuilder: (context, index) => DropDownMenu(
+// //               upText: HomeData.upText[index],
+// //               allList: HomeData.wholeList[index],
+// //             ),
+// //             itemCount: HomeData.upText.length,
+// //           ),
+// //         ),
+// //       ],
+// //     );
+////   }
+//// }
