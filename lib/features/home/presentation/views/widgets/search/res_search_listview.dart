@@ -20,6 +20,8 @@ class ResSearchListView extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<HouseModel>? house = snapshot.data;
+              List<HouseModel> filterdHousesList =
+                  BlocProvider.of<HomeCubit>(context).filterdHousesList;
               if (state is FilterdLoading) {
                 return const ResSearchShimmer();
               } else {
@@ -28,11 +30,17 @@ class ResSearchListView extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.zero,
                   scrollDirection: Axis.vertical,
-                  itemCount: snapshot.data!.length,
+                  itemCount: filterdHousesList.isEmpty
+                      ? snapshot.data!.length
+                      : filterdHousesList.length,
                   itemBuilder: (context, index) {
-                    return ResSearchCard(
-                      house: house![index],
-                    );
+                    return filterdHousesList.isEmpty
+                        ? ResSearchCard(
+                            house: house![index],
+                          )
+                        : ResSearchCard(
+                            house: filterdHousesList[index],
+                          );
                   },
                 );
               }
