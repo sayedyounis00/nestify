@@ -18,6 +18,9 @@ class HouseCubit extends Cubit<HouseState> {
     required String price,
     required String imageUrl,
     required String category,
+    required String ownernum,
+    required String reviewNum,
+    required String description,
   }) {
     try {
       emit(AddHouseLoading());
@@ -30,6 +33,9 @@ class HouseCubit extends Cubit<HouseState> {
         'bd': bd,
         'ba': ba,
         'price': price,
+        'owner_um':ownernum,
+        'reviewNum':reviewNum,
+        'desc':description,
       });
       emit(AddHouseSuccess());
     } catch (e) {

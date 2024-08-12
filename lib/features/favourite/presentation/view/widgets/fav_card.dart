@@ -11,7 +11,7 @@ import 'package:nestify/features/home/presentation/view%20model/home%20cubit/hom
 import 'package:nestify/features/home/presentation/views/home_details_view.dart';
 
 class FavCard extends StatelessWidget {
-  const FavCard({
+  const FavCard( {
     super.key,
     required this.house,
   });

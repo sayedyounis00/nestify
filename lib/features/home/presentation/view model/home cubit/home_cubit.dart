@@ -12,6 +12,7 @@ class HomeCubit extends Cubit<HomeState> {
   String userStatus = 'user status';
   List<HouseModel> allhousesList = [];
   List<HouseModel> filterdHousesList = [];
+  List<HouseModel> filteredListafterSearch = [];
 
   UserModel user = UserModel(
     firstName: 'firstName',

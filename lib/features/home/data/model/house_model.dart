@@ -1,5 +1,15 @@
 class HouseModel {
-  final String img, title, place, bd, ba, price, ownerName,category;
+  final String img,
+      title,
+      place,
+      bd,
+      ba,
+      price,
+      ownerName,
+      category,
+      ownernum,
+      reviewNum,
+      description;
   bool isFav;
 
   HouseModel({
@@ -12,6 +22,9 @@ class HouseModel {
     this.isFav = false,
     required this.ownerName,
     required this.category,
+    required this.ownernum,
+    required this.reviewNum,
+    required this.description,
   });
 
   factory HouseModel.fromJson(Map<String, dynamic> json) {
@@ -22,8 +35,12 @@ class HouseModel {
       bd: json['bd'],
       ba: json['ba'],
       price: json['price'],
-      isFav: json['isFav']??false,
-      ownerName: json['owner_name'], category:  json['category'],
+      isFav: json['isFav'] ?? false,
+      ownerName: json['owner_name'],
+      category: json['category'],
+      ownernum: json['owner_um'],
+      reviewNum: json['reviewNum'],
+      description: json['desc'],
     );
   }
 
@@ -36,8 +53,11 @@ class HouseModel {
       'price': price,
       'isFav': isFav,
       'owner_name': ownerName,
+      'owner_um': ownernum,
       'location': place,
       'category': category,
+      'review_num': reviewNum,
+      'desc': description,
     };
   }
 }
