@@ -41,6 +41,12 @@ class FavViewBody extends StatelessWidget {
                           house: HouseModel.fromJson(
                             snapshot.data![index],
                           ),
+                          onPressed: () {
+                            BlocProvider.of<HomeCubit>(context)
+                                .removeFromFavourite(HouseModel.fromJson(
+                              snapshot.data![index],
+                            ).title);
+                          },
                         );
                       },
                     );

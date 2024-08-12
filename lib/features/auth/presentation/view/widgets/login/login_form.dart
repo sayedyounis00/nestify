@@ -10,7 +10,7 @@ import 'package:nestify/features/auth/presentation/view/widgets/custom_button.da
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/forget_pass_text.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
-import 'package:nestify/features/home/presentation/views/add_property_view.dart';
+import 'package:nestify/features/owner%20main/presentation/views/add_property_view.dart';
 import 'package:nestify/features/main/presentation/views/main_view.dart';
 
 class LoginForm extends StatefulWidget {

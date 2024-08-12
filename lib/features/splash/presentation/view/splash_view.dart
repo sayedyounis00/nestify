@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart' as nav;
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/main/presentation/views/main_view.dart';
+import 'package:nestify/features/owner%20main/presentation/views/main_owner_view.dart';
 import 'package:nestify/features/splash/presentation/view/landing_view.dart';
 import 'package:nestify/features/splash/presentation/view/widgets/splash_view_body.dart';
 
@@ -31,7 +32,11 @@ class _SplashViewState extends State<SplashView> {
           stream: FirebaseAuth.instance.userChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return const MainView();
+              if (BlocProvider.of<HomeCubit>(context).userStatus == 'Owner') {
+                return const MainOwnerView();
+              } else {
+                return const MainView();
+              }
             } else {
               return const LandingView();
             }

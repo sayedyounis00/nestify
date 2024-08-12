@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/features/main/data/main_view_data.dart';
 import 'package:nestify/features/main/presentation/views/widget/bottom_nav_bar.dart';
-import 'package:nestify/features/discover/presentation/view/discover_view.dart';
-import 'package:nestify/features/favourite/presentation/view/fav_view.dart';
-import 'package:nestify/features/home/presentation/views/home_view.dart';
 import 'package:nestify/features/messages/presentation/view/messanger_view.dart';
+import 'package:nestify/features/owner%20main/presentation/views/home_owner_view.dart';
 
-class MainView extends StatelessWidget {
-  const MainView({super.key});
+class MainOwnerView extends StatelessWidget {
+  const MainOwnerView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +14,13 @@ class MainView extends StatelessWidget {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageContorller,
-        children:  const [
-          HomeView(),
-          DiscoverView(),
-          FavView(),
+        children: const [
+          HomeViewOwner(),
           MessangerView(),
         ],
       ),
-      bottomNavigationBar: NavBar(pageController: pageContorller,items: BottomNavData.tabs),
+      bottomNavigationBar: NavBar(
+          pageController: pageContorller, items: BottomNavData.ownerTabs),
     );
   }
 }

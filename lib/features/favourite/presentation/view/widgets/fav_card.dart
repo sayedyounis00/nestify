@@ -1,21 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart' as nav;
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/utils/styles.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/home/presentation/views/home_details_view.dart';
 
 class FavCard extends StatelessWidget {
-  const FavCard( {
+  const FavCard({
     super.key,
-    required this.house,
+    required this.house,required this.onPressed,
   });
   final HouseModel house;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +72,7 @@ class FavCard extends StatelessWidget {
           ),
           const Spacer(),
           IconButton.filled(
-            onPressed: () {
-              BlocProvider.of<HomeCubit>(context)
-                  .removeFromFavourite(house.title);
-            },
+            onPressed: onPressed,
             icon: const Icon(
               Icons.delete_outlined,
               color: Colors.red,

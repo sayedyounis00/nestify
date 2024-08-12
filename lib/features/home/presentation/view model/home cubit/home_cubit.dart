@@ -40,6 +40,7 @@ class HomeCubit extends Cubit<HomeState> {
       userStatus: userInfo['user_status'],
       ownerAbout: userInfo['owner_about'],
     );
+    userStatus = user.userStatus;
   }
 
   void setUserStatus({required String status}) {
