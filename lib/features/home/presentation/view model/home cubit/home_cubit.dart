@@ -38,6 +38,7 @@ class HomeCubit extends Cubit<HomeState> {
       fullName: userInfo['first_name'] + userInfo['last_name'],
       userStatus: userInfo['user_status'],
     );
+    userStatus = user.userStatus;
   }
 
   void setUserStatus({required String status}) {

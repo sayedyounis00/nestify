@@ -36,6 +36,5 @@ class PickImageFromGallary {
     var returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     Variables.selectedImage = XFile(returnedImage!.path);
-    log('selected');
   }
 }
