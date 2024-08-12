@@ -12,7 +12,8 @@ class HomeCubit extends Cubit<HomeState> {
   String userStatus = 'user status';
   List<HouseModel> allhousesList = [];
   List<HouseModel> filterdHousesList = [];
-  List<HouseModel> filteredListafterSearch = [];
+  List<Map<String, dynamic>> favListAfterSearch = [];
+  List<Map<String, dynamic>> favList = [];
 
   UserModel user = UserModel(
     firstName: 'firstName',
@@ -45,7 +46,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<List<HouseModel>> getHousesData() async {
     allhousesList = await homeRepo.getAllHouses();
-
     if (filterdHousesList.isEmpty) {
       emit(FilterdDone());
       return allhousesList;
@@ -67,8 +67,13 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<List<Map<String, dynamic>>> getFavHouses() async {
-    var housesData = await homeRepo.getFavHouses();
-    return housesData;
+    favList = await homeRepo.getFavHouses();
+    emit(SearchDone());
+    if (favListAfterSearch.isEmpty || favListAfterSearch == []) {
+      return favList;
+    } else {
+      return favListAfterSearch;
+    }
   }
 
   void setToFavourite(String houseTitle) {
@@ -85,5 +90,18 @@ class HomeCubit extends Cubit<HomeState> {
         .doc(houseTitle)
         .update({'isFav': false});
     emit(FavouriteDoneState());
+  }
+
+  void setSearchedList(String houseTitleChar) {
+    if (houseTitleChar.isEmpty) {
+      favListAfterSearch = [];
+    } else {
+      favListAfterSearch = favList.where((house) {
+        return HouseModel.fromJson(house)
+            .title
+            .toLowerCase()
+            .startsWith(houseTitleChar);
+      }).toList();
+    }
   }
 }
