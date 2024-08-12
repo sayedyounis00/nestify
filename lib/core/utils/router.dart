@@ -32,10 +32,15 @@ Route<dynamic> onGenerate(RouteSettings settings) {
       return CupertinoPageRoute(builder: (_) => const UserOrOwnerView());
 
     case AddRouter.getOwnerInfoView:
-      return CupertinoPageRoute(builder: (_) => const GetAboutOwnerView());
+      {
+        return CupertinoPageRoute(builder: (_) => const GetAboutOwnerView());
+      }
+    case AddRouter.signupViewRoute:
+      {
+        return CupertinoPageRoute(builder: (_) => const SignupView());
+      }
     case AddRouter.addPropertyView:
-      return CupertinoPageRoute(
-          builder: (_) => const AddPropertyView());
+      return CupertinoPageRoute(builder: (_) => const AddPropertyView());
 
     case AddRouter.verificationRoute:
       return CupertinoPageRoute(builder: (_) => const VerificationView());
@@ -61,8 +66,6 @@ Route<dynamic> onGenerate(RouteSettings settings) {
     case AddRouter.loginViewRoute:
       return CupertinoPageRoute(builder: (_) => const LoginView());
 
-    case AddRouter.signupViewRoute:
-      return CupertinoPageRoute(builder: (_) => const SignupView());
     case AddRouter.chatView:
       {
         return CupertinoPageRoute(

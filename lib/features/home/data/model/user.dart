@@ -7,6 +7,7 @@ class UserModel {
       userId,
       fullName,
       userStatus;
+  String? ownerAbout;
   UserModel({
     required this.firstName,
     required this.lastName,
@@ -16,5 +17,6 @@ class UserModel {
     required this.userId,
     required this.createdAt,
     required this.userStatus,
+    this.ownerAbout,
   });
 }

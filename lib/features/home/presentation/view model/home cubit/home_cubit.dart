@@ -10,6 +10,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this.homeRepo) : super(HomeInitial());
   HomeRepo homeRepo;
   String userStatus = 'user status';
+  String ownerAbout = 'Owner About';
   List<HouseModel> allhousesList = [];
   List<HouseModel> filterdHousesList = [];
   List<Map<String, dynamic>> favListAfterSearch = [];
@@ -37,11 +38,15 @@ class HomeCubit extends Cubit<HomeState> {
       createdAt: userInfo['createdAt'],
       fullName: userInfo['first_name'] + userInfo['last_name'],
       userStatus: userInfo['user_status'],
+      ownerAbout: userInfo['owner_about'],
     );
   }
 
   void setUserStatus({required String status}) {
     userStatus = status;
+  }
+  void setOwnerAbout({required String about}) {
+    ownerAbout = about;
   }
 
   Future<List<HouseModel>> getHousesData() async {
