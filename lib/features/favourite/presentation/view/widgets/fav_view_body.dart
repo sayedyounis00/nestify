@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/widgets/shimmer/shimmer_card.dart';
@@ -30,18 +32,24 @@ class FavViewBody extends StatelessWidget {
         Expanded(
           child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
+              List<HouseModel> searchedList =
+                  BlocProvider.of<HomeCubit>(context).filteredListafterSearch;
               return FutureBuilder(
                 future: BlocProvider.of<HomeCubit>(context).getFavHouses(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return ListView.builder(
-                      itemCount: snapshot.data?.length ?? 0,
+                      itemCount: searchedList.isEmpty
+                          ? snapshot.data?.length
+                          : searchedList.length,
                       itemBuilder: (context, index) {
-                        return FavCard(
-                          house: HouseModel.fromJson(
-                            snapshot.data![index],
-                          ),
-                        );
+                        return searchedList.isEmpty
+                            ? FavCard(
+                                house: HouseModel.fromJson(
+                                  snapshot.data![index],
+                                ),
+                              )
+                            : FavCard(house: searchedList[index]);
                       },
                     );
                   } else {

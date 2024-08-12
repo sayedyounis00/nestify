@@ -57,7 +57,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           focusedBorder: customBorder(),
           border: customBorder(),
         ),
-        keyboardType: widget.label == 'Phone number'
+        keyboardType: widget.label == 'Phone number'&&widget.label == 'rating'
             ? TextInputType.phone
             : TextInputType.text,
       ),

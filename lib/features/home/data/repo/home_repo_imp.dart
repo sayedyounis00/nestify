@@ -59,7 +59,11 @@ class HomeRepoImp implements HomeRepo {
 
   @override
   Future<List<HouseModel>> getFilterdHouses(
-      {String? loca, String? price, String? type, String? bed ,String? category}) async {
+      {String? loca,
+      String? price,
+      String? type,
+      String? bed,
+      String? category}) async {
     List<HouseModel> filterdHousesList = [];
 
     QuerySnapshot<Map<String, dynamic>> data = await firestore
@@ -99,7 +103,11 @@ class HomeRepoImp implements HomeRepo {
           bd: '',
           ba: '',
           price: '',
-          ownerName: '', category: '',
+          ownerName: '',
+          category: '',
+          ownernum: '',
+          reviewNum: '',
+          description: '',
         )
       ];
     }

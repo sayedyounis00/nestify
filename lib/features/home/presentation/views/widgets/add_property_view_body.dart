@@ -18,7 +18,13 @@ class AddPropertyViewBody extends StatefulWidget {
 }
 
 class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
-  String? houseTitle, location, price,category;
+  String? houseTitle,
+      location,
+      price,
+      category,
+      ownernum,
+      reviewNum,
+      description;
   String? bd, ba;
   @override
   void initState() {
@@ -91,6 +97,30 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                   onChanged: (cate) => category = cate,
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: CustomTextField(
+                  prefix: const Icon(Icons.monetization_on),
+                  label: ' ownernum',
+                  onChanged: (ownerN) => ownernum = ownerN,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: CustomTextField(
+                  prefix: const Icon(Icons.monetization_on),
+                  label: ' reviewNum',
+                  onChanged: (review) => reviewNum = review,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: CustomTextField(
+                  prefix: const Icon(Icons.monetization_on),
+                  label: ' description',
+                  onChanged: (desc) => description = desc,
+                ),
+              ),
               Row(
                 children: [
                   Expanded(
@@ -119,7 +149,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                         BlocProvider.of<HomeCubit>(context).user.fullName;
                     BlocProvider.of<HouseCubit>(context).addHouse(
                       ownerName: fullName,
-                      category: category??'category',
+                      category: category ?? 'category',
                       houseTitle: houseTitle ?? 'title',
                       location: location ?? 'place',
                       bd: bd ?? 'bd',
@@ -127,6 +157,9 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                       price: price ?? 'price',
                       imageUrl: Variables.imageUrl ??
                           'https://static.realting.com/uploads/images/3f1/445e22c2280ba1273ef81a36f446a.webp ',
+                      ownernum: ownernum ?? 'ownerNum',
+                      reviewNum: reviewNum ?? 'review',
+                      description: description ?? 'desc',
                     );
                     setState(() {});
                     log('added to fire base');
@@ -142,7 +175,5 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
     );
   }
 
-  addFilteredList() {
-    
-  }
+  addFilteredList() {}
 }

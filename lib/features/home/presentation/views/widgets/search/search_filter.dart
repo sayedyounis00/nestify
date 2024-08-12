@@ -35,13 +35,11 @@ class _SearchFilterState extends State<SearchFilter> {
       '4000',
     ],
     [
-      'Junior suites',
-      'Presidential suite',
-      'Studio',
-      'Penthouse',
-      'Florida, Usa',
-      'Twin room',
-      'Bridal suites',
+      'Villa',
+      'House',
+      'Hotel',
+      'Tent',
+      'Camp'
     ],
     [
       '1',

@@ -44,7 +44,8 @@ class RatingRow extends StatelessWidget {
                   );
                 },
                 child: PannableRatingBar(
-                  rate: 4,
+                  
+                  rate:4,
                   items: List.generate(
                       5,
                       (index) => const RatingWidget(
@@ -57,8 +58,8 @@ class RatingRow extends StatelessWidget {
                           )),
                 ),
               ),
-              const Text('6 reviews',
-                  style: TextStyle(
+               Text('${house.reviewNum} reviews',
+                  style: const TextStyle(
                       color: AppColor.primaryColor,
                       decoration: TextDecoration.underline))
             ],
