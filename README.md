@@ -23,7 +23,8 @@ Nestify is a property rental application designed to make the process of finding
 - Make Payments: Securely pay rent through the app using integrated payment options.
 
 ## Screenshots:
-![image](https://github.com/user-attachments/assets/29b00f23-e6f2-4d94-9f36-0d08afbd0b7b)
+![image](https://github.com/user-attachments/assets/45b23e79-d91c-42fa-9d9f-7375f0c6c3bd)
+
 
 
 
