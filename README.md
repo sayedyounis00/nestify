@@ -36,11 +36,11 @@ Tech Stack:
 Contributing
 Contributions are welcome! Please follow these steps:
 
-1.Fork the repository.
-2.Create a new branch: git checkout -b feature/your-feature-name.
-3.Commit your changes: git commit -m 'Add some feature'.
-4.Push to the branch: git push origin feature/your-feature-name.
-5.Open a pull request.
+- Fork the repository.
+- Create a new branch: git checkout -b feature/your-feature-name.
+- Commit your changes: git commit -m 'Add some feature'.
+- Push to the branch: git push origin feature/your-feature-name.
+- Open a pull request.
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
