@@ -127,11 +127,11 @@ class _SignupFormState extends State<SignupForm> {
         BlocProvider.of<HomeCubit>(context).setUserInfo();
         Future.delayed(const Duration(seconds: 1), () {
         if (BlocProvider.of<HomeCubit>(context).userStatus == 'Owner') {
-                  Get.to(() => const MainOwnerView(),
+                  Get.off(() => const MainOwnerView(),
                       transition: getnav.Transition.rightToLeft);
                 } else if (BlocProvider.of<HomeCubit>(context).userStatus ==
                     'renter') {
-                  Get.to(() => const MainView(),
+                  Get.off(() => const MainView(),
                       transition: getnav.Transition.rightToLeft);
                 }
         });
