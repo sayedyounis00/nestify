@@ -17,7 +17,6 @@ class _ForgetPassBodyState extends State<ForgetPassBody> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   FirebaseAuth auth = FirebaseAuth.instance;
-
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -37,10 +36,7 @@ class _ForgetPassBodyState extends State<ForgetPassBody> {
                   text: 'Send',
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      auth.verifyPasswordResetCode('6994');
-                      // auth.sendPasswordResetEmail(email: email)
-                      auth
-                          .confirmPasswordReset(code: '', newPassword: '');
+                      auth.sendPasswordResetEmail(email: emailCon.text);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});

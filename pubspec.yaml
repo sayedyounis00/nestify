@@ -40,6 +40,9 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/lottie/
+
+
   # example:
   # fonts:
   #   - family: Schyler
