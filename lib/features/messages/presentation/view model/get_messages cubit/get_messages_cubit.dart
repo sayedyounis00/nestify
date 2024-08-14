@@ -22,7 +22,6 @@ class GetMessagesCubit extends Cubit<GetMessageState> {
         final List<MessageModel> messages = snapshot.docs
             .map((doc) => MessageModel.fromJson(doc.data()))
             .toList();
-
         log('Fetched ${messages.length} messages');
         emit(GetMessagesSuccess(messages: messages));
       });

@@ -1,13 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
+import 'package:nestify/features/home/data/model/house_model.dart';
+import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 
 class OwnerContact extends StatelessWidget {
   const OwnerContact({
     super.key,
+    required this.house,
   });
-
+  final HouseModel house;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,7 +22,14 @@ class OwnerContact extends StatelessWidget {
       children: [
         CustomButton(
             text: 'Message',
-            onPressed: () {},
+            onPressed: () {
+              addOwnerContactIfRenter(
+                userId: BlocProvider.of<HomeCubit>(context).user.userId,
+                ownerName: house.ownerName,
+                ownerPhone: house.ownernum,
+              );
+              Navigator.pushNamed(context, AddRouter.messageView,arguments: house.ownerName);
+            },
             color: AppColor.primaryColor),
         const SpaceH(10),
         CustomButton(
@@ -26,5 +40,29 @@ class OwnerContact extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void addOwnerContactIfRenter(
+      {required String userId,
+      required String ownerName,
+      required String ownerPhone}) async {
+        FirebaseAuth auth = FirebaseAuth.instance;
+    DocumentReference userDocRef = FirebaseFirestore.instance
+        .collection('usersInfo')
+        .doc(auth.currentUser!.uid);
+
+    DocumentSnapshot userDoc = await userDocRef.get();
+
+    if (userDoc.exists) {
+      Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
+
+      if (userData['user_status'] == 'renter') {
+        await userDocRef.collection('ownerContactWith').doc(ownerName).set({
+          'ownerName': ownerName,
+          'ownerPhone': ownerPhone,
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+      }
+    }
   }
 }

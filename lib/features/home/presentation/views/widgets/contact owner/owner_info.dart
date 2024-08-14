@@ -31,7 +31,7 @@ class OwnerInfo extends StatelessWidget {
         ),
         const Text('Real State Manager'),
         const SpaceV(10),
-        const OwnerContact(),
+         OwnerContact(house:house),
         const SpaceV(20),
         const TabBar(
             indicatorColor: Colors.transparent,
