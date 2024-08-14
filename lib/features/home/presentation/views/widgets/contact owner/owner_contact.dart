@@ -2,12 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
+import 'package:nestify/features/messages/presentation/view/chat_view.dart';
+
 
 class OwnerContact extends StatelessWidget {
   const OwnerContact({
@@ -28,7 +31,8 @@ class OwnerContact extends StatelessWidget {
                 ownerName: house.ownerName,
                 ownerPhone: house.ownernum,
               );
-              Navigator.pushNamed(context, AddRouter.messageView,arguments: house.ownerName);
+              // Navigator.pushNamed(context, AddRouter.messageView,arguments: house.ownerName);
+              Get.to(()=> ChatView(house: house,));
             },
             color: AppColor.primaryColor),
         const SpaceH(10),
@@ -46,7 +50,7 @@ class OwnerContact extends StatelessWidget {
       {required String userId,
       required String ownerName,
       required String ownerPhone}) async {
-        FirebaseAuth auth = FirebaseAuth.instance;
+    FirebaseAuth auth = FirebaseAuth.instance;
     DocumentReference userDocRef = FirebaseFirestore.instance
         .collection('usersInfo')
         .doc(auth.currentUser!.uid);

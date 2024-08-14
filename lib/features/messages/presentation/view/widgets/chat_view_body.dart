@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
@@ -7,19 +9,8 @@ import 'package:nestify/features/messages/presentation/view%20model/get_messages
 import 'package:nestify/features/messages/presentation/view/widgets/custom_message_card.dart';
 import 'package:nestify/features/messages/presentation/view/widgets/send_message_feild.dart';
 
-class ChatViewBody extends StatefulWidget {
+class ChatViewBody extends StatelessWidget {
   const ChatViewBody({super.key});
-
-  @override
-  State<ChatViewBody> createState() => _ChatViewBodyState();
-}
-
-class _ChatViewBodyState extends State<ChatViewBody> {
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<GetMessagesCubit>(context).fetchMessageInformation();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +20,7 @@ class _ChatViewBodyState extends State<ChatViewBody> {
         BlocBuilder<GetMessagesCubit, GetMessageState>(
           builder: (context, state) {
             if (state is GetMessagesSuccess) {
+              log('state ${state.messages.length}');
               return Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -49,6 +41,7 @@ class _ChatViewBodyState extends State<ChatViewBody> {
                 ),
               );
             } else {
+              log('state erorr ');
               return const Text('fail to get message');
             }
           },

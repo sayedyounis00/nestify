@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/core/widgets/space.dart';
+import 'package:nestify/features/messages/presentation/view/chat_view.dart';
 
-class ChatCard extends StatefulWidget {
+class ChatCard extends StatelessWidget {
   const ChatCard({
     super.key,
     required this.fullName,
@@ -12,21 +12,10 @@ class ChatCard extends StatefulWidget {
   final String fullName;
 
   @override
-  State<ChatCard> createState() => _ChatCardState();
-}
-
-class _ChatCardState extends State<ChatCard> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AddRouter.chatView);
+        Get.to(()=>const ChatView());
       },
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -48,7 +37,7 @@ class _ChatCardState extends State<ChatCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        widget.fullName,
+                        fullName,
                         style: Theme.of(context).textTheme.titleMedium!,
                       ),
                       Text('10:47am',

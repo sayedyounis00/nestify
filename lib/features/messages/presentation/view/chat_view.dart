@@ -1,21 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/features/home/data/model/house_model.dart';
+import 'package:nestify/features/messages/presentation/view%20model/get_messages%20cubit/get_messages_cubit.dart';
 import 'package:nestify/features/messages/presentation/view/widgets/chat_app_bar.dart';
 import 'package:nestify/features/messages/presentation/view/widgets/chat_view_body.dart';
 
-class ChatView extends StatelessWidget {
-  const ChatView({super.key});
+class ChatView extends StatefulWidget {
+  const ChatView({super.key,  this.house});
+  final HouseModel? house;
+
+  @override
+  State<ChatView> createState() => _ChatViewState();
+}
+
+class _ChatViewState extends State<ChatView> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<GetMessagesCubit>(context).fetchMessageInformation();
+  }
 
   @override
   Widget build(BuildContext context) {
-    String fullName = 'any name';
-
     return Scaffold(
       backgroundColor: AppColor.secColor4,
       appBar: AppBar(
         elevation: 5,
         automaticallyImplyLeading: false,
-        title: ChatAppBar(fullName: fullName),
+        title: ChatAppBar(fullName: widget.house!.ownerName),
       ),
       body: const ChatViewBody(),
     );

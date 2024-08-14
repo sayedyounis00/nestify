@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +11,18 @@ class MessangerViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;
-    //! here is where i should recieve house owner name 
-    // String houseOwner = ModalRoute.of(context)!.settings.arguments as String;
     DocumentReference ownerChats = FirebaseFirestore.instance
         .collection('usersInfo')
         .doc(auth.currentUser!.uid);
     CollectionReference chats = ownerChats.collection('ownerContactWith');
+    int ownersCount = 0;
+    void getDocumentCount() async {
+      QuerySnapshot querySnapshot = await chats.get();
+      int documentCount = querySnapshot.docs.length;
+      ownersCount = documentCount;
+    }
+
+    getDocumentCount();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,19 +39,24 @@ class MessangerViewBody extends StatelessWidget {
         ),
         const Divider(),
         Expanded(
-          child:FutureBuilder(
-            //!instead of [/*fullName*/] i should put house onwer which i should recieve up.
-            future: chats.doc('fullName').get(),
+          child: FutureBuilder(
+            future: chats.doc('yousefmahmoud').get(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               Map<String, dynamic> ownerInfo =
-                  snapshot.data!.data() as Map<String, dynamic>;
-              return ListView.builder(
-                  itemCount: ownerInfo.length,
-                  itemBuilder: (context, index) {
-                    return ChatCard(
-                      fullName: ownerInfo['ownerName'],
-                    );
-                  });
+                  snapshot.data!.data() ;
+              log(snapshot.data.toString());
+              return FutureBuilder<Object>(
+                future: null,
+                builder: (context, snapshot) {
+                  return ListView.builder(
+                      itemCount: ownersCount,
+                      itemBuilder: (context, index) {
+                        return ChatCard(
+                          fullName: ownerInfo['ownerName'],
+                        );
+                      });
+                }
+              );
             },
           ),
         )
