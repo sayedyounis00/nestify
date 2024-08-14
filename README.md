@@ -16,6 +16,7 @@ Nestify is a property rental application designed to make the process of finding
 - Add New Property: Fill out a simple form to add new properties to the platform.
 - Manage Listings: Edit or remove your property listings as needed.
 - Communicate with Tenants: Use the in-app messaging system to communicate with potential tenants.
+  
 #Tenants
 - Search Properties: Use the search and filter options to find properties that meet your criteria.
 - Schedule Viewings: Book a time to view properties you’re interested in.
@@ -27,17 +28,18 @@ Screenshots:
 
 
 Tech Stack:
--Frontend & backend: flutter
--Database: firebaseStore & firebase fireStore
--Authentication: firebase auth
+
+-Frontend & backend: flutter.
+-Database: firebaseStore & firebase fireStore.
+-Authentication: firebase auth.
 
 Contributing
 Contributions are welcome! Please follow these steps:
 
 1.Fork the repository.
-2.Create a new branch: git checkout -b feature/your-feature-name
-3.Commit your changes: git commit -m 'Add some feature'
-4.Push to the branch: git push origin feature/your-feature-name
+2.Create a new branch: git checkout -b feature/your-feature-name.
+3.Commit your changes: git commit -m 'Add some feature'.
+4.Push to the branch: git push origin feature/your-feature-name.
 5.Open a pull request.
 
 License
@@ -46,7 +48,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Contact
 For any questions or support, please contact:
 
--Your Name: sayed Younis
--LinkedIn: (https://www.linkedin.com/in/sayed-younis-792645251/)
--GitHub: (https://github.com/sayedyounis00)
+-Your Name: sayed Younis.
+-LinkedIn: (https://www.linkedin.com/in/sayed-younis-792645251/).
+-GitHub: (https://github.com/sayedyounis00).
 
