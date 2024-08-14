@@ -29,9 +29,9 @@ Screenshots:
 
 Tech Stack:
 
--Frontend & backend: flutter.
--Database: firebaseStore & firebase fireStore.
--Authentication: firebase auth.
+- Frontend & backend: flutter.
+- Database: firebaseStore & firebase fireStore.
+- Authentication: firebase auth.
 
 Contributing
 Contributions are welcome! Please follow these steps:
@@ -48,7 +48,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 Contact
 For any questions or support, please contact:
 
--Your Name: sayed Younis.
--LinkedIn: (https://www.linkedin.com/in/sayed-younis-792645251/).
--GitHub: (https://github.com/sayedyounis00).
+- Your Name: sayed Younis.
+- LinkedIn: (https://www.linkedin.com/in/sayed-younis-792645251/).
+- GitHub: (https://github.com/sayedyounis00).
 
