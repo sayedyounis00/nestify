@@ -10,6 +10,7 @@ class HomeRepoImp implements HomeRepo {
 
   @override
   Future<Map<String, dynamic>> getUserInfo() async {
+    
     try {
       DocumentSnapshot<Map<String, dynamic>> snapshot =
           await firestore.collection(kUserCol).doc(auth.currentUser!.uid).get();

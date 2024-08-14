@@ -153,6 +153,7 @@ class _SignupFormState extends State<SignupForm> {
       'createdAt': DateTime.now().toString(),
       'phone_number': phoneCon.text,
       'user_status': BlocProvider.of<HomeCubit>(context).userStatus,
+      'owner_about': BlocProvider.of<HomeCubit>(context).ownerAbout,
     });
   }
 

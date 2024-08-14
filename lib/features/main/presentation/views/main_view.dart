@@ -16,14 +16,15 @@ class MainView extends StatelessWidget {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: pageContorller,
-        children:  const [
+        children: const [
           HomeView(),
           DiscoverView(),
           FavView(),
           MessangerView(),
         ],
       ),
-      bottomNavigationBar: NavBar(pageController: pageContorller,items: BottomNavData.tabs),
+      bottomNavigationBar:
+          NavBar(pageController: pageContorller, items: BottomNavData.tabs),
     );
   }
 }

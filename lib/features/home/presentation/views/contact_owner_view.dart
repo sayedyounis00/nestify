@@ -3,7 +3,7 @@ import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/presentation/views/widgets/contact%20owner/owner_info.dart';
 
 class ContactOwnerView extends StatelessWidget {
-  const ContactOwnerView({super.key,  this.house});
+  const ContactOwnerView({super.key, this.house});
   final HouseModel? house;
 
   @override
@@ -30,10 +30,12 @@ class ContactOwnerView extends StatelessWidget {
                 .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-        body:  Padding(
+        body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Center(
-            child: OwnerInfo(house:house! ,),
+            child: OwnerInfo(
+              house: house!,
+            ),
           ),
         ),
       ),

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,8 +21,8 @@ class GetMessagesCubit extends Cubit<GetMessageState> {
         final List<MessageModel> messages = snapshot.docs
             .map((doc) => MessageModel.fromJson(doc.data()))
             .toList();
-
-        log('Fetched ${messages.length} messages');
+        // log(messages.toString());
+        // log('Fetched ${messages.length} messages');
         emit(GetMessagesSuccess(messages: messages));
       });
     } catch (e) {

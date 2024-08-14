@@ -1,13 +1,14 @@
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
-import 'package:nestify/features/home/data/add_property_data.dart';
 import 'package:nestify/features/home/presentation/view%20model/house%20cubit/house_cubit.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 
@@ -19,6 +20,8 @@ class AddPropertyViewBody extends StatefulWidget {
 }
 
 class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
+  static XFile? selectedImage;
+  static String? imageUrl;
   String? houseTitle,
       location,
       price,
@@ -35,8 +38,8 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
       children: [
         GestureDetector(
           onTap: () {
-            PickImageFromGallary().pickImage();
-            UploadImageToFirebase().uploadImage();
+            pickImage();
+            uploadImage();
           },
           child: Container(
             height: MediaQuery.of(context).size.height * .2,
@@ -46,10 +49,10 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               borderRadius: BorderRadius.all(Radius.circular(20)),
               color: Colors.grey,
             ),
-            child: Variables.selectedImage == null
+            child: selectedImage == null
                 ? const Icon(Icons.add)
                 : Image.file(
-                    File(Variables.selectedImage!.path),
+                    File(selectedImage!.path),
                     fit: BoxFit.cover,
                   ),
           ),
@@ -101,14 +104,6 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
           padding: const EdgeInsets.symmetric(vertical: 5.0),
           child: CustomTextField(
             prefix: const Icon(Icons.monetization_on),
-            label: ' reviewNum',
-            onChanged: (review) => reviewNum = review,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5.0),
-          child: CustomTextField(
-            prefix: const Icon(Icons.monetization_on),
             label: ' description',
             onChanged: (desc) => description = desc,
           ),
@@ -147,14 +142,12 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                 bd: bd ?? 'bd',
                 ba: ba ?? 'ba',
                 price: price ?? 'price',
-                imageUrl: Variables.imageUrl ??
+                imageUrl: imageUrl ??
                     'https://static.realting.com/uploads/images/3f1/445e22c2280ba1273ef81a36f446a.webp ',
                 ownernum: ownernum ?? 'ownerNum',
                 reviewNum: reviewNum ?? 'review',
                 description: description ?? 'desc',
               );
-              setState(() {});
-
               Get.back();
             },
             color: AppColor.primaryColor,
@@ -163,5 +156,30 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
         )
       ],
     );
+  }
+
+  void uploadImage() async {
+    try {
+      final storage =
+          FirebaseStorage.instanceFor(bucket: 'gs://nestify-8f4b4.appspot.com');
+
+      var refStorage = storage.ref().child('images/${selectedImage?.name}');
+
+      var uploadTask = refStorage.putFile(File(selectedImage!.path));
+
+      var snapshot = await uploadTask.whenComplete(() => null);
+      final downloadUrl = await snapshot.ref.getDownloadURL();
+
+      imageUrl = downloadUrl;
+    } catch (e) {
+      throw ('Error uploading image: $e');
+    }
+  }
+
+  Future pickImage() async {
+    var returnedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    selectedImage = XFile(returnedImage!.path);
+    setState(() {});
   }
 }

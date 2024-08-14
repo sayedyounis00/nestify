@@ -24,8 +24,8 @@ class MyHousesListView extends StatelessWidget {
                     return FavCard(
                       house: snapshot.data![index],
                       onPressed: () {
-                        BlocProvider.of<OwnerCubit>(context)
-                            .removeHouse(docName: snapshot.data![index].title);
+                        BlocProvider.of<OwnerCubit>(context).removeHouse(
+                            docName: snapshot.data![index].title);
                       },
                     );
                   },
@@ -37,8 +37,8 @@ class MyHousesListView extends StatelessWidget {
                     return const ShimmerCard(
                         width: double.infinity,
                         height: 117,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 13));
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 13));
                   },
                 );
               }
