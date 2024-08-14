@@ -1,13 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart' as nav;
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/main/presentation/views/main_view.dart';
 import 'package:nestify/features/owner%20main/presentation/views/main_owner_view.dart';
 import 'package:nestify/features/splash/presentation/view/landing_view.dart';
-import 'package:nestify/features/splash/presentation/view/widgets/splash_view_body.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -17,6 +14,7 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  Widget? view;
   @override
   void initState() {
     super.initState();
@@ -25,32 +23,27 @@ class _SplashViewState extends State<SplashView> {
       BlocProvider.of<HomeCubit>(context).setUserInfo();
     }
 
-    Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        var view = StreamBuilder(
-          stream: FirebaseAuth.instance.userChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              if (BlocProvider.of<HomeCubit>(context).userStatus == 'Owner') {
-                return const MainOwnerView();
-              } else {
-                return const MainView();
-              }
-            } else {
-              return const LandingView();
-            }
-          },
-        );
-        Get.offAll(() => view, transition: nav.Transition.fade);
+    view = StreamBuilder(
+      stream: FirebaseAuth.instance.userChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          if (BlocProvider.of<HomeCubit>(context).userStatus == 'Owner') {
+            return const MainOwnerView();
+          } else {
+            return const MainView();
+          }
+        } else {
+          return const LandingView();
+        }
       },
     );
+    // Get.to(() => view, transition: nav.Transition.fade);
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SplashViewBody(),
+    return Scaffold(
+      body: view,
     );
   }
 }

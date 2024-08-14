@@ -20,6 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_native_splash: ^2.4.1
   flutter_pannable_rating_bar: ^2.7.2+1
   font_awesome_icon_class: ^0.0.6
   get: ^4.6.6
@@ -40,7 +41,8 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/lottie/
+
+
 
 
   # example:
