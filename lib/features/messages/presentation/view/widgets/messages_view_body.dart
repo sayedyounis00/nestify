@@ -52,7 +52,7 @@ class MessangerViewBody extends StatelessWidget {
                       itemCount: ownersCount,
                       itemBuilder: (context, index) {
                         return ChatCard(
-                          fullName: ownerInfo['ownerName'],
+                          fullName: ownerInfo['ownerName']   ,   
                         );
                       });
                 }
