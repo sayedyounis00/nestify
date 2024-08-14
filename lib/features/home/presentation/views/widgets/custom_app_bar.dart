@@ -39,7 +39,7 @@ class CustomAppBar extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: AppColor.secColor3,
                         )),
-                Text('Welcome!,',
+                Text('Welcome!',
                     style: Theme.of(context)
                         .textTheme
                         .titleMedium!
