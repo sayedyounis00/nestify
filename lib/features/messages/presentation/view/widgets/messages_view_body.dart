@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,19 +9,6 @@ class MessangerViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;
-    DocumentReference ownerChats = FirebaseFirestore.instance
-        .collection('usersInfo')
-        .doc(auth.currentUser!.uid);
-    CollectionReference chats = ownerChats.collection('ownerContactWith');
-    int ownersCount = 0;
-    void getDocumentCount() async {
-      QuerySnapshot querySnapshot = await chats.get();
-      int documentCount = querySnapshot.docs.length;
-      ownersCount = documentCount;
-    }
-
-    getDocumentCount();
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,23 +25,23 @@ class MessangerViewBody extends StatelessWidget {
         const Divider(),
         Expanded(
           child: FutureBuilder(
-            future: chats.doc('yousefmahmoud').get(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              Map<String, dynamic> ownerInfo =
-                  snapshot.data!.data() ;
-              log(snapshot.data.toString());
-              return FutureBuilder<Object>(
-                future: null,
-                builder: (context, snapshot) {
-                  return ListView.builder(
-                      itemCount: ownersCount,
-                      itemBuilder: (context, index) {
-                        return ChatCard(
-                          fullName: ownerInfo['ownerName']   ,   
-                        );
-                      });
-                }
-              );
+            future: FirebaseFirestore.instance
+                .collection('usersInfo')
+                .doc(auth.currentUser!.uid)
+                .collection('ownerContactWith')
+                .get(),
+            builder: (BuildContext context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    itemCount: snapshot.data?.docs.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return ChatCard(
+                        fullName: "${snapshot.data?.docs[index]['ownerName']}",
+                      );
+                    });
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
             },
           ),
         )

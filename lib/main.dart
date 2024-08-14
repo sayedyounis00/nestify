@@ -32,10 +32,9 @@ class Nestify extends StatelessWidget {
         )
       ],
       child: const GetMaterialApp(
-        transitionDuration: Duration(milliseconds: 500),
+        transitionDuration: Duration(milliseconds: 450),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerate,
-        // initialRoute: AddRouter.landingListViewRoute,
       ),
     );
   }

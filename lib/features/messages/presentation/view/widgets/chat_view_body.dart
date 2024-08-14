@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
@@ -20,7 +18,6 @@ class ChatViewBody extends StatelessWidget {
         BlocBuilder<GetMessagesCubit, GetMessageState>(
           builder: (context, state) {
             if (state is GetMessagesSuccess) {
-              log('state ${state.messages.length}');
               return Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -41,7 +38,6 @@ class ChatViewBody extends StatelessWidget {
                 ),
               );
             } else {
-              log('state erorr ');
               return const Text('fail to get message');
             }
           },

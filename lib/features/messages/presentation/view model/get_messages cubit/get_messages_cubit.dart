@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/features/messages/data/message_model.dart';
@@ -17,12 +16,9 @@ class GetMessagesCubit extends Cubit<GetMessageState> {
           .orderBy('message_time', descending: true)
           .snapshots()
           .listen((snapshot) {
-        // Map Firestore documents to a list of MessageModel
         final List<MessageModel> messages = snapshot.docs
             .map((doc) => MessageModel.fromJson(doc.data()))
             .toList();
-        // log(messages.toString());
-        // log('Fetched ${messages.length} messages');
         emit(GetMessagesSuccess(messages: messages));
       });
     } catch (e) {

@@ -10,7 +10,7 @@ import 'package:nestify/features/auth/presentation/view/widgets/custom_button.da
 import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/messages/presentation/view/chat_view.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class OwnerContact extends StatelessWidget {
   const OwnerContact({
@@ -31,14 +31,15 @@ class OwnerContact extends StatelessWidget {
                 ownerName: house.ownerName,
                 ownerPhone: house.ownernum,
               );
-              // Navigator.pushNamed(context, AddRouter.messageView,arguments: house.ownerName);
-              Get.to(()=> ChatView(house: house,));
+              Get.to(() => ChatView(fullName: house.ownerName));
             },
             color: AppColor.primaryColor),
         const SpaceH(10),
         CustomButton(
           text: 'Call',
-          onPressed: () {},
+          onPressed: () async {
+            launchUrl(Uri.parse('tel://${house.ownernum}'));
+          },
           color: AppColor.secColor4,
           foreCol: AppColor.primaryColor,
         ),

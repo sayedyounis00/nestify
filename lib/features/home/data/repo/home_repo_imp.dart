@@ -78,7 +78,7 @@ class HomeRepoImp implements HomeRepo {
           isEqualTo: bed,
         )
         .where(
-          'owner_name',
+          'category',
           isEqualTo: type,
         )
         .where(

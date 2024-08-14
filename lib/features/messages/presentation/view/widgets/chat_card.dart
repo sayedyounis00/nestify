@@ -15,7 +15,7 @@ class ChatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(()=>const ChatView());
+        Get.to(() => ChatView(fullName: fullName));
       },
       child: Container(
         padding: const EdgeInsets.all(10),
