@@ -8,81 +8,51 @@ class PaymentManager {
 
   Future<String> payWithPayMob({required int amount}) async {
     try {
-      String token = await getToken();
-      int orderId =
-          await getOrderId(token: token, amount: (100 * amount).toString());
-      String paymentKey = await getPaymentKey(
-          token: token,
-          orderId: orderId.toString(),
-          amount: (100 * amount).toString());
-      return paymentKey;
+      String mainToken = await getMainToken();
+      log(mainToken);
+      String url = await getUrlLink(mainToken);
+      log(url);
+      return url;
     } catch (e) {
       rethrow;
     }
   }
+
 //! first function to get token
-  Future<String> getToken() async {
+  Future<String> getMainToken() async {
     try {
       Response response =
-          await dio.post(
-            'https://pakistan.paymob.com/api/auth/tokens',
-           data: {
-        "api_key":kApiKey,
-        
+          await dio.post('https://accept.paymob.com/api/auth/tokens', data: {
+        "api_key": kApiKey,
       });
       return response.data['token'];
-    } catch (e) {
-      log(e.toString());
-      rethrow;
-    }
-  }
-//! second function to getorder id 
-  Future<int> getOrderId(
-      {required String token, required String amount}) async {
-    try {
-      Response response = await dio
-          .post('https://pakistan.paymob.com/api/ecommerce/orders', data: {
-        'auth_token': token,
-        'delivery_needed': true,
-        'amount_cents': amount,
-        'currency': 'EGP',
-        'items': [],
-      });
-      return response.data['id'];
     } catch (e) {
       rethrow;
     }
   }
-  //! third function to return payment token 
-  Future<String> getPaymentKey(
-      {required String token, String? orderId, required String amount}) async {
+
+  Future<String> getUrlLink(String mainToken) async {
     try {
-      //! GE USER INFO METHOD
-      Response response = await dio
-          .post('https://pakistan.paymob.com/api/acceptance/payment_keys', data: {
-        'auth_token': token,
-        'amount_cents': amount,
-        'currency': 'EGP',
-        'integration_id': 1,
-        'order_id': orderId,
-        //!some data here will change to our renter data
-        "billing_data": {
-          "apartment": "NA",
-          "email": "sayed34@exa.com",
-          "floor": "NA",
-          "first_name": "sayed",
-          "street": "Ethan Land",
-          "building": "8028",
-          "phone_number": "+86(8)9135210487",
-          "shipping_method": "PKG",
-          "postal_code": "01898",
-          "city": "Jaskolskiburgh",
-          "country": "CR",
-          "last_name": "seif",
-          "state": "NA"
-        },
+      var headers = {'Authorization': 'Bearer $mainToken'};
+      var data = FormData.fromMap({
+        'amount_cents': '100050',
+        'payment_methods': '4630175',
+        'full_name': 'ahmed',
+        'email': 'ymahmoud1213@gmail.com',
+        'phone_number': '+201014502276'
       });
-      return response.data['token'];
+
+      var dio = Dio();
+      var response = await dio.request(
+        'https://accept.paymob.com/api/ecommerce/payment-links',
+        options: Options(
+          method: 'POST',
+          headers: headers,
+        ),
+        data: data,
+      );
+
+      return response.data['client_url'];
     } catch (e) {
       rethrow;
     }

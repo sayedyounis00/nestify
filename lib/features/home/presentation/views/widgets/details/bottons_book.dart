@@ -60,14 +60,14 @@ class _ButtonsBookState extends State<ButtonsBook> {
       firstDate: DateTime(2024),
       lastDate: DateTime(2025),
     );
-    String token = await PaymentManager().getToken();
-    PaymentManager().getPaymentKey(token: token, amount: widget.house.price);
+    
+    String clientUrl = await PaymentManager().payWithPayMob(amount: 1000);
 
     if (datePicked != null && datePicked != DateTime.now()) {
-      setState(() async {
+      setState(() {
         selectedDate = datePicked;
         Get.to(PaymentGatewayView(
-          token: token ,
+          clientUrl: clientUrl,
         ));
       });
     }

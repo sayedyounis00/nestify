@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class PaymentGateViewBody extends StatefulWidget {
-  final String paymentToken;
-  const PaymentGateViewBody({super.key, required this.paymentToken});
+  final String clientUrl;
+  const PaymentGateViewBody({super.key, required this.clientUrl});
 
   @override
   State<PaymentGateViewBody> createState() => _PaymentGateViewBodyState();
@@ -46,7 +46,7 @@ class _PaymentGateViewBodyState extends State<PaymentGateViewBody> {
     _webViewController?.loadUrl(
       urlRequest: URLRequest(
         url: WebUri.uri(Uri.parse(
-          'https://accept.paymob.com/api/acceptance/iframes/861824?payment_token=${widget.paymentToken}',
+          widget.clientUrl,
         )),
       ),
     );

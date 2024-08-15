@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nestify/features/home/presentation/views/widgets/payment_view_body.dart';
 
 class PaymentGatewayView extends StatelessWidget {
-  final String token;
-  const PaymentGatewayView({super.key, required this.token});
+  final String clientUrl;
+  const PaymentGatewayView({super.key, required this.clientUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class PaymentGatewayView extends StatelessWidget {
         title: const Text('Payment'),
       ),
       body: PaymentGateViewBody(
-        paymentToken: token,
+        clientUrl: clientUrl,
       ),
     );
   }
