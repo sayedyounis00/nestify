@@ -21,10 +21,12 @@ class PaymentManager {
 //! first function to get token
   Future<String> getMainToken() async {
     try {
-      Response response =
-          await dio.post('https://accept.paymob.com/api/auth/tokens', data: {
-        "api_key": kApiKey,
-      });
+      Response response = await dio.post(
+          'https://accept.paymob.com/api/auth/tokens',
+          options: Options(method: 'POST'),
+          data: {
+            "api_key": kApiKey,
+          });
       return response.data['token'];
     } catch (e) {
       rethrow;
