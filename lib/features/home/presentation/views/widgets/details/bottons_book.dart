@@ -3,7 +3,6 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:nestify/core/helper/paymob/payment_manager.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
