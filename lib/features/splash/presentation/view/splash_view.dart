@@ -7,7 +7,6 @@ import 'package:nestify/features/home/presentation/view%20model/home%20cubit/hom
 import 'package:nestify/features/main/presentation/views/main_view.dart';
 import 'package:nestify/features/owner%20main/presentation/views/main_owner_view.dart';
 import 'package:nestify/features/splash/presentation/view/landing_view.dart';
-import 'package:nestify/features/splash/presentation/view/widgets/splash_view_body.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -26,7 +25,7 @@ class _SplashViewState extends State<SplashView> {
     }
 
     Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(milliseconds: 700),
       () {
         var view = StreamBuilder(
           stream: FirebaseAuth.instance.userChanges(),
@@ -49,8 +48,11 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SplashViewBody(),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Image.asset('assets/images/justlogo.png'),
+      ),
     );
   }
 }
