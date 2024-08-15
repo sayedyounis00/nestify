@@ -13,6 +13,7 @@ dependencies:
   cached_network_image: ^3.4.0
   cloud_firestore: ^5.2.0
   cupertino_icons: ^1.0.6
+  dio: ^5.6.0
   dropdown_button2: ^2.3.9
   firebase_auth: ^5.1.3
   firebase_core: ^3.3.0
@@ -20,7 +21,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
-  flutter_native_splash: ^2.4.1
+  flutter_inappwebview: ^6.0.0
   flutter_pannable_rating_bar: ^2.7.2+1
   font_awesome_icon_class: ^0.0.6
   get: ^4.6.6
@@ -32,17 +33,17 @@ dependencies:
   url_launcher: ^6.3.0
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.13.1"
 
 flutter_launcher_icons:
   android: "launcher_icon"
 
   image_path: "assets/icons/house.png"
 
-  min_sdk_android: 21 
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true
@@ -50,9 +51,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-
-
-
   # example:
   # fonts:
   #   - family: Schyler
