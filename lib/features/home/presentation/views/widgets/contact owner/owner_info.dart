@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
@@ -7,7 +8,8 @@ import 'package:nestify/features/home/presentation/views/widgets/contact%20owner
 
 class OwnerInfo extends StatelessWidget {
   const OwnerInfo({
-    super.key, required this.house,
+    super.key,
+    required this.house,
   });
   final HouseModel house;
   @override
@@ -16,7 +18,7 @@ class OwnerInfo extends StatelessWidget {
       children: [
         const CircleAvatar(
           radius: 40,
-          backgroundImage: NetworkImage(
+          backgroundImage: CachedNetworkImageProvider(
               'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg'),
         ),
         Padding(
@@ -31,7 +33,7 @@ class OwnerInfo extends StatelessWidget {
         ),
         const Text('Real State Manager'),
         const SpaceV(10),
-         OwnerContact(house:house),
+        OwnerContact(house: house),
         const SpaceV(20),
         const TabBar(
             indicatorColor: Colors.transparent,

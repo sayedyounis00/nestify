@@ -14,6 +14,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<Map<String, dynamic>> favList = [];
 
   Future<List<HouseModel>> getHousesData() async {
+    emit(HomeInitial());
     allhousesList = await homeRepo.getAllHouses();
     if (filterdHousesList.isEmpty) {
       emit(FilterdDone());

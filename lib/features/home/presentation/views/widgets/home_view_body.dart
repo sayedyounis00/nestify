@@ -10,9 +10,9 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const Stack(
+        Stack(
           alignment: Alignment.topCenter,
           children: [
             CustomAppBar(),
@@ -20,14 +20,15 @@ class HomeViewBody extends StatelessWidget {
           ],
         ),
         Expanded(
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            padding: EdgeInsets.zero,
-            children: const [
-              CategoryTextRow(),
-              CategoryListView(),
-              ResSearchListView(),
-            ],
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                CategoryTextRow(),
+                CategoryListView(),
+                ResSearchListView(),
+              ],
+            ),
           ),
         ),
       ],

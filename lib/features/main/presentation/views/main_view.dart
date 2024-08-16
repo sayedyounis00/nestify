@@ -17,7 +17,6 @@ class MainView extends StatelessWidget {
         controller: pageContorller,
         children: const [
           HomeView(),
-          // DiscoverView(),
           FavView(),
           MessangerView(),
         ],

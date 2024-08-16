@@ -14,17 +14,10 @@ class CategoryListView extends StatefulWidget {
 
 class _CategoryListViewState extends State<CategoryListView> {
   final List<String> categories = ['Villa', 'House', 'Hotel', 'Tent', 'Camp'];
-  final List<String> selectedCategory = [];
+  List<String> selectedCategory = [];
 
   @override
   Widget build(BuildContext context) {
-    var house = BlocProvider.of<HomeCubit>(context).allhousesList;
-
-    BlocProvider.of<HomeCubit>(context).filterdHousesList =
-        house.where((house) {
-      return selectedCategory.isEmpty ||
-          selectedCategory.contains(house.category);
-    }).toList();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
       height: 35,
@@ -32,15 +25,23 @@ class _CategoryListViewState extends State<CategoryListView> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: categories
             .map((category) => FilterChip(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
                   showCheckmark: false,
                   selectedColor: AppColor.primaryColor,
                   selected: selectedCategory.contains(category),
                   label: Text(category.toString()),
                   onSelected: (selected) {
                     if (selected) {
+                      if (selectedCategory.isNotEmpty) {
+                        selectedCategory = [];
+                      }
                       selectedCategory.add(category);
+                      BlocProvider.of<HomeCubit>(context)
+                          .setFilterdHouses(category: selectedCategory.first);
                     } else {
                       selectedCategory.remove(category);
+                      BlocProvider.of<HomeCubit>(context).filterdHousesList =
+                          [];
                     }
                     setState(() {});
                   },
@@ -50,15 +51,3 @@ class _CategoryListViewState extends State<CategoryListView> {
     );
   }
 }
-
-//  ListView.separated(
-//         clipBehavior: Clip.none,
-//         scrollDirection: Axis.horizontal,
-//         itemCount: 10,
-//         itemBuilder: (context, index) {
-//           return const CategoryCard();
-//         },
-//         separatorBuilder: (context, index) {
-//           return const SpaceH(10);
-//         },
-//       ),

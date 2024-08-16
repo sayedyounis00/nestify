@@ -44,7 +44,7 @@ class MessangerViewBody extends StatelessWidget {
               }
             },
           ),
-        )
+        ),
       ],
     );
   }

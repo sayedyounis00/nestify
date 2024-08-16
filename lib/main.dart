@@ -34,7 +34,7 @@ class Nestify extends StatelessWidget {
           create: (context) => NavigateCubit(HomeRepoImp()),
         )
       ],
-      child: const GetMaterialApp(
+      child:  const GetMaterialApp(
         transitionDuration: Duration(milliseconds: 450),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerate,

@@ -61,14 +61,14 @@ class _ButtonsBookState extends State<ButtonsBook> {
       lastDate: DateTime(2025),
     );
 
-    String clientUrl = await PaymentManager().payWithPayMob(amount: 1000);
-
     if (datePicked != null && datePicked != DateTime.now()) {
+      String clientUrl = await PaymentManager().payWithPayMob(price: '3000');
+
       setState(() {
         selectedDate = datePicked;
-        Get.to(PaymentGatewayView(
-          clientUrl: clientUrl,
-        ));
+        Get.to(() => PaymentGatewayView(
+              clientUrl: clientUrl,
+            ));
       });
     }
   }

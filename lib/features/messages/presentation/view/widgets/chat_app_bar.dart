@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/core/theme/app_color.dart';
 
@@ -25,10 +26,10 @@ class ChatAppBar extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 5.0),
               child: CircleAvatar(
-                maxRadius: 18,
-                backgroundImage: NetworkImage(
-                  'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
-                ),
+                maxRadius: 16,
+                backgroundImage: CachedNetworkImageProvider(
+                  
+                    'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg'),
               ),
             ),
             Text(fullName),

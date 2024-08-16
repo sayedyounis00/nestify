@@ -6,17 +6,17 @@ part 'get_messages_state.dart';
 
 class GetMessagesCubit extends Cubit<GetMessageState> {
   GetMessagesCubit() : super(GetMessagesInitial());
+  String lastMessages = '';
 
   void fetchMessageInformation() {
     emit(GetMessagesLoading());
-
     try {
       FirebaseFirestore.instance
           .collection('messages')
           .orderBy('message_time', descending: true)
           .snapshots()
           .listen((snapshot) {
-        final List<MessageModel> messages = snapshot.docs
+        final messages = snapshot.docs
             .map((doc) => MessageModel.fromJson(doc.data()))
             .toList();
         emit(GetMessagesSuccess(messages: messages));
@@ -24,5 +24,20 @@ class GetMessagesCubit extends Cubit<GetMessageState> {
     } catch (e) {
       emit(GetMessagesFailure(errMessage: e.toString()));
     }
+  }
+
+  String getLastMessage() {
+    FirebaseFirestore.instance
+        .collection('messages')
+        .orderBy('message_time', descending: true)
+        .snapshots()
+        .listen(
+      (snap) {
+        lastMessages =
+            MessageModel.fromJson(snap.docs.first.data()).messageText;
+        emit(state);
+      },
+    );
+    return lastMessages;
   }
 }
