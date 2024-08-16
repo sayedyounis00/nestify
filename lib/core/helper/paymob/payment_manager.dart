@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:nestify/core/helper/paymob/constant.dart';
 
@@ -9,9 +7,7 @@ class PaymentManager {
   Future<String> payWithPayMob({required int amount}) async {
     try {
       String mainToken = await getMainToken();
-      log(mainToken);
       String url = await getUrlLink(mainToken);
-      log(url);
       return url;
     } catch (e) {
       rethrow;

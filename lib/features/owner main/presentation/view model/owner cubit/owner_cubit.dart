@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/utils/constant.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
 import 'package:nestify/features/home/data/model/user.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/owner%20main/presentation/view%20model/owner%20cubit/owner_state.dart';
+import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 
 class OwnerCubit extends Cubit<OwnerState> {
   OwnerCubit() : super(OwnerInit());
@@ -15,7 +15,7 @@ class OwnerCubit extends Cubit<OwnerState> {
 
   Future<List<HouseModel>> getMyHouses(context) async {
     List<HouseModel> myHouses = [];
-    UserModel user = BlocProvider.of<HomeCubit>(context).user;
+    UserModel user = BlocProvider.of<NavigateCubit>(context).user;
     var data = await firestore
         .collection(kPropertiesCol)
         .where('owner_name', isEqualTo: user.fullName)

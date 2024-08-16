@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
+import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 
 class GetOwnerInfoBody extends StatelessWidget {
   const GetOwnerInfoBody({super.key});
@@ -24,7 +24,7 @@ class GetOwnerInfoBody extends StatelessWidget {
             Center(
               child: TextFormField(
                 onChanged: (value) {
-                  BlocProvider.of<HomeCubit>(context).ownerAbout=value;
+                  BlocProvider.of<NavigateCubit>(context).ownerAbout=value;
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(

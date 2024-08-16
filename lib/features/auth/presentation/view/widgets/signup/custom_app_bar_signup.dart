@@ -4,7 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart' as nav;
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/features/auth/presentation/view/login_view.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
+import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 
 class CustomAppBarSignup extends StatelessWidget {
   const CustomAppBarSignup({
@@ -18,7 +18,7 @@ class CustomAppBarSignup extends StatelessWidget {
         Image.asset('assets/images/nestify.png', width: 80),
         const Spacer(),
         Text(
-          "Signup as ${BlocProvider.of<HomeCubit>(context).userStatus}",
+          "Signup as ${BlocProvider.of<NavigateCubit>(context).userStatus}",
           style: const TextStyle(
               fontSize: 12,
               color: AppColor.secColor1,

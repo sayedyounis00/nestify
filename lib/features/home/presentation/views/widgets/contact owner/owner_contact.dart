@@ -8,8 +8,8 @@ import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/home/data/model/house_model.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/messages/presentation/view/chat_view.dart';
+import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OwnerContact extends StatelessWidget {
@@ -27,7 +27,7 @@ class OwnerContact extends StatelessWidget {
             text: 'Message',
             onPressed: () {
               addOwnerContactIfRenter(
-                userId: BlocProvider.of<HomeCubit>(context).user.userId,
+                userId: BlocProvider.of<NavigateCubit>(context).user.userId,
                 ownerName: house.ownerName,
                 ownerPhone: house.ownernum,
               );

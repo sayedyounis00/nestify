@@ -6,6 +6,7 @@ import 'package:nestify/core/utils/router.dart';
 import 'package:nestify/features/home/data/repo/home_repo_imp.dart';
 import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/messages/presentation/view%20model/get_messages%20cubit/get_messages_cubit.dart';
+import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 import 'package:nestify/firebase_options.dart';
 
 void main() async {
@@ -28,6 +29,9 @@ class Nestify extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetMessagesCubit(),
+        ),
+        BlocProvider(
+          create: (context) => NavigateCubit(HomeRepoImp()),
         )
       ],
       child: const GetMaterialApp(

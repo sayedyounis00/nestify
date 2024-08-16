@@ -60,7 +60,7 @@ class _ButtonsBookState extends State<ButtonsBook> {
       firstDate: DateTime(2024),
       lastDate: DateTime(2025),
     );
-    
+
     String clientUrl = await PaymentManager().payWithPayMob(amount: 1000);
 
     if (datePicked != null && datePicked != DateTime.now()) {

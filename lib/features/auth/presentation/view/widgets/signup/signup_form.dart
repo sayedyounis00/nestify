@@ -12,9 +12,9 @@ import 'package:nestify/core/utils/constant.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/main/presentation/views/main_view.dart';
 import 'package:nestify/features/owner%20main/presentation/views/main_owner_view.dart';
+import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({super.key});
@@ -124,12 +124,12 @@ class _SignupFormState extends State<SignupForm> {
         await registerMethod(emailCon, passwordCon);
         ErrorHandle.showSnackBar(context, 'Created done');
         await createUser();
-        BlocProvider.of<HomeCubit>(context).setUserInfo();
+        BlocProvider.of<NavigateCubit>(context).setUserInfo();
         Future.delayed(const Duration(seconds: 1), () {
-        if (BlocProvider.of<HomeCubit>(context).userStatus == 'Owner') {
+        if (BlocProvider.of<NavigateCubit>(context).userStatus == 'Owner') {
                   Get.off(() => const MainOwnerView(),
                       transition: getnav.Transition.rightToLeft);
-                } else if (BlocProvider.of<HomeCubit>(context).userStatus ==
+                } else if (BlocProvider.of<NavigateCubit>(context).userStatus ==
                     'renter') {
                   Get.off(() => const MainView(),
                       transition: getnav.Transition.rightToLeft);
@@ -152,8 +152,8 @@ class _SignupFormState extends State<SignupForm> {
       'email': emailCon.text,
       'createdAt': DateTime.now().toString(),
       'phone_number': phoneCon.text,
-      'user_status': BlocProvider.of<HomeCubit>(context).userStatus,
-      'owner_about': BlocProvider.of<HomeCubit>(context).ownerAbout,
+      'user_status': BlocProvider.of<NavigateCubit>(context).userStatus,
+      'owner_about': BlocProvider.of<NavigateCubit>(context).ownerAbout,
     });
   }
 

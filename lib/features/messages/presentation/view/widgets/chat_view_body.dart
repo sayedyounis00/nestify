@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/messages/data/message_model.dart';
 import 'package:nestify/features/messages/presentation/view%20model/add_messages%20cubit/add_message_cubit.dart';
 import 'package:nestify/features/messages/presentation/view%20model/get_messages%20cubit/get_messages_cubit.dart';
 import 'package:nestify/features/messages/presentation/view/widgets/custom_message_card.dart';
 import 'package:nestify/features/messages/presentation/view/widgets/send_message_feild.dart';
+import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 
 class ChatViewBody extends StatelessWidget {
   const ChatViewBody({super.key});
@@ -29,7 +29,7 @@ class ChatViewBody extends StatelessWidget {
                       return CustomMessageCard(
                         messageText: message[index].messageText,
                         isMe: message[index].senderName ==
-                                BlocProvider.of<HomeCubit>(context).user.userId
+                                BlocProvider.of<NavigateCubit>(context).user.userId
                             ? true
                             : false,
                       );

@@ -9,7 +9,7 @@ import 'package:nestify/features/auth/presentation/view/signup_view.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/login/already_hav_acc_text.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/select_user_type.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
+import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 
 class UserOrOwnerViewBody extends StatefulWidget {
   const UserOrOwnerViewBody({super.key});
@@ -83,11 +83,11 @@ class _UserOrOwnerViewBodyState extends State<UserOrOwnerViewBody> {
   }
 
   void goToMethod(BuildContext context) {
-    BlocProvider.of<HomeCubit>(context).setUserStatus(status: userStatus);
-    if (BlocProvider.of<HomeCubit>(context).userStatus == 'Owner') {
+    BlocProvider.of<NavigateCubit>(context).setUserStatus(status: userStatus);
+    if (BlocProvider.of<NavigateCubit>(context).userStatus == 'Owner') {
       Get.to(() => const GetAboutOwnerView(),
           transition: nav.Transition.rightToLeft);
-    } else if (BlocProvider.of<HomeCubit>(context).userStatus == 'renter') {
+    } else if (BlocProvider.of<NavigateCubit>(context).userStatus == 'renter') {
       Get.to(() => const SignupView(), transition: nav.Transition.rightToLeft);
     }
   }

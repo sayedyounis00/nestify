@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/messages/presentation/view%20model/add_messages%20cubit/add_message_cubit.dart';
+import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 
 class SendMessageFeild extends StatefulWidget {
   const SendMessageFeild({
@@ -53,7 +53,7 @@ class _SendMessageFeildState extends State<SendMessageFeild> {
                   //   return;
                   // }
                     String userId =
-                        BlocProvider.of<HomeCubit>(context).user.userId;
+                        BlocProvider.of<NavigateCubit>(context).user.userId;
                     BlocProvider.of<AddMessageCubit>(context).addMessageDetail(
                       messageText: _formControler.text,
                       userID: userId,

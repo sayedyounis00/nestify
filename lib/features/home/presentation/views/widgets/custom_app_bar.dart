@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:nestify/core/theme/app_color.dart';
-import 'package:nestify/features/home/presentation/view%20model/home%20cubit/home_cubit.dart';
 import 'package:nestify/features/home/presentation/views/widgets/location_card.dart';
+import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -35,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    'Hi ${BlocProvider.of<HomeCubit>(context).user.firstName.capitalize},',
+                    'Hi ${BlocProvider.of<NavigateCubit>(context).user.firstName.capitalize},',
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: AppColor.secColor3,
                         )),
