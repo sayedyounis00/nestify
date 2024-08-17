@@ -191,9 +191,8 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                   ba: selectedBath ?? 'ba',
                   price: selectedPrice ?? 'price',
                   imageUrl: imageUrl ??
-                      'https://st2.depositphotos.com/2102215/46681/v/450/depositphotos_466819550-stock-illustration-image-available-icon-missing-image.jpg ',
+                      'https://st2.depositphotos.com/2102215/46681/v/450/depositphotos_466819550-stock-illustration-image-available-icon-missing-image.jpg',
                   ownernum: BlocProvider.of<NavigateCubit>(context).user.phone,
-                  reviewNum: reviewNum ?? 'review',
                   description: description ?? 'desc',
                 );
                 Navigator.pop(context);
