@@ -13,23 +13,34 @@ class OwnerCubit extends Cubit<OwnerState> {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
   static FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future<List<HouseModel>> getMyHouses(context) async {
-    List<HouseModel> myHouses = [];
-    UserModel user = BlocProvider.of<NavigateCubit>(context).user;
-    var data = await firestore
-        .collection(kPropertiesCol)
-        .where('owner_name', isEqualTo: user.fullName)
-        .get();
+  Future<List<HouseModel>> getMyHouses({context, String? ownerName}) async {
+    try {
+      emit(OwnerLoading());
+      List<HouseModel> myHouses = [];
+      UserModel user = BlocProvider.of<NavigateCubit>(context).user;
+      var data = await firestore
+          .collection(kPropertiesCol)
+          .where('owner_name', isEqualTo: ownerName ?? user.fullName)
+          .get();
 
-    for (var doc in data.docs) {
-      myHouses.add(HouseModel.fromJson(doc.data()));
+      for (var doc in data.docs) {
+        myHouses.add(HouseModel.fromJson(doc.data()));
+      }
+      emit(OwnerDone());
+      return myHouses;
+    } catch (e) {
+      emit(OwnerFalied(e.toString()));
+      rethrow;
     }
-    emit(OwnerDone());
-    return myHouses;
   }
 
   void removeHouse({required String docName}) async {
-    await firestore.collection(kPropertiesCol).doc(docName).delete();
-    emit(OwnerDone());
+    try {
+      emit(OwnerLoading());
+      await firestore.collection(kPropertiesCol).doc(docName).delete();
+      emit(OwnerDone());
+    } catch (e) {
+      emit(OwnerFalied(e.toString()));
+    }
   }
 }

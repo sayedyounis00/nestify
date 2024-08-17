@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/get_core.dart';
@@ -21,7 +23,6 @@ class HomeViewOwner extends StatefulWidget {
 }
 
 class _HomeViewOwnerState extends State<HomeViewOwner> {
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -53,11 +54,14 @@ class _HomeViewOwnerState extends State<HomeViewOwner> {
                 if (state is OwnerDone) {
                   setState(() {});
                 }
+                else if (state is OwnerFalied) {
+                  log('error is:${state.errMessage}');
+                }
               },
               builder: (context, state) {
                 return FutureBuilder(
-                  future:
-                      BlocProvider.of<OwnerCubit>(context).getMyHouses(context),
+                  future: BlocProvider.of<OwnerCubit>(context)
+                      .getMyHouses(context: context),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
@@ -74,9 +78,6 @@ class _HomeViewOwnerState extends State<HomeViewOwner> {
                           );
                         },
                       );
-                    } else if (snapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
                     } else {
                       return const Text('Error');
                     }

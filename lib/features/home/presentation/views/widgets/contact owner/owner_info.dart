@@ -42,8 +42,8 @@ class OwnerInfo extends StatelessWidget {
               Text('About'),
               Text('Listings'),
             ]),
-        const Expanded(
-          child: TabBarView(children: [AboutOwner(), OwnerHouses()]),
+         Expanded(
+          child: TabBarView(children: [const AboutOwner(), OwnerHouses(house: house,)]),
         )
       ],
     );
