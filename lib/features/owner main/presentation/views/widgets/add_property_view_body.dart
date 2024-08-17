@@ -79,20 +79,18 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5.0),
-                child: Expanded(
-                  child: DropDownMenu(
-                    selectedValue: selectedLocation,
-                    upText: 'Location',
-                    allList: const [
-                      'Tanta',
-                      'Usa',
-                      'Egypt',
-                    ],
-                    onChanged: (String? value) {
-                      selectedLocation = value!;
-                      setState(() {});
-                    },
-                  ),
+                child: DropDownMenu(
+                  selectedValue: selectedLocation,
+                  upText: 'Location',
+                  allList: const [
+                    'Tanta',
+                    'Usa',
+                    'Egypt',
+                  ],
+                  onChanged: (String? value) {
+                    selectedLocation = value!;
+                    setState(() {});
+                  },
                 ),
               ),
               DropDownMenu(
@@ -150,20 +148,18 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 5.0),
-          child: Expanded(
-            child: DropDownMenu(
-              selectedValue: selectedCategory,
-              upText: 'Category',
-              allList: const [
-                'Villa',
-                'House',
-                'Hotel Room',
-              ],
-              onChanged: (String? value) {
-                selectedCategory = value!;
-                setState(() {});
-              },
-            ),
+          child: DropDownMenu(
+            selectedValue: selectedCategory,
+            upText: 'Category',
+            allList: const [
+              'Villa',
+              'House',
+              'Hotel Room',
+            ],
+            onChanged: (String? value) {
+              selectedCategory = value!;
+              setState(() {});
+            },
           ),
         ),
         Padding(

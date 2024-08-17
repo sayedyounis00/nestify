@@ -6,11 +6,17 @@ import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/login_view.dart';
 
-class LogoutText extends StatelessWidget {
+class LogoutText extends StatefulWidget {
   const LogoutText({
     super.key,
   });
 
+  @override
+  State<LogoutText> createState() => _LogoutTextState();
+}
+
+class _LogoutTextState extends State<LogoutText> {
+  bool isOut = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,8 +25,7 @@ class LogoutText extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         splashColor: Colors.white10,
         onTap: () {
-          FirebaseAuth.instance.signOut();
-          Get.offAll(() => const LoginView(),transition: Transition.fade);
+          showMyDialog(context);
         },
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -33,5 +38,33 @@ class LogoutText extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void showMyDialog(BuildContext context) {
+    showDialog(
+      barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Log out'),
+            content: const Text('Are you sure about logging out?'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Get.offAll(() => const LoginView(),
+                      transition: Transition.fade);
+                },
+              ),
+              TextButton(
+                child: const Text('cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 }

@@ -14,7 +14,7 @@ class MyHousesListView extends StatelessWidget {
       child: BlocBuilder<OwnerCubit, OwnerState>(
         builder: (context, state) {
           return FutureBuilder(
-            future: BlocProvider.of<OwnerCubit>(context).getMyHouses(context),
+            future: BlocProvider.of<OwnerCubit>(context).getMyHouses(context:context),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return ListView.builder(
