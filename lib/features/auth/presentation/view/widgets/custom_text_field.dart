@@ -5,8 +5,8 @@ class CustomTextField extends StatefulWidget {
   final String? hintText;
   final double width;
   final TextEditingController? controller;
-  final Function(String)? onChanged; 
-  final Widget?  prefix; 
+  final Function(String)? onChanged;
+  final Widget? prefix;
 
   const CustomTextField({
     super.key,
@@ -14,7 +14,8 @@ class CustomTextField extends StatefulWidget {
     this.controller,
     this.width = double.infinity,
     this.hintText,
-    this.onChanged, this.prefix,
+    this.onChanged,
+    this.prefix,
   });
 
   @override
@@ -57,7 +58,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           focusedBorder: customBorder(),
           border: customBorder(),
         ),
-        keyboardType: widget.label == 'Phone number'&&widget.label == 'rating'
+        keyboardType: widget.label == 'Phone number' && widget.label == 'rating'
             ? TextInputType.phone
             : TextInputType.text,
       ),
@@ -83,10 +84,21 @@ class _CustomTextFieldState extends State<CustomTextField> {
       return 'Please enter your email';
     } else if (value.isEmpty && widget.label == 'Last name') {
       return 'Required';
-    }
-    //!sending message validation 
-    // else if (value.isEmpty && widget.hintText == 'Type message...') { return '';}
-     else {
+    } else if (value.isEmpty && widget.label == 'num of ba') {
+      return 'Required';
+    } else if (value.isEmpty && widget.label == 'num of bed') {
+      return 'Required';
+    } else if (value.isEmpty && widget.label == 'description') {
+      return 'Required';
+    } else if (value.isEmpty && widget.label == 'Category') {
+      return 'Required';
+    } else if (value.isEmpty && widget.label == 'Price per Night') {
+      return 'Required';
+    } else if (value.isEmpty && widget.label == 'Property Loacation') {
+      return 'Required';
+    } else if (value.isEmpty && widget.label == 'Property Name') {
+      return 'Required';
+    } else {
       return null;
     }
   }
