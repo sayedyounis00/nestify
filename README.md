@@ -4,6 +4,7 @@
 
 Nestify is a property rental application designed to make the process of finding and renting properties seamless and efficient. Whether you're a landlord listing your properties or a tenant searching for your next home, Nestify provides a user-friendly interface with all the tools you need.
 
+![nestify design](https://github.com/user-attachments/assets/2efbb048-877f-4da7-bff5-beb31372fd84)
 ## Features
 - Property Listings: Browse a wide range of rental properties, complete with photos, descriptions, and pricing.
 - User Profiles: Create and manage profiles for both owners and renters.
