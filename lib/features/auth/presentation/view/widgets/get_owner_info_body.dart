@@ -5,8 +5,15 @@ import 'package:nestify/core/utils/routes.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 
-class GetOwnerInfoBody extends StatelessWidget {
+class GetOwnerInfoBody extends StatefulWidget {
   const GetOwnerInfoBody({super.key});
+
+  @override
+  State<GetOwnerInfoBody> createState() => _GetOwnerInfoBodyState();
+}
+
+class _GetOwnerInfoBodyState extends State<GetOwnerInfoBody> {
+  final aboutKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +28,29 @@ class GetOwnerInfoBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('Provide us some info about you '),
-            Center(
-              child: TextFormField(
-                onChanged: (value) {
-                  BlocProvider.of<NavigateCubit>(context).ownerAbout=value;
-                },
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  contentPadding: EdgeInsets.all(100),
+            Form(
+              key: aboutKey,
+              child: Center(
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'pls provide us some information about you';
+                    }
+                    if (value.length <= 20) {
+                      return 'need more than 5 word';
+                    } else {
+                      return null;
+                    }
+                  },
+                  onChanged: (value) {
+                    BlocProvider.of<NavigateCubit>(context).ownerAbout = value;
+                  },
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    contentPadding: EdgeInsets.all(100),
+                    
+                  ),
                 ),
               ),
             ),
@@ -38,7 +59,11 @@ class GetOwnerInfoBody extends StatelessWidget {
               child: CustomButton(
                 text: 'Next',
                 onPressed: () {
-                  Navigator.pushNamed(context, AddRouter.signupViewRoute);
+                  if (aboutKey.currentState!.validate()) {
+                    Navigator.pushNamed(context, AddRouter.signupViewRoute);
+                  } else {
+                    return;
+                  }
                 },
                 color: AppColor.primaryColor,
               ),

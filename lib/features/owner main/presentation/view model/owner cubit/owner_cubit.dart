@@ -24,10 +24,12 @@ class OwnerCubit extends Cubit<OwnerState> {
     for (var doc in data.docs) {
       myHouses.add(HouseModel.fromJson(doc.data()));
     }
+    emit(OwnerDone());
     return myHouses;
   }
 
   void removeHouse({required String docName}) async {
     await firestore.collection(kPropertiesCol).doc(docName).delete();
+    emit(OwnerDone());
   }
 }
