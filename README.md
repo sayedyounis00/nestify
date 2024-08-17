@@ -29,11 +29,10 @@ Nestify is a property rental application designed to make the process of finding
 ![image](https://github.com/user-attachments/assets/45b23e79-d91c-42fa-9d9f-7375f0c6c3bd)
 
 ## Tech Stack
-
-- Framework: flutter.
-- Database: firebase fireStore.
-- Authentication: firebase auth.
-- State Management: bloc
+- Mobile Development: Flutter
+- Backend: Firebase
+- Payments: Paymob
+- State management: Bloc
 
 ## Contributing
 Contributions are welcome! Please follow these steps:
