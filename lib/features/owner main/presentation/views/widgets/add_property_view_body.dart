@@ -22,9 +22,12 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
   final addPropertyKey = GlobalKey<FormState>();
   static XFile? selectedImage;
   static String? imageUrl;
-  String? houseTitle, location, price, category, reviewNum, description;
-  String? bd, ba;
-  String? selectedCategory;
+  String? houseTitle, location, price, category, reviewNum, description, bd, ba;
+  String? selectedCategory,
+      selectedLocation,
+      selectedPrice,
+      selectedBeds,
+      selectedBath;
 
   @override
   void dispose() {
@@ -72,46 +75,72 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                     ),
                   ),
                   const SpaceH(10),
-                  Expanded(
-                    child: CustomTextField(
-                      prefix: const Icon(Icons.room),
-                      label: 'Property Loacation',
-                      onChanged: (loca) => location = loca.toLowerCase(),
-                    ),
-                  ),
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: CustomTextField(
-                  prefix: const Icon(Icons.monetization_on),
-                  label: 'Price per Night',
-                  onChanged: (prc) => price = prc,
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                child: Expanded(
+                  child: DropDownMenu(
+                    selectedValue: selectedLocation,
+                    upText: 'Location',
+                    allList: const [
+                      'Tanta',
+                      'Usa',
+                      'Egypt',
+                    ],
+                    onChanged: (String? value) {
+                      selectedLocation = value!;
+                      setState(() {});
+                    },
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5.0),
-                child: CustomTextField(
-                  prefix: const Icon(Icons.monetization_on),
-                  label: 'description',
-                  onChanged: (desc) => description = desc,
-                ),
+              DropDownMenu(
+                selectedValue: selectedPrice,
+                upText: 'Price per night',
+                allList: const [
+                  '1000',
+                  '2000',
+                  '3000',
+                  '4000',
+                ],
+                onChanged: (String? value) {
+                  selectedPrice = value!;
+                  setState(() {});
+                },
               ),
               Row(
                 children: [
                   Expanded(
-                    child: CustomTextField(
-                      prefix: const Icon(Icons.bed),
-                      label: 'num of bed',
-                      onChanged: (numBed) => bd = numBed,
+                    child: DropDownMenu(
+                      selectedValue: selectedBeds,
+                      upText: 'num of bed',
+                      allList: const [
+                        '1',
+                        '2',
+                        '3',
+                        '4',
+                      ],
+                      onChanged: (String? value) {
+                        selectedBeds = value!;
+                        setState(() {});
+                      },
                     ),
                   ),
-                  const SpaceH(10),
                   Expanded(
-                    child: CustomTextField(
-                      prefix: const Icon(Icons.house_rounded),
-                      label: 'num of ba',
-                      onChanged: (bath) => ba = bath,
+                    child: DropDownMenu(
+                      selectedValue: selectedBath,
+                      upText: 'num of bathrooms',
+                      allList: const [
+                        '1',
+                        '2',
+                        '3',
+                        '4',
+                      ],
+                      onChanged: (String? value) {
+                        selectedBath = value!;
+                        setState(() {});
+                      },
                     ),
                   ),
                 ],
@@ -136,11 +165,14 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
               },
             ),
           ),
-          //  CustomTextField(
-          //   prefix: const Icon(Icons.monetization_on),
-          //   label: 'Category',
-          //   onChanged: (cate) => category = cate.toLowerCase(),
-          // ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: CustomTextField(
+            prefix: const Icon(Icons.monetization_on),
+            label: 'description',
+            onChanged: (desc) => description = desc,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10.0),
@@ -154,10 +186,10 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                   ownerName: fullName,
                   category: selectedCategory ?? 'category',
                   houseTitle: houseTitle ?? 'title',
-                  location: location ?? 'place',
-                  bd: bd ?? 'bd',
-                  ba: ba ?? 'ba',
-                  price: price ?? 'price',
+                  location: selectedLocation ?? 'place',
+                  bd: selectedBeds ?? 'bd',
+                  ba: selectedBath ?? 'ba',
+                  price: selectedPrice ?? 'price',
                   imageUrl: imageUrl ??
                       'https://st2.depositphotos.com/2102215/46681/v/450/depositphotos_466819550-stock-illustration-image-available-icon-missing-image.jpg ',
                   ownernum: BlocProvider.of<NavigateCubit>(context).user.phone,
