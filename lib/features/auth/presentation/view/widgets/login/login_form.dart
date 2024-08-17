@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart' as getnav;
 import 'package:nestify/core/error/auth_errors_handle.dart';
 import 'package:nestify/core/theme/app_color.dart';
+import 'package:nestify/core/widgets/load_indicator.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
@@ -60,7 +61,7 @@ class _LoginFormState extends State<LoginForm> {
                 ? const SizedBox(
                     height: 50,
                     width: 50,
-                    child: Center(child: CircularProgressIndicator()))
+                    child: Center(child: LoadIndicator(width: 40,height: 40)))
                 : CustomButton(
                     onPressed: () async {
                       await loginHandle(context);

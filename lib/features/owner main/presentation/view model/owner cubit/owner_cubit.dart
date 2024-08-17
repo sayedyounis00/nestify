@@ -12,10 +12,12 @@ class OwnerCubit extends Cubit<OwnerState> {
 
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
   static FirebaseAuth auth = FirebaseAuth.instance;
+  CollectionReference properties =
+      FirebaseFirestore.instance.collection('properties');
 
   Future<List<HouseModel>> getMyHouses({context, String? ownerName}) async {
     try {
-      emit(OwnerLoading());
+      // emit(OwnerLoading());
       List<HouseModel> myHouses = [];
       UserModel user = BlocProvider.of<NavigateCubit>(context).user;
       var data = await firestore
@@ -26,21 +28,51 @@ class OwnerCubit extends Cubit<OwnerState> {
       for (var doc in data.docs) {
         myHouses.add(HouseModel.fromJson(doc.data()));
       }
-      emit(OwnerDone());
+      emit(OwnerInit());
       return myHouses;
     } catch (e) {
-      emit(OwnerFalied(e.toString()));
       rethrow;
     }
   }
 
   void removeHouse({required String docName}) async {
     try {
-      emit(OwnerLoading());
       await firestore.collection(kPropertiesCol).doc(docName).delete();
-      emit(OwnerDone());
+      emit(RemoveHouseDone());
     } catch (e) {
       emit(OwnerFalied(e.toString()));
+    }
+  }
+
+  void addHouse({
+    required String ownerName,
+    required String houseTitle,
+    required String location,
+    required String bd,
+    required String ba,
+    required String price,
+    required String imageUrl,
+    required String category,
+    required String ownernum,
+    required String description,
+  }) {
+    try {
+      emit(AddHouseLoading());
+      properties.doc(houseTitle).set({
+        'owner_name': ownerName,
+        'category': category,
+        'title': houseTitle,
+        'img': imageUrl,
+        'location': location,
+        'bd': bd,
+        'ba': ba,
+        'price': price,
+        'owner_um': ownernum,
+        'desc': description,
+      });
+      emit(AddHouseSuccess());
+    } catch (e) {
+      emit(AddHouseFaliure(errMessage: e.toString()));
     }
   }
 }

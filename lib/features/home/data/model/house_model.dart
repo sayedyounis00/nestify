@@ -8,7 +8,7 @@ class HouseModel {
       ownerName,
       category,
       ownernum,
-      reviewNum,
+      // reviewNum,
       description;
   bool isFav;
 
@@ -23,7 +23,7 @@ class HouseModel {
     required this.ownerName,
     required this.category,
     required this.ownernum,
-    required this.reviewNum,
+    // required this.reviewNum,
     required this.description,
   });
 
@@ -39,7 +39,7 @@ class HouseModel {
       ownerName: json['owner_name'],
       category: json['category'],
       ownernum: json['owner_um'],
-      reviewNum: json['reviewNum'],
+      // reviewNum: json['reviewNum'],
       description: json['desc'],
     );
   }
@@ -56,7 +56,7 @@ class HouseModel {
       'owner_um': ownernum,
       'location': place,
       'category': category,
-      'review_num': reviewNum,
+      // 'review_num': reviewNum,
       'desc': description,
     };
   }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:nestify/core/widgets/load_indicator.dart';
 import 'package:nestify/features/messages/presentation/view/widgets/chat_card.dart';
 
 class MessangerViewBody extends StatelessWidget {
@@ -40,7 +41,7 @@ class MessangerViewBody extends StatelessWidget {
                       );
                     });
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: LoadIndicator());
               }
             },
           ),

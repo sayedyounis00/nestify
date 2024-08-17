@@ -36,14 +36,21 @@ class OwnerInfo extends StatelessWidget {
         OwnerContact(house: house),
         const SpaceV(20),
         const TabBar(
+            labelStyle: TextStyle(fontSize: 20),
+            padding: EdgeInsets.all(10),
             indicatorColor: Colors.transparent,
             labelColor: Colors.black,
             tabs: [
               Text('About'),
               Text('Listings'),
             ]),
-         Expanded(
-          child: TabBarView(children: [const AboutOwner(), OwnerHouses(house: house,)]),
+        Expanded(
+          child: TabBarView(children: [
+            const AboutOwner(),
+            OwnerHouses(
+              house: house,
+            )
+          ]),
         )
       ],
     );

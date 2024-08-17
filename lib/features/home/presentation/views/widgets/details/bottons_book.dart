@@ -62,7 +62,8 @@ class _ButtonsBookState extends State<ButtonsBook> {
     );
 
     if (datePicked != null && datePicked != DateTime.now()) {
-      String clientUrl = await PaymentManager().payWithPayMob(price: '3000');
+      String clientUrl =
+          await PaymentManager().payWithPayMob(price: widget.house.price);
 
       setState(() {
         selectedDate = datePicked;

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_navigation/get_navigation.dart' as nav;
 import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
@@ -31,7 +31,7 @@ class OwnerContact extends StatelessWidget {
                 ownerName: house.ownerName,
                 ownerPhone: house.ownernum,
               );
-              Get.to(() => ChatView(fullName: house.ownerName));
+              Get.to(() => ChatView(fullName: house.ownerName),transition: nav.Transition.fade);
             },
             color: AppColor.primaryColor),
         const SpaceH(10),

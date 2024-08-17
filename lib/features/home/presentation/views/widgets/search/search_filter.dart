@@ -26,21 +26,18 @@ class _SearchFilterState extends State<SearchFilter> {
     [
       'Egypt',
       'Usa',
-      'tanta',
+      'Tanta',
+      'Alex',
+      'Sharm',
     ],
     [
       '1000',
       '2000',
       '3000',
       '4000',
+      '5000',
     ],
-    [
-      'Villa',
-      'House',
-      'Hotel',
-      'Tent',
-      'Camp'
-    ],
+    ['Villa', 'House', 'Hotel', 'Tent', 'Camp'],
     [
       '1',
       '2',

@@ -1,15 +1,20 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:nestify/core/helper/paymob/constant.dart';
 
 class PaymentManager {
   Dio dio = Dio();
 
-  Future<String> payWithPayMob({required String price}) async {
+  Future<String> payWithPayMob({
+    required String price,
+  }) async {
     try {
       String mainToken = await getMainToken();
       String url = await getUrlLink(mainToken, price);
       return url;
     } catch (e) {
+      log('message');
       return '';
     }
   }
@@ -17,11 +22,9 @@ class PaymentManager {
   Future<String> getMainToken() async {
     try {
       Response response =
-          await dio.post('https://accept.paymob.com/api/auth/tokens',
-              // options: Options(method: 'POST'),
-              data: {
-            "api_key": kApiKey,
-          });
+          await dio.post('https://accept.paymob.com/api/auth/tokens', data: {
+        "api_key": kApiKey,
+      });
       return response.data['token'];
     } catch (e) {
       rethrow;
@@ -32,9 +35,9 @@ class PaymentManager {
     try {
       var headers = {'Authorization': 'Bearer $mainToken'};
       var data = FormData.fromMap({
-        'amount_cents': '10000',
+        'amount_cents': price,
         'payment_methods': '4630175',
-        'full_name': 'ahmed',
+        'full_name': 'Yousef Dewidar',
         'email': 'ymahmoud1213@gmail.com',
         'phone_number': '+201014502276'
       });

@@ -71,6 +71,10 @@ class DropDownMenu extends StatelessWidget {
                   ),
                 ),
                 iconStyleData: const IconStyleData(
+                  openMenuIcon: Icon(
+                    Icons.keyboard_arrow_up,
+                    size: 20,
+                  ),
                   icon: Icon(
                     Icons.keyboard_arrow_down_sharp,
                     size: 20,
@@ -80,6 +84,7 @@ class DropDownMenu extends StatelessWidget {
                   iconDisabledColor: AppColor.secColor3,
                 ),
                 dropdownStyleData: DropdownStyleData(
+                  maxHeight: 250,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14),
                     color: Colors.white,

@@ -7,8 +7,8 @@ import 'package:nestify/core/theme/app_color.dart';
 import 'package:nestify/core/widgets/space.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_button.dart';
 import 'package:nestify/features/auth/presentation/view/widgets/custom_text_field.dart';
-import 'package:nestify/features/home/presentation/view%20model/house%20cubit/house_cubit.dart';
-import 'package:nestify/features/home/presentation/views/widgets/search/drop_down_menu.dart';
+import 'package:nestify/features/owner%20main/presentation/view%20model/owner%20cubit/owner_cubit.dart';
+import 'package:nestify/features/owner%20main/presentation/views/widgets/drop_down_owner.dart';
 import 'package:nestify/features/splash/presentation/view%20model/navigate%20cubit/navigate_cubit.dart';
 
 class AddPropertyViewBody extends StatefulWidget {
@@ -39,6 +39,7 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
@@ -49,12 +50,16 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
             height: MediaQuery.of(context).size.height * .2,
             margin: const EdgeInsets.only(bottom: 10),
             width: double.infinity,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              color: Colors.grey,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              color: Colors.grey.withOpacity(.3),
             ),
             child: selectedImage == null
-                ? const Icon(Icons.add)
+                ? const Icon(
+                    Icons.add_a_photo_outlined,
+                    color: AppColor.primaryColor,
+                    size: 30,
+                  )
                 : Image.file(
                     File(selectedImage!.path),
                     fit: BoxFit.cover,
@@ -65,35 +70,32 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
           key: addPropertyKey,
           child: Column(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomTextField(
-                      prefix: const Icon(Icons.abc),
-                      label: 'Property Name',
-                      onChanged: (title) => houseTitle = title,
-                    ),
-                  ),
-                  const SpaceH(10),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5.0),
-                child: DropDownMenu(
-                  selectedValue: selectedLocation,
-                  upText: 'Location',
-                  allList: const [
-                    'Tanta',
-                    'Usa',
-                    'Egypt',
-                  ],
-                  onChanged: (String? value) {
-                    selectedLocation = value!;
-                    setState(() {});
-                  },
+              Container(
+                constraints: const BoxConstraints(minHeight: 50),
+                child: CustomTextField(
+                  prefix: const Icon(Icons.abc),
+                  label: 'Property Name',
+                  onChanged: (title) => houseTitle = title,
                 ),
               ),
-              DropDownMenu(
+              const SpaceV(10),
+              DropDownOwner(
+                selectedValue: selectedLocation,
+                upText: 'Location',
+                allList: const [
+                  'Egypt',
+                  'Usa',
+                  'Tanta',
+                  'Alex',
+                  'Sharm',
+                ],
+                onChanged: (String? value) {
+                  selectedLocation = value!;
+                  setState(() {});
+                },
+              ),
+              const SpaceV(10),
+              DropDownOwner(
                 selectedValue: selectedPrice,
                 upText: 'Price per night',
                 allList: const [
@@ -101,16 +103,19 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                   '2000',
                   '3000',
                   '4000',
+                  '5000',
+                  '6000',
                 ],
                 onChanged: (String? value) {
                   selectedPrice = value!;
                   setState(() {});
                 },
               ),
+              const SpaceV(10),
               Row(
                 children: [
                   Expanded(
-                    child: DropDownMenu(
+                    child: DropDownOwner(
                       selectedValue: selectedBeds,
                       upText: 'num of bed',
                       allList: const [
@@ -118,6 +123,9 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                         '2',
                         '3',
                         '4',
+                        '5',
+                        '6',
+                        '7',
                       ],
                       onChanged: (String? value) {
                         selectedBeds = value!;
@@ -125,10 +133,11 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
                       },
                     ),
                   ),
+                  const SpaceH(5),
                   Expanded(
-                    child: DropDownMenu(
+                    child: DropDownOwner(
                       selectedValue: selectedBath,
-                      upText: 'num of bathrooms',
+                      upText: 'num of bath',
                       allList: const [
                         '1',
                         '2',
@@ -146,59 +155,55 @@ class _AddPropertyViewBodyState extends State<AddPropertyViewBody> {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5.0),
-          child: DropDownMenu(
-            selectedValue: selectedCategory,
-            upText: 'Category',
-            allList: const [
-              'Villa',
-              'House',
-              'Hotel Room',
-            ],
-            onChanged: (String? value) {
-              selectedCategory = value!;
-              setState(() {});
-            },
-          ),
+        const SpaceV(10),
+        DropDownOwner(
+          selectedValue: selectedCategory,
+          upText: 'Category',
+          allList: const [
+            'Villa',
+            'House',
+            'Hotel',
+            'Tent',
+            'Camp',
+          ],
+          onChanged: (String? value) {
+            selectedCategory = value!;
+            setState(() {});
+          },
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10.0),
-          child: CustomTextField(
-            prefix: const Icon(Icons.monetization_on),
-            label: 'description',
-            onChanged: (desc) => description = desc,
-          ),
+        const SpaceV(10),
+        CustomTextField(
+          prefix: const Icon(Icons.monetization_on),
+          label: 'description',
+          onChanged: (desc) => description = desc,
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: CustomButton(
-            text: 'Add Property',
-            onPressed: () {
-              if (addPropertyKey.currentState!.validate()) {
-                String fullName =
-                    BlocProvider.of<NavigateCubit>(context).user.fullName;
-                BlocProvider.of<HouseCubit>(context).addHouse(
-                  ownerName: fullName,
-                  category: selectedCategory ?? 'category',
-                  houseTitle: houseTitle ?? 'title',
-                  location: selectedLocation ?? 'place',
-                  bd: selectedBeds ?? 'bd',
-                  ba: selectedBath ?? 'ba',
-                  price: selectedPrice ?? 'price',
-                  imageUrl: imageUrl ??
-                      'https://st2.depositphotos.com/2102215/46681/v/450/depositphotos_466819550-stock-illustration-image-available-icon-missing-image.jpg',
-                  ownernum: BlocProvider.of<NavigateCubit>(context).user.phone,
-                  description: description ?? 'desc',
-                );
-                Navigator.pop(context);
-              } else {
-                return;
-              }
-            },
-            color: AppColor.primaryColor,
-            width: double.infinity,
-          ),
+        const SpaceV(10),
+        CustomButton(
+          text: 'Add Property',
+          onPressed: () {
+            if (addPropertyKey.currentState!.validate()) {
+              String fullName =
+                  BlocProvider.of<NavigateCubit>(context).user.fullName;
+              BlocProvider.of<OwnerCubit>(context).addHouse(
+                ownerName: fullName,
+                category: selectedCategory ?? 'category',
+                houseTitle: houseTitle ?? 'title',
+                location: selectedLocation ?? 'place',
+                bd: selectedBeds ?? 'bd',
+                ba: selectedBath ?? 'ba',
+                price: selectedPrice ?? 'price',
+                imageUrl: imageUrl ??
+                    'https://st2.depositphotos.com/2102215/46681/v/450/depositphotos_466819550-stock-illustration-image-available-icon-missing-image.jpg',
+                ownernum: BlocProvider.of<NavigateCubit>(context).user.phone,
+                description: description ?? 'desc',
+              );
+              Navigator.pop(context);
+            } else {
+              return;
+            }
+          },
+          color: AppColor.primaryColor,
+          width: double.infinity,
         )
       ],
     );

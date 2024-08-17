@@ -107,7 +107,6 @@ class HomeRepoImp implements HomeRepo {
           ownerName: '',
           category: '',
           ownernum: '',
-          reviewNum: '',
           description: '',
         )
       ];
