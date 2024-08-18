@@ -15,12 +15,12 @@ Nestify is a property rental application designed to make the process of finding
 - Secure Payments: Integrated secure payment options for rent transactions.
 
   
-## Owners
+### Owners
 - Add New Property: Fill out a simple form to add new properties to the platform.
 - Manage Listings: Edit or remove your property listings as needed.
 - Communicate with Tenants: Use the in-app messaging system to communicate with potential tenants.
   
-## Renters
+### Renters
 - Search Properties: Use the search and filter options to find properties that meet your criteria.
 - Favorite: Save the properties you like in your favorites list.
 - Make Payments: Securely pay rent through the app using integrated payment options.
