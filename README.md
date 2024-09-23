@@ -4,6 +4,7 @@
 
 Nestify is a property rental application designed to make the process of finding and renting properties seamless and efficient. Whether you're a landlord listing your properties or a tenant searching for your next home, Nestify provides a user-friendly interface with all the tools you need.
 
+![nestify design](https://github.com/user-attachments/assets/2efbb048-877f-4da7-bff5-beb31372fd84)
 ## Features
 - Property Listings: Browse a wide range of rental properties, complete with photos, descriptions, and pricing.
 - User Profiles: Create and manage profiles for both owners and renters.
@@ -14,12 +15,12 @@ Nestify is a property rental application designed to make the process of finding
 - Secure Payments: Integrated secure payment options for rent transactions.
 
   
-## Owners
+### Owners
 - Add New Property: Fill out a simple form to add new properties to the platform.
 - Manage Listings: Edit or remove your property listings as needed.
 - Communicate with Tenants: Use the in-app messaging system to communicate with potential tenants.
   
-## Renters
+### Renters
 - Search Properties: Use the search and filter options to find properties that meet your criteria.
 - Favorite: Save the properties you like in your favorites list.
 - Make Payments: Securely pay rent through the app using integrated payment options.
@@ -28,11 +29,13 @@ Nestify is a property rental application designed to make the process of finding
 ![image](https://github.com/user-attachments/assets/45b23e79-d91c-42fa-9d9f-7375f0c6c3bd)
 
 ## Tech Stack
+- Mobile Development: Flutter
+- Backend: Firebase
+- Payments: Paymob
+- State management: Bloc
+## App Apk
+<a href='https://drive.google.com/file/d/1lOhhcyt7ku6rtisjRTnqaQKXYtm8TmfH/view?usp=drive_link'>Nestify</a>
 
-- Framework: flutter.
-- Database: firebase fireStore.
-- Authentication: firebase auth.
-- State Management: bloc
 
 ## Contributing
 Contributions are welcome! Please follow these steps:
